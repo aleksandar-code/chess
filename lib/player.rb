@@ -7,4 +7,5 @@ class Player
     @color = color
     @name = name
   end
+  attr_accessor :name, :color
 end
