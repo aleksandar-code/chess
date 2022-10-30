@@ -5,6 +5,7 @@ require_relative './player'
 
 class Game
   def initialize
+    @turn = 0
     @board = Board.new
     @players = [Player.new(player_name), Player.new(player_name)]
   end
@@ -14,7 +15,21 @@ class Game
   end
 
   def player_name
-    puts "Enter your name to get the white pieces"
+    puts "Enter your name to get the #{player_color} pieces"
+    switch_player
     gets.chomp
+  end
+
+  def player_color
+    return 'white' if @turn == 0
+    'black'
+  end
+
+  def switch_player
+    if @turn.zero?
+      @turn = 1
+    else
+      @turn = 0
+    end
   end
 end
