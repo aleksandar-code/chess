@@ -13,7 +13,10 @@ class Game
   end
 
   def play
-
+    loop do
+      @board.print_board
+      break
+    end
   end
 
   def player_name
