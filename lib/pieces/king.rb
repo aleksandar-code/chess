@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class King
-    def initialize
-      
-    end
+  def initialize
+    
   end
-  
+end
