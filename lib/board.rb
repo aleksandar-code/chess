@@ -10,16 +10,25 @@ class Board
   end
 
   def print_board
+    puts "   A  B  C  D  E  F  G  H "
+    i = 8
     @board.each do |x|
+      print "#{i} "
       x.each do |n|
         print n
       end
-      puts "\n"
+      puts " #{i}\n"
+      i -= 1
     end
+    puts "   A  B  C  D  E  F  G  H "
   end
 
   def create_board
-    id = false
+    board = board_colors
+    p board
+  end
+
+  def board_colors
     final_array = []
     j = 0
     8.times do
@@ -42,5 +51,4 @@ class Board
     end
     final_array
   end
-
 end
