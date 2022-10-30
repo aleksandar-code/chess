@@ -1,7 +1,17 @@
 # frozen_string_literal: true
 
 class Game
-    def initialize
-        
-    end
+  def initialize
+    @board = Board.new
+    @players = [Player.new(player_name), Player.new(player_name)]
+  end
+
+  def play
+
+  end
+
+  def player_name
+    puts "Enter your name to get the white pieces"
+    gets.chomp
+  end
 end
