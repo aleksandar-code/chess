@@ -4,7 +4,7 @@ require 'pry-byebug'
 
 class Board
   def initialize
-    @green = "\e[1;42m   \e[0m"
+    @green = "\e[1;0m   \e[0m"
     @white = "\e[1;47m   \e[0m"
     @board = create_board
   end

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Node
-  def initialize(data)
+  def initialize(data, piece)
     @data = data
-    @neighbors = []
-    @visited = false
+    @piece = piece
+    @next_node = next_node
   end
   attr_accessor :data, :neighbors, :visited
-  
-  def add_edge(neighbor)
-    @neighbors << neighbor
+
+  def next_node(next_node=nil) 
+    @next_node = next_node
   end
 end
