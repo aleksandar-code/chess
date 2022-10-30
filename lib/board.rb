@@ -2,6 +2,13 @@
 
 require 'pry-byebug'
 
+require_relative './pieces/king'
+require_relative './pieces/queen'
+require_relative './pieces/rook'
+require_relative './pieces/knight'
+require_relative './pieces/bishop'
+require_relative './pieces/pawn'
+
 class Board
   def initialize
     @green = "\e[1;0m   \e[0m"
