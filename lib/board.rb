@@ -17,17 +17,17 @@ class Board
   end
 
   def print_board
-    puts "   A  B  C  D  E  F  G  H "
+    puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
     i = 8
     @board.each do |x|
-      print "#{i} "
+      print "                                                    #{i} "
       x.each do |n|
         print n
       end
       puts " #{i}\n"
       i -= 1
     end
-    puts "   A  B  C  D  E  F  G  H "
+    puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
   end
 
   def create_board
