@@ -11,22 +11,23 @@ require_relative './pieces/pawn'
 
 class Board
   def initialize
-    @green = "\e[1;42m   \e[0m"
-    @white = "\e[1;43m   \e[0m"
+    @green = "\e[1;40m   \e[0m"
+    @white = "\e[1;47m   \e[0m"
     @board = create_board
   end
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
     i = 8
+
+    z = "\e[1;34m♜\e[0m\e"
+    b = "\e[1;31m♜\e[0m\e"
+    @board[7][7] = "\e[1;47m #{z}[1;47m \e[0m"
+    @board[0][7] = "\e[1;40m #{b}[1;40m \e[0m"
     @board.each do |x|
       print "                                                    #{i} "
       x.each do |n|
-        print n unless n == @board[7][7]
-        if n == @board[7][7]
-          @board[7][7] = "\e[1;43m ♖ \e[0m"
-          print n
-        end
+        print n
       end
       puts " #{i}\n"
       i -= 1
