@@ -8,11 +8,12 @@ require_relative './pieces/rook'
 require_relative './pieces/knight'
 require_relative './pieces/bishop'
 require_relative './pieces/pawn'
+require_relative './node'
 
 class Board
   def initialize
-    @green = {a8: "\e[1;40m   \e[0m"}
-    @white = {a8: "\e[1;47m   \e[0m"}
+    @green = "\e[1;40m   \e[0m" # put them to be nodes directly and then print the color and piece etc
+    @white = "\e[1;47m   \e[0m"
     @board = create_board
   end
 
@@ -22,14 +23,12 @@ class Board
 
     z = "\e[1;34m♜\e[0m\e"
     b = "\e[1;31m♜\e[0m\e"
-    @board[7][7] = {a8: "\e[1;47m #{z}[1;47m \e[0m"}
-    @board[0][7] = {a8: "\e[1;40m #{b}[1;40m \e[0m"}
-    @board.each do |x|
+    @board[7][7] = Node.new([7, 7], "\e[1;47m #{z}[1;47m \e[0m")
+    @board[0][7] = Node.new([0, 7], "\e[1;40m #{b}[1;40m \e[0m")
+    @board.each do |array|
       print "                                                    #{i} "
-      x.each do |z|
-        z.each do |k, v|
-          print v
-        end
+      array.each do |node|
+        print node.color
       end
       puts " #{i}\n"
       i -= 1
@@ -54,11 +53,12 @@ class Board
       j += 1
       arr = Array.new(8)
       final_array << arr.each_with_index do |x, idx|
+        data = [j-1, idx]
         if id == false && arr[idx].nil?
-          arr[idx] = @white 
+          arr[idx] = Node.new(data, @white)
           id = true
         elsif id == true && arr[idx].nil?
-          arr[idx] = @green
+          arr[idx] = Node.new(data, @green)
           id = false
         end
       end
