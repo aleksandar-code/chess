@@ -13,9 +13,8 @@ require_relative './graph'
 
 class Board
   def initialize
-    @green = "\e[1;40m   \e[0m" # put them to be nodes directly and then print the color and piece etc
-    @white = "\e[1;47m   \e[0m" # now that i have coords in my nodes i want to have the real board coords like a8 a7 etc
-    # it can be easily obtainable.
+    @green = "\e[1;40m   \e[0m"
+    @white = "\e[1;47m   \e[0m"
     @graph = Graph.new
     @board = create_board
   end
@@ -46,7 +45,7 @@ class Board
         @graph.add_node(y)
       end
     end
-    p @graph
+    p @graph.get_node("a8")
   end
 
   def create_board
