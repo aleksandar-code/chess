@@ -4,9 +4,8 @@ class Graph
   def initialize
     @nodes = []
     @destination_square = nil
-    @path = []
   end
-  attr_accessor :nodes, :path, :destination_square
+  attr_accessor :nodes, :destination_square
   
   def add_node(value)
     @nodes << Node.new(value)

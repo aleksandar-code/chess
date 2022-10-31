@@ -11,8 +11,8 @@ require_relative './pieces/pawn'
 
 class Board
   def initialize
-    @green = "\e[1;40m   \e[0m"
-    @white = "\e[1;47m   \e[0m"
+    @green = {a8: "\e[1;40m   \e[0m"}
+    @white = {a8: "\e[1;47m   \e[0m"}
     @board = create_board
   end
 
@@ -22,12 +22,14 @@ class Board
 
     z = "\e[1;34m♜\e[0m\e"
     b = "\e[1;31m♜\e[0m\e"
-    @board[7][7] = "\e[1;47m #{z}[1;47m \e[0m"
-    @board[0][7] = "\e[1;40m #{b}[1;40m \e[0m"
+    @board[7][7] = {a8: "\e[1;47m #{z}[1;47m \e[0m"}
+    @board[0][7] = {a8: "\e[1;40m #{b}[1;40m \e[0m"}
     @board.each do |x|
       print "                                                    #{i} "
-      x.each do |n|
-        print n
+      x.each do |z|
+        z.each do |k, v|
+          print v
+        end
       end
       puts " #{i}\n"
       i -= 1
@@ -37,6 +39,7 @@ class Board
 
   def create_board
     board = board_colors
+    p board
   end
 
   def board_colors
