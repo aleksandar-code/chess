@@ -19,14 +19,18 @@ class Board
     @board = create_board
   end
 
+
+  def create_black_pieces
+    black = "\e[1;31m#{piece}\e[0m\e"
+  end
+
+  def create_white_pieces
+    white = "\e[1;34m#{piece}\e[0m\e" # and then print them into the board before the game start
+  end
+
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
     i = 8
-
-    z = "\e[1;34m♜\e[0m\e"
-    b = "\e[1;31m♜\e[0m\e"
-    @board[7][7] = Node.new([7, 7], "\e[1;47m #{z}[1;47m \e[0m")
-    @board[0][7] = Node.new([0, 7], "\e[1;40m #{b}[1;40m \e[0m")
     @board.each do |array|
       print "                                                    #{i} "
       array.each do |node|
@@ -45,7 +49,14 @@ class Board
         @graph.add_node(y)
       end
     end
+    # here add pieces
+    add_pieces()
     p @graph.get_node("a8")
+  end
+
+  def add_pieces
+    create_white_pieces()
+    create_black_pieces()
   end
 
   def create_board
