@@ -7,5 +7,5 @@ class Node
     @neighbors = []
     @visited = false
   end
-  attr_accessor :data, :piece
+  attr_accessor :data, :piece, :neighbors, :visited
 end
