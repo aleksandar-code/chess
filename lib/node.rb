@@ -8,4 +8,8 @@ class Node
     @visited = false
   end
   attr_accessor :data, :piece, :neighbors, :visited
+
+  def add_edge(neighbor)
+    @neighbors << neighbor
+  end
 end
