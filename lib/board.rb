@@ -49,7 +49,7 @@ class Board
         @graph.add_node(y)
       end
     end
-    # here add pieces
+    # here add pieces & code pieces classes
     add_pieces()
     p @graph.get_node("a8")
   end
