@@ -37,7 +37,6 @@ class Board
 
   def create_board
     board = board_colors
-    p board
   end
 
   def board_colors
