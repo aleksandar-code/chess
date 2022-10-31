@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative './board'
+require_relative './graph'
+
 class Node
   def initialize(data, color, piece = nil)
     @data = data

@@ -9,11 +9,13 @@ require_relative './pieces/knight'
 require_relative './pieces/bishop'
 require_relative './pieces/pawn'
 require_relative './node'
+require_relative './graph'
 
 class Board
   def initialize
     @green = "\e[1;40m   \e[0m" # put them to be nodes directly and then print the color and piece etc
     @white = "\e[1;47m   \e[0m"
+    @graph = Graph.new
     @board = create_board
   end
 
@@ -36,9 +38,20 @@ class Board
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
   end
 
+
+  def add_nodes(board)
+    board.each do |x|
+      x.each do |y|
+        @graph.add_node(y)
+      end
+    end
+    p @graph
+  end
+
   def create_board
     board = board_colors
-    p board
+    add_nodes(board)
+    board
   end
 
   def board_colors

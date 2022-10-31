@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative './node'
+require_relative './board'
+
 class Graph
   def initialize
     @nodes = []
@@ -8,7 +11,7 @@ class Graph
   attr_accessor :nodes, :destination_square
   
   def add_node(value)
-    @nodes << Node.new(value)
+    @nodes << value
   end
   
   def get_node(data)
