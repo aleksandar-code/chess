@@ -8,8 +8,6 @@ require_relative './pieces'
 
 class Board
   def initialize
-    @green = "\e[1;40m   \e[0m"
-    @white = "\e[1;47m   \e[0m"
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
@@ -63,27 +61,30 @@ class Board
   end
 
   def board_colors
+    black = "\e[1;40m   \e[0m"
+    white = "\e[1;47m   \e[0m"
     final_array = []
     j = 0
     8.times do
-      id = if j.odd?
-             true
-           else
-             false
-           end
       j += 1
       arr = Array.new(8)
-      final_array << arr.each_with_index do |_x, idx|
-        data = [j - 1, idx]
-        if id == false && arr[idx].nil?
-          arr[idx] = Node.new(data, @white)
-          id = true
-        elsif id == true && arr[idx].nil?
-          arr[idx] = Node.new(data, @green)
-          id = false
-        end
-      end
+      final_array << board_nodes(arr, j, j.odd?, black, white)
     end
     final_array
   end
+
+  def board_nodes(arr, num, id, black, white)
+    arr.each_with_index do |_x, idx|
+      data = [num - 1, idx]
+      if id == false && arr[idx].nil?
+        arr[idx] = Node.new(data, black)
+        id = true
+      elsif id == true && arr[idx].nil?
+        arr[idx] = Node.new(data, white)
+        id = false
+      end
+    end
+  end
 end
+
+# refactor board class
