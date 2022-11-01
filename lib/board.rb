@@ -39,18 +39,11 @@ class Board
     p @graph.get_node("a8")
   end
 
-  def add_pieces
-    create_white_pieces()
-    create_black_pieces()
+  def add_piece_to_board
+    pieces
   end
 
-  def create_black_pieces
-    black = "\e[1;31m#{piece}"
-  end
-
-  def create_white_pieces
-    white = "\e[1;34m#{piece}" # and then print them into the board before the game start
-  end
+ 
 
   def create_board
     board = board_colors
