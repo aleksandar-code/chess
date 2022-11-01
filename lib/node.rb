@@ -4,8 +4,8 @@ require_relative './board'
 require_relative './graph'
 
 class Node
-  def initialize(data, square, piece = nil)
-    @data = convert_data(data)
+  def initialize(coords, square, piece = nil)
+    @coords = convert_data(coords)
     @square = square
     @piece = piece
     @neighbors = []

@@ -34,7 +34,7 @@ class Board
     @board.each do |array|
       print "                                                    #{i} "
       array.each do |node|
-        print node.color
+        print node.square
       end
       puts " #{i}\n"
       i -= 1
