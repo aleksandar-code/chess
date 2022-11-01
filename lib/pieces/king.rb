@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class King
-  def initialize(color, current_position = nil)
+  def initialize(color)
     @unicode = '♚'
     @start_white = ['e1']
     @start_black = ['e8']
     @check_status = nil
-    @current_position = nil # Will use graph of nodes to see where this one can move
+    @color = color
   end
-  attr_accessor :current_position, :check_status
+  attr_accessor :color, :check_status
 end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Bishop
-  def initialize(color, current_position = nil)
+  def initialize(color)
     @unicode = '♝'
     @start_white = ['c1', 'f1']
     @start_black = ["c8", "f8"]
-    @current_position = nil # Will use graph of nodes to see where this one can move
+    @color = color
   end
-  attr_accessor :current_position
+  attr_accessor :color
 end
