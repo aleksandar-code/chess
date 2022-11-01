@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 
 require_relative './pieces/king'
 require_relative './pieces/queen'
@@ -10,7 +9,10 @@ require_relative './pieces/pawn'
 class Pieces
   def initialize
     @pieces = [[],[]]
+    create_white_pieces
+    # create_black_pieces
   end
+  attr_accessor :pieces
 
   def add_piece(i, piece)
     @pieces[i] << piece
@@ -25,8 +27,13 @@ class Pieces
   def create_white_pieces
     # and then print them into the board before the game start
     white = "\e[1;34m "
-    rook = Rook.new(black)
-    add_piece(1, rook)
+    rook = Rook.new(set_color(white, '♜'))
+    add_piece(0, rook)
+  end
+
+  def set_color(color, piece)
+    color[7] = piece
+    p color
   end
 
   def promotion

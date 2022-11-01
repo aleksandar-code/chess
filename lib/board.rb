@@ -12,6 +12,7 @@ class Board
     @white = "\e[1;47m   \e[0m"
     @graph = Graph.new
     @board = create_board
+    @pieces = Pieces.new
   end
 
   def print_board
