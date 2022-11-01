@@ -8,7 +8,7 @@ require_relative './pieces/bishop'
 require_relative './pieces/pawn'
 
 class Pieces
-    def initialize
+  def initialize
         
-    end
+  end
 end
