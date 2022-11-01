@@ -4,9 +4,9 @@ require_relative './board'
 require_relative './graph'
 
 class Node
-  def initialize(data, color, piece = nil)
+  def initialize(data, square, piece = nil)
     @data = convert_data(data)
-    @color = color
+    @square = square
     @piece = piece
     @neighbors = []
     @visited = false
