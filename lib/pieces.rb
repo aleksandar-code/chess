@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 
 require_relative './pieces/king'
 require_relative './pieces/queen'
@@ -27,7 +29,7 @@ class Pieces
   def create_white_pieces
     # and then print them into the board before the game start
     white = "\e[1;34m "
-    rook = Rook.new(set_color(white, '♜'))
+    rook = Rook.new(set_color(white.dup, '♜'))
     add_piece(0, rook)
   end
 

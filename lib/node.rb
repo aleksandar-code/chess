@@ -1,4 +1,4 @@
-
+# frozen_string_literal: true
 
 require_relative './board'
 require_relative './graph'
@@ -6,7 +6,7 @@ require_relative './graph'
 class Node
   def initialize(coords, square, piece = nil)
     @coords = convert_data(coords)
-    @square = square.freeze
+    @square = square
     @piece = piece
     @neighbors = []
     @visited = false
