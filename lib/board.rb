@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 require 'pry-byebug'
 
@@ -11,8 +11,8 @@ class Board
     @green = "\e[1;40m   \e[0m"
     @white = "\e[1;47m   \e[0m"
     @graph = Graph.new
-    @board = create_board
     @pieces = Pieces.new
+    @board = create_board
   end
 
   def print_board
@@ -21,7 +21,11 @@ class Board
     @board.each do |array|
       print "                                                    #{i} "
       array.each do |node|
-        print node.square
+        if node.print_with_piece.nil?
+          print node.square
+        else
+          print node.print_with_piece
+        end
       end
       puts " #{i}\n"
       i -= 1
@@ -36,20 +40,30 @@ class Board
       end
     end
     # here add pieces to the node & code pieces classes
-    # add_pieces()
-    p @graph.get_node("a8")
+    add_piece_to_board(board)
+
   end
 
-  # def add_piece_to_board
-  #   pieces
-  # end
+  def add_piece_to_board(board)
+    rook = @pieces.pieces[0][0]
+
+    board = board.each do |array|
+      array.each do |node|
+        if node.coords == "a1"
+          node.piece=rook.piece
+          square = node.square.dup
+          node.piece_print(square)
+        end
+      end
+    end
+    board
+  end
 
  
 
   def create_board
     board = board_colors
     add_nodes(board)
-    board
   end
 
   def board_colors

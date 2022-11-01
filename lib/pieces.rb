@@ -19,9 +19,9 @@ class Pieces
   end
 
   def create_black_pieces
-    black = "\e[1;31m "
-    rook = Rook.new(black)
-    add_piece(1, rook)
+    # black = "\e[1;31m "
+    # rook = Rook.new(black)
+    # add_piece(1, rook)
   end
 
   def create_white_pieces
@@ -33,7 +33,7 @@ class Pieces
 
   def set_color(color, piece)
     color[7] = piece
-    p color
+    color
   end
 
   def promotion

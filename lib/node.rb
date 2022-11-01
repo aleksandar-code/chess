@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 require_relative './board'
 require_relative './graph'
@@ -6,15 +6,22 @@ require_relative './graph'
 class Node
   def initialize(coords, square, piece = nil)
     @coords = convert_data(coords)
-    @square = square
+    @square = square.freeze
     @piece = piece
     @neighbors = []
     @visited = false
+    @print_with_piece = nil
   end
-  attr_accessor :coords, :piece, :neighbors, :visited, :square
+  attr_accessor :piece, :neighbors, :visited, :print_with_piece
+  attr_reader :square, :coords
 
   def add_edge(neighbor)
     @neighbors << neighbor
+  end
+
+  def piece_print(s)
+    s[8] = @piece unless @piece.nil?# if there is a piece
+    @print_with_piece = s unless @piece.nil?
   end
 
   def convert_data(data)
