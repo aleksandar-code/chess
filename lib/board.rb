@@ -15,20 +15,21 @@ class Board
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
-    i = 8
-    @board.each do |array|
-      print "                                                    #{i} "
-      array.each do |node|
-        if node.print_with_piece.nil?
-          print node.square
-        else
-          print node.print_with_piece
-        end
-      end
-      puts " #{i}\n"
-      i -= 1
-    end
+    first_board(8) # if game hasn't started
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
+  end
+
+  def first_board(num)
+    @board.each do |array|
+      print "                                                    #{num} "
+      array.each do |node|
+        statement = node.print_with_piece.nil?
+        print node.square if statement
+        print node.print_with_piece unless statement
+      end
+      puts " #{num}\n"
+      num -= 1
+    end
   end
 
   def add_nodes(board)
