@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Queen
-  def initialize
+  def initialize(color, current_position = nil)
     @unicode = '♛'
     @start_white = ['d1']
     @start_black = ['d8']

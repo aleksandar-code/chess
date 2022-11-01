@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Knight
-  def initialize
+  def initialize(color, current_position = nil)
     @unicode = '♞'
     @start_white = ['b1', 'g1']
     @start_black = ["b8", "g8"]

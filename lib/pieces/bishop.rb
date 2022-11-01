@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Bishop
-  def initialize
+  def initialize(color, current_position = nil)
     @unicode = '♝'
     @start_white = ['c1', 'f1']
     @start_black = ["c8", "f8"]

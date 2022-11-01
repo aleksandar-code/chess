@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class King
-  def initialize
+  def initialize(color, current_position = nil)
     @unicode = '♚'
     @start_white = ['e1']
     @start_black = ['e8']
