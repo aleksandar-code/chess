@@ -20,14 +20,13 @@ class Node
   end
 
   def piece_print(s)
-    s[8] = @piece unless @piece.nil?# if there is a piece
+    s[8] = @piece unless @piece.nil? # if there is a piece
     @print_with_piece = s unless @piece.nil?
   end
 
   def convert_data(data)
-    arr_i = ['8', '7', '6', '5', '4', '3', '2', '1']
-    arr_j = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-
+    arr_i = %w[8 7 6 5 4 3 2 1]
+    arr_j = %w[a b c d e f g h]
 
     i = data[0]
 
@@ -37,6 +36,5 @@ class Node
     data[0] = arr_j[j]
 
     data = data[0] + data[1]
-
   end
 end

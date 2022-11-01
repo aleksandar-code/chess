@@ -3,8 +3,8 @@
 class Knight
   def initialize(color)
     @unicode = '♞'
-    @start_white = ['b1', 'g1']
-    @start_black = ["b8", "g8"]
+    @start_white = %w[b1 g1]
+    @start_black = %w[b8 g8]
     @color = color
   end
   attr_accessor :color, :current_position

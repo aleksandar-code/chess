@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 require_relative './pieces/king'
 require_relative './pieces/queen'
 require_relative './pieces/rook'
@@ -10,7 +9,7 @@ require_relative './pieces/pawn'
 
 class Pieces
   def initialize
-    @pieces = [[],[]]
+    @pieces = [[], []]
     create_white_pieces
     # create_black_pieces
   end
@@ -38,9 +37,7 @@ class Pieces
     color
   end
 
-  def promotion
-
-  end
+  def promotion; end
 end
 
 # May be i can add current_position for every piece here?

@@ -27,15 +27,16 @@ class Game
   end
 
   def player_color
-    return 'white' if @turn == 0
+    return 'white' if @turn.zero?
+
     'black'
   end
 
   def switch_player
-    if @turn.zero?
-      @turn = 1
-    else
-      @turn = 0
-    end
+    @turn = if @turn.zero?
+              1
+            else
+              0
+            end
   end
 end

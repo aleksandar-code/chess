@@ -41,25 +41,21 @@ class Board
     end
     # here add pieces to the node & code pieces classes
     add_piece_to_board(board)
-
   end
 
   def add_piece_to_board(board)
     rook = @pieces.pieces[0][0]
 
-    board = board.each do |array|
+    board.each do |array|
       array.each do |node|
-        if node.coords == "a1"
-          node.piece=rook.piece
-          square = node.square.dup
-          node.piece_print(square)
-        end
+        next unless node.coords == 'a1'
+
+        node.piece = rook.piece
+        square = node.square.dup # figure out a way to print the pieces at the start of the game.
+        node.piece_print(square)
       end
     end
-    board
   end
-
- 
 
   def create_board
     board = board_colors
@@ -70,15 +66,15 @@ class Board
     final_array = []
     j = 0
     8.times do
-      if j.odd?
-        id = true
-      else
-        id = false
-      end
+      id = if j.odd?
+             true
+           else
+             false
+           end
       j += 1
       arr = Array.new(8)
-      final_array << arr.each_with_index do |x, idx|
-        data = [j-1, idx]
+      final_array << arr.each_with_index do |_x, idx|
+        data = [j - 1, idx]
         if id == false && arr[idx].nil?
           arr[idx] = Node.new(data, @white)
           id = true
