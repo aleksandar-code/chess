@@ -7,5 +7,5 @@ class Rook
     @start_black = ['a8', 'h8']
     @current_position = nil # Will use graph of nodes to see where this one can move
   end
-  attr_accessor :unicode, :start_white, :start_black, :current_position
+  attr_accessor :current_position
 end
