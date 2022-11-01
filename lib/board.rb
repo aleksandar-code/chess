@@ -19,15 +19,6 @@ class Board
     @board = create_board
   end
 
-
-  def create_black_pieces
-    black = "\e[1;31m#{piece}\e[0m\e"
-  end
-
-  def create_white_pieces
-    white = "\e[1;34m#{piece}\e[0m\e" # and then print them into the board before the game start
-  end
-
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
     i = 8
@@ -41,7 +32,6 @@ class Board
     end
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
   end
-
 
   def add_nodes(board)
     board.each do |x|
@@ -57,6 +47,14 @@ class Board
   def add_pieces
     create_white_pieces()
     create_black_pieces()
+  end
+
+  def create_black_pieces
+    black = "\e[1;31m#{piece}"
+  end
+
+  def create_white_pieces
+    white = "\e[1;34m#{piece}" # and then print them into the board before the game start
   end
 
   def create_board
