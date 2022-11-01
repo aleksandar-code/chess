@@ -19,9 +19,9 @@ class Node
     @neighbors << neighbor
   end
 
-  def piece_print(s)
-    s[8] = @piece unless @piece.nil? # if there is a piece
-    @print_with_piece = s unless @piece.nil?
+  def piece_print(sqr)
+    sqr[8] = @piece unless @piece.nil? # if there is a piece
+    @print_with_piece = sqr unless @piece.nil?
   end
 
   def convert_data(data)
@@ -35,6 +35,6 @@ class Node
     data[1] = arr_i[i]
     data[0] = arr_j[j]
 
-    data = data[0] + data[1]
+    data[0] + data[1]
   end
 end

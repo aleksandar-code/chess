@@ -15,8 +15,8 @@ class Pieces
   end
   attr_accessor :pieces
 
-  def add_piece(i, piece)
-    @pieces[i] << piece
+  def add_piece(num, piece)
+    @pieces[num] << piece
   end
 
   def create_black_pieces
