@@ -10,24 +10,24 @@ class Graph
   end
   attr_accessor :nodes, :destination_square
   
-  def add_node(value)
-    @nodes << value
+  def add_node(node)
+    @nodes << node
   end
   
-  def get_node(data)
+  def get_node(coords)
     @nodes.each do |n|
-      return n if data == n.data
+      return n if coords == n.coords
     end
   end
   
-  def get_idx(data)
+  def get_idx(coords)
     @nodes.each_with_index do |n, idx|
-      return idx if data == n.data
+      return idx if coords == n.coords
     end
   end
   
-  def get_edge(data)
-    start = @nodes[get_idx(data)]
-    start.neighbors[0].data
+  def get_edge(coords)
+    start = @nodes[get_idx(coords)]
+    start.neighbors[0].coords
   end
 end
