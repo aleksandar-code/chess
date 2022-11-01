@@ -11,7 +11,7 @@ class Node
     @neighbors = []
     @visited = false
   end
-  attr_accessor :data, :piece, :neighbors, :visited, :color
+  attr_accessor :coords, :piece, :neighbors, :visited, :square
 
   def add_edge(neighbor)
     @neighbors << neighbor

@@ -35,13 +35,13 @@ class Board
       end
     end
     # here add pieces to the node & code pieces classes
-    add_pieces()
+    # add_pieces()
     p @graph.get_node("a8")
   end
 
-  def add_piece_to_board
-    pieces
-  end
+  # def add_piece_to_board
+  #   pieces
+  # end
 
  
 

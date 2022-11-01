@@ -17,13 +17,18 @@ class Pieces
   end
 
   def create_black_pieces
-    black = "\e[1;31m#{piece}"
+    black = "\e[1;31m "
+    rook = Rook.new(black)
+    add_piece(1, rook)
   end
 
   def create_white_pieces
-    white = "\e[1;34m#{piece}" # and then print them into the board before the game start
+    # and then print them into the board before the game start
+    white = "\e[1;34m "
+    rook = Rook.new(black)
+    add_piece(1, rook)
   end
-  
+
   def promotion
 
   end
