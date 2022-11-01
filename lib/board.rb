@@ -4,6 +4,7 @@ require 'pry-byebug'
 
 require_relative './node'
 require_relative './graph'
+require_relative './pieces'
 
 class Board
   def initialize
