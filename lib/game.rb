@@ -4,7 +4,7 @@ require 'pry-byebug'
 
 require_relative './board'
 require_relative './player'
-
+ 
 class Game
   def initialize
     @turn = 0
