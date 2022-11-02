@@ -32,7 +32,6 @@ class Pieces
       array_pieces[8..].each do |piece|
         array << Pawn.new(piece)
       end
-      p array
     else
       array_pieces[8..].each do |piece|
         array << Pawn.new(piece)
@@ -41,7 +40,6 @@ class Pieces
       arr.each do |x|
         array << x
       end
-      p array
     end
   end
 
