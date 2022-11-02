@@ -7,5 +7,5 @@ class Bishop
     @start_black = %w[c8 f8]
     @color = color
   end
-  attr_accessor :color
+  attr_accessor :piece, :start_white, :start_black
 end
