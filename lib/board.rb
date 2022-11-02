@@ -69,12 +69,12 @@ class Board
     8.times do
       j += 1
       arr = Array.new(8)
-      final_array << board_nodes(arr, j, j.odd?, black, white)
+      final_array << board_colors_nodes(arr, j, j.odd?, black, white)
     end
     final_array
   end
 
-  def board_nodes(arr, num, id, black, white)
+  def board_colors_nodes(arr, num, id, black, white)
     arr.each_with_index do |_x, idx|
       data = [num - 1, idx]
       if id == false && arr[idx].nil?
