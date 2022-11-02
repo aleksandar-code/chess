@@ -8,5 +8,5 @@ class King
     @check_status = nil
     @color = color
   end
-  attr_accessor :color, :check_status
+  attr_accessor :piece, :start_white, :start_black
 end
