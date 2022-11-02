@@ -9,14 +9,16 @@ require_relative './pieces/pawn'
 
 class Pieces
   def initialize
-    @pieces = [[], []]
+    @white_pieces = []
+    @black_pieces = []
     create_white_pieces
     # create_black_pieces
   end
-  attr_accessor :pieces
+  attr_accessor :white_pieces, :black_pieces
 
-  def add_piece(num, piece)
-    @pieces[num] << piece
+  def add_piece(color, piece)
+    @white_pieces << piece if color.zero?
+    @black_pieces << piece unless color.zero?
   end
 
   def create_black_pieces

@@ -47,13 +47,14 @@ class Board
   end
 
   def add_pieces_to_board(board)
-    
+    array_white = @pieces.white_pieces
+    array_black = @pieces.black_pieces
     board.each do |array|
-      array.each do |node|
+      array.each_with_index do |node, idx|
         next unless piece_placements.any?(node.coords)
         binding.pry
-        rook = @pieces.pieces[0][0] # add all pieces in one go
-        node.piece = rook.piece
+        piece = array_white[idx]
+        node.piece = piece.piece
         square = node.square.dup # figure out a way to print the pieces at the start of the game.
         node.piece_print(square)
       end
