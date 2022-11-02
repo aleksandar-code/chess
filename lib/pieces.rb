@@ -41,6 +41,7 @@ class Pieces
         array << x
       end
     end
+    array
   end
 
   def create_pieces(array_pieces)
