@@ -42,6 +42,16 @@ class Board
     add_pieces_to_board(board)
   end
 
+  def piece_placements
+    array = [
+      %w[a1 b1 c1 d1 e1 f1 g1 h1],
+      %w[a2 b2 c2 d2 e2 f2 g2 h2],
+
+      %w[a8 b8 c8 d8 e8 f8 g8 h8],
+      %w[a7 b7 c7 d7 e7 f7 g7 h7]
+    ]
+  end
+
   def add_pieces_to_board(board)
     rook = @pieces.pieces[0][0] # add all pieces in one go
 
