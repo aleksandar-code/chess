@@ -54,7 +54,6 @@ class Board
       i -= 1
       array.each_with_index do |node, idx|
         next unless piece_placements.any?(node.coords) && i < 3 || i > 6 # only run first 2 and last 2 rows
-        binding.pry
         piece = array_white[idx] if i < 3
         piece = array_black[idx] if i > 6
         next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
