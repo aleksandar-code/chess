@@ -47,27 +47,32 @@ class Board
   end
 
   def add_pieces_to_board(board)
+    arr = []
+    idx = 0
+    board[0..1] = board[0..1].each do |array|
+      add_per_row(array, idx, 1)
+    end
+    arr = []
+    board[6..7] = board[6..7].each do |array|
+      add_per_row(array, idx, 0)
+    end
+    board
+  end
+
+  def add_per_row(array, idx, i)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
-    i = 9
-    idx = 0
-    board.each do |array|
-      i -= 1
-      array.each do |node|
-        next unless piece_placements.any?(node.coords) && i < 3 || i > 6 # only run first 2 and last 2 rows
-        piece = array_white[idx] if i < 3
-        piece = array_black[idx] if i > 6
-        if idx != 17
-          idx += 1
-        else
-          idx = 0
-        end
-        binding.pry
-        next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
-        node.piece = piece.piece
-        square = node.square.dup # figure out a way to print the pieces at the start of the game.
-        node.piece_print(square)
-      end
+    array.each do |node|
+      next unless piece_placements.any?(node.coords) && i == 1 || i == 0 # only run first 2 and last 2 rows
+      
+      piece = array_white[idx] if i == 0
+      piece = array_black[idx] if i == 1
+      idx += 1
+      next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
+
+      node.piece = piece.piece
+      square = node.square.dup # figure out a way to print the pieces at the start of the game.
+      node.piece_print(square)
     end
   end
 
