@@ -39,11 +39,11 @@ class Board
       end
     end
     # here add pieces to the node & code pieces classes
-    add_piece_to_board(board)
+    add_pieces_to_board(board)
   end
 
-  def add_piece_to_board(board)
-    rook = @pieces.pieces[0][0]
+  def add_pieces_to_board(board)
+    rook = @pieces.pieces[0][0] # add all pieces in one go
 
     board.each do |array|
       array.each do |node|
