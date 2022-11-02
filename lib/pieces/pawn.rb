@@ -8,5 +8,5 @@ class Pawn
     @en_passant = nil
     @color = color
   end
-  attr_accessor :color, :en_passant
+  attr_accessor :piece, :start_white, :start_black
 end
