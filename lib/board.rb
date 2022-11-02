@@ -87,5 +87,3 @@ class Board
     end
   end
 end
-
-# refactor board class
