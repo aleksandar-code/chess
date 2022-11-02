@@ -11,6 +11,7 @@ class Pieces
   def initialize
     @white_pieces = []
     @black_pieces = []
+    @pieces = %w[ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ]
     create_white_pieces
     create_black_pieces
   end
@@ -23,15 +24,23 @@ class Pieces
 
   def create_black_pieces
     black = "\e[1;31m "
-    rook = Rook.new(set_color(black.dup, '♜'))
-    add_piece(1, rook)
+    i = 0
+    @pieces.length.times do
+      piece = @pieces[i]
+      to_send = Rook.new(set_color(black.dup, piece))
+      add_piece(1, to_send)
+    end
   end
 
+  # how to create all of them? 
   def create_white_pieces
-    # and then print them into the board before the game start
     white = "\e[1;34m "
-    rook = Rook.new(set_color(white.dup, '♜'))
-    add_piece(0, rook)
+    i = 0
+    @pieces.length.times do
+      piece = @pieces[i]
+      to_send = Rook.new(set_color(white.dup, piece))
+      add_piece(0, to_send)
+    end
   end
 
   def set_color(color, piece)
