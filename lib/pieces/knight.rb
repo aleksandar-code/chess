@@ -7,5 +7,5 @@ class Knight
     @start_black = %w[b8 g8]
     @color = color
   end
-  attr_accessor :color, :current_position
+  attr_accessor :piece, :start_white, :start_black
 end
