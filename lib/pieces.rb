@@ -12,7 +12,7 @@ class Pieces
     @white_pieces = []
     @black_pieces = []
     create_white_pieces
-    # create_black_pieces
+    create_black_pieces
   end
   attr_accessor :white_pieces, :black_pieces
 
@@ -22,9 +22,9 @@ class Pieces
   end
 
   def create_black_pieces
-    # black = "\e[1;31m "
-    # rook = Rook.new(black)
-    # add_piece(1, rook)
+    black = "\e[1;31m "
+    rook = Rook.new(set_color(black.dup, '♜'))
+    add_piece(1, rook)
   end
 
   def create_white_pieces
