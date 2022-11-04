@@ -38,8 +38,6 @@ class Board
         @graph.add_node(y)
       end
     end
-    # here add pieces to the node & code pieces classes
-    add_pieces_to_board(board)
   end
 
   def piece_placements
@@ -80,6 +78,7 @@ class Board
   def create_board
     board = board_colors
     add_nodes(board)
+    add_pieces_to_board(board)
   end
 
   def board_colors
