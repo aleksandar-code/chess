@@ -16,6 +16,7 @@ class Game
     @board.print_board
     loop do
       puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
+      binding.pry
       break
     end
   end

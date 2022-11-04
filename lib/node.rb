@@ -28,8 +28,7 @@ class Node
 
   def piece_move(data, coord)
     @piece = data
-    sqr = @square.dup
-    piece_print(sqr)
+    piece_print(@square.dup)
     @piece.current_position=(coord)
   end
 
