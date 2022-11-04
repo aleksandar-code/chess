@@ -5,21 +5,29 @@ require_relative '../lib/game'
 RSpec.describe Game do
 
   describe '#player_color' do
-  subject(:game_color) { Game.new }
+  let(:game_color) { instance_double(Game) }
     context 'when turn is zero' do
-  
+
+      before do
+        allow(game_color).to receive(:player_color).and_return('white')
+      end
+
       it 'returns white' do
-        expect(game_color.player_color).to eq('white')
+        expect(game_color.player_color).to be('white')
       end
     end
   end
 
   describe '#switch_player' do
-    
+  let(:game_player) { instance_double(Game) }
     context 'when turn is zero' do
 
+        before do
+          
+        end
+
       it 'returns 1' do
-        
+        expect(game_player.switch_player).to be(1)
       end
     end
   end
