@@ -5,16 +5,12 @@ require_relative '../lib/pieces'
 RSpec.describe Pieces do
     
   describe '#add_piece' do
-  let(:pieces) { instance_double(Pieces) }
-  
+  subject(:pieces) { Pieces.new }
+
     context 'when given a color and a piece' do
-      
-      before do
-        
-      end
 
       it 'increases the length of @white_pieces by 1' do
-        expect(pieces.add_piece)
+        expect { pieces.add_piece(0, "piece") }.to change { pieces.white_pieces.length }.by(1)
       end
     end
   end
