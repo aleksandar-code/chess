@@ -7,8 +7,6 @@ require_relative './pieces/knight'
 require_relative './pieces/bishop'
 require_relative './pieces/pawn'
 
-require 'pry-byebug'
-
 class Pieces
   def initialize
     @white_pieces = []
@@ -84,5 +82,3 @@ class Pieces
 
   def promotion; end
 end
-
-# May be i can add current_position for every piece here?
