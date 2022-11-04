@@ -11,6 +11,7 @@ class Board
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
+    binding.pry
   end
 
   def print_board
@@ -45,12 +46,12 @@ class Board
   end
 
   def add_pieces_to_board(board)
-    board[0..1] = add_per_row(board[0..1], 0, 1)
-    board[6..7] = add_per_row(board[6..7], 0, 0)
+    board[0..1] = add_per_row(board[0..1], 1)
+    board[6..7] = add_per_row(board[6..7], 0)
     board
   end
 
-  def add_per_row(array, idx, i)
+  def add_per_row(array, i)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
     row = 0

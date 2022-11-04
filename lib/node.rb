@@ -19,6 +19,8 @@ class Node
     @neighbors << neighbor
   end
 
+  # add method remove piece and then remove print with piece etc.
+
   def piece_print(sqr)
     sqr[8] = @piece unless @piece.nil? # if there is a piece
     @print_with_piece = sqr unless @piece.nil?
