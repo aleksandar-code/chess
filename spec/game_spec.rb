@@ -23,7 +23,7 @@ RSpec.describe Game do
     context 'when turn is zero' do
 
         before do
-          
+          allow(game_player).to receive(:switch_player).and_return(1)
         end
 
       it 'returns 1' do
