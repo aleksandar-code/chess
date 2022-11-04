@@ -33,7 +33,20 @@ class Board
   end
 
   def move_piece(player)
-    get_move()
+    string = get_move()
+    start = string[0..1]
+    destination = string[2..]
+    get_node(start) unless string.nil?
+    
+    
+  end
+
+  def get_node(coords)
+    @board.each do |arr|
+      arr.each do |n|
+        return n if coords == n.coords
+      end
+    end
   end
 
   def get_move
