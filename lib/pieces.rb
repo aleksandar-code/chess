@@ -14,7 +14,8 @@ class Pieces
     @white_pieces = []
     @black_pieces = []
     @pieces = %w[ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ]
-    create_pieces()
+    create_pieces(white = "\e[1;34m ", 0)
+    create_pieces(black = "\e[1;31m ", 1)
   end
   attr_accessor :white_pieces, :black_pieces
 
@@ -23,9 +24,11 @@ class Pieces
     @black_pieces << piece unless color.zero?
   end
 
-  def create_pieces
-    create_white_pieces()
-    create_black_pieces()
+  def create_pieces(color, id)
+    array = create_instances(give_color_piece(color), id)
+    array.each do |piece|
+      add_piece(id, piece)
+    end
   end
 
   def create_instances(array_pieces, state)
@@ -63,14 +66,6 @@ class Pieces
     array
   end
 
-  def create_black_pieces
-    black = "\e[1;31m "
-    array = create_instances(give_color_piece(black), 1)
-    array.each do |piece|
-      add_piece(1, piece)
-    end
-  end
-
   def give_color_piece(color)
     array = []
     i = 0
@@ -80,14 +75,6 @@ class Pieces
       array << (set_color(color.dup, piece))
     end
     array
-  end
-
-  def create_white_pieces
-    white = "\e[1;34m "
-    array = create_instances(give_color_piece(white), 0)
-    array.each do |piece|
-      add_piece(0, piece)
-    end
   end
 
   def set_color(color, piece)

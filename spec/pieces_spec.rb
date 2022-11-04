@@ -4,7 +4,7 @@ require_relative '../lib/pieces'
 
 RSpec.describe Pieces do
     
-  describe '#create_instances' do
+  describe '#create_pieces' do
     
     context ''
   end
