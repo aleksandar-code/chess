@@ -14,8 +14,7 @@ class Pieces
     @white_pieces = []
     @black_pieces = []
     @pieces = %w[ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ]
-    create_white_pieces
-    create_black_pieces
+    create_pieces()
   end
   attr_accessor :white_pieces, :black_pieces
 
@@ -24,10 +23,15 @@ class Pieces
     @black_pieces << piece unless color.zero?
   end
 
+  def create_pieces
+    create_white_pieces()
+    create_black_pieces()
+  end
+
   def create_instances(array_pieces, state)
     array = []
     if state > 0
-      arr = create_pieces(array_pieces)
+      arr = build_pieces(array_pieces)
       arr.each do |x|
         array << x
       end
@@ -38,7 +42,7 @@ class Pieces
       array_pieces[8..].each do |piece|
         array << Pawn.new(piece)
       end
-      arr = create_pieces(array_pieces)
+      arr = build_pieces(array_pieces)
       arr.each do |x|
         array << x
       end
@@ -46,7 +50,7 @@ class Pieces
     array
   end
 
-  def create_pieces(array_pieces)
+  def build_pieces(array_pieces)
     array = []
     array << Rook.new(array_pieces[0])
     array << Knight.new(array_pieces[1])
