@@ -7,6 +7,8 @@ require_relative './pieces/knight'
 require_relative './pieces/bishop'
 require_relative './pieces/pawn'
 
+require 'pry-byebug'
+
 class Pieces
   def initialize
     @white_pieces = []
@@ -57,32 +59,28 @@ class Pieces
     array
   end
 
-  def create_white_pieces
+  def create_black_pieces
     black = "\e[1;31m "
-    i = 0
-    array = []
-    @pieces.length.times do
-      piece = @pieces[i]
-      i += 1
-      array << (set_color(black.dup, piece))
-    end
-    array = create_instances(array, 1)
+    array = create_instances(give_color_piece(black), 1)
     array.each do |piece|
       add_piece(1, piece)
     end
   end
 
-  # how to create all of them? 
-  def create_black_pieces
-    white = "\e[1;34m "
-    i = 0
+  def give_color_piece(color)
     array = []
+    i = 0
     @pieces.length.times do
       piece = @pieces[i]
       i += 1
-      array << (set_color(white.dup, piece))
+      array << (set_color(color.dup, piece))
     end
-    array = create_instances(array, 0)
+    array
+  end
+
+  def create_white_pieces
+    white = "\e[1;34m "
+    array = create_instances(give_color_piece(white), 0)
     array.each do |piece|
       add_piece(0, piece)
     end
