@@ -28,9 +28,6 @@ class Node
     arr_i = %w[8 7 6 5 4 3 2 1]
     arr_j = %w[a b c d e f g h]
 
-    data[1] = arr_i[data[0]]
-    data[0] = arr_j[data[1]]
-
-    data[0] + data[1]
+    arr_j[data[1]] + arr_i[data[0]]
   end
 end
