@@ -32,13 +32,15 @@ class Board
     end
   end
 
-  def move_piece(player)
+  def move(player)
     string = get_move()
     start = string[0..1]
     destination = string[2..]
-    get_node(start) unless string.nil?
+    start = get_node(start) unless string.nil?
+    destination = get_node(destination) unless string.nil?
     
-    
+    destination.piece_move(start.piece, destination.coords)
+    start.piece_remove()
   end
 
   def get_node(coords)

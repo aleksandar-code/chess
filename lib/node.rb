@@ -32,6 +32,11 @@ class Node
     @piece.current_position=(coord)
   end
 
+  def piece_remove
+    @piece = nil
+    @print_with_piece = nil
+  end
+
   def convert_data(data)
     arr_i = %w[8 7 6 5 4 3 2 1]
     arr_j = %w[a b c d e f g h]
