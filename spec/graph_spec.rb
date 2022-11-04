@@ -6,6 +6,7 @@ RSpec.describe Graph do
   
   describe '#add_node' do
   subject(:graph_node) { Graph.new }
+  
     context 'when a node is given as argument' do
       
       it 'increase the length of @nodes by 1' do
