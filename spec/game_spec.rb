@@ -33,3 +33,5 @@ RSpec.describe Game do
   end
 
 end
+
+# might add a test for the loop game
