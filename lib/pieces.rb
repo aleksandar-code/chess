@@ -31,9 +31,9 @@ class Pieces
     end
   end
 
-  def create_instances(array_pieces, state)
+  def create_instances(array_pieces, id)
     array = []
-    if state > 0
+    if id > 0
       arr = build_pieces(array_pieces)
       arr.each do |x|
         array << x
