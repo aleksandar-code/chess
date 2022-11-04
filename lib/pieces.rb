@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 require_relative './pieces/king'
 require_relative './pieces/queen'
 require_relative './pieces/rook'

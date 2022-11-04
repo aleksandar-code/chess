@@ -7,10 +7,10 @@ class Node
   def initialize(coords, square, piece = nil)
     @coords = convert_data(coords)
     @square = square
-    @piece = piece
+    @piece = piece # get obj
+    @print_with_piece = nil
     @neighbors = []
     @visited = false
-    @print_with_piece = nil
   end
   attr_accessor :piece, :neighbors, :visited, :print_with_piece
   attr_reader :square, :coords
@@ -22,7 +22,7 @@ class Node
   # add method remove piece and then remove print with piece etc.
 
   def piece_print(sqr)
-    sqr[8] = @piece unless @piece.nil? # if there is a piece
+    sqr[8] = @piece.piece unless @piece.nil? # if there is a piece
     @print_with_piece = sqr unless @piece.nil?
   end
 
