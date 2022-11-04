@@ -15,7 +15,7 @@ class Board
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
-    first_board(8) # if game hasn't started
+    first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
   end
 
@@ -30,6 +30,14 @@ class Board
       puts " #{num}\n"
       num -= 1
     end
+  end
+
+  def move_piece(player)
+    get_move()
+  end
+
+  def get_move
+    gets.chomp
   end
 
   def add_nodes(board)

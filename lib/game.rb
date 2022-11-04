@@ -13,11 +13,12 @@ class Game
   end
 
   def play
-    @board.print_board
     loop do
+      @board.print_board
       puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
-      binding.pry
-      break
+      @board.move_piece(@turn)
+      switch_player()
+      break if @turn == 0
     end
   end
 
