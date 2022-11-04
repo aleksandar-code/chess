@@ -6,6 +6,7 @@ class King
     @start_white = ['e1']
     @start_black = ['e8']
     @check_status = nil
+    @current_position = nil
   end
-  attr_accessor :piece, :start_white, :start_black
+  attr_accessor :piece, :start_white, :start_black, :current_position
 end

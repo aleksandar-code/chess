@@ -11,7 +11,6 @@ class Board
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
-    binding.pry
   end
 
   def print_board
@@ -65,10 +64,8 @@ class Board
         idx += 1
         row = 1 if idx == 8
         next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
-      
-        node.piece = piece.piece
-        square = node.square.dup # figure out a way to print the pieces at the start of the game.
-        node.piece_print(square)
+
+        node.piece_move(piece, node.coords)
       end
     end
     arr[0] + arr[1] unless arr.nil?

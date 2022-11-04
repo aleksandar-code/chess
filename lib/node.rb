@@ -26,6 +26,13 @@ class Node
     @print_with_piece = sqr unless @piece.nil?
   end
 
+  def piece_move(data, coord)
+    @piece = data
+    sqr = @square.dup
+    piece_print(sqr)
+    @piece.current_position=(coord)
+  end
+
   def convert_data(data)
     arr_i = %w[8 7 6 5 4 3 2 1]
     arr_j = %w[a b c d e f g h]
