@@ -37,11 +37,13 @@ class Board
     end
   end
 
+  # may be later add a noteboard to see all the moves made and a fen converter and an ai and board flip for player
   def move(player)
     string = get_move()
-    # next only if piece can move on square in graph
+    # next only if piece can move on square in board at piece
     start = get_square(string[0..1])
     destination = get_square(string[2..])
+    start.piece.calc_move
     
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove
@@ -49,7 +51,7 @@ class Board
 
   def valid_input(input)
     if input.length == 4
-      return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..])
+      return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..]) && input[0..1] != input[2..]
     end
     input = nil
   end

@@ -39,11 +39,11 @@ class Pieces
         array << x
       end
       array_pieces[8..].each do |piece|
-        array << Pawn.new(piece)
+        array << Pawn.new(piece, id)
       end
     else
       array_pieces[8..].each do |piece|
-        array << Pawn.new(piece)
+        array << Pawn.new(piece, id)
       end
       arr = build_pieces(array_pieces)
       arr.each do |x|
