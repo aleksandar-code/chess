@@ -26,24 +26,32 @@ class Pawn
     false
   end
 
-  def find_piece
+  def can_move
+    # check if a piece is in front
+  end
+
+  def find_piece(search)
     @board.each_with_index do |row, i|
       row.each_with_index do |node, j|
-        return [i, j] if node == @current_position
+        return [i, j] if node == search
       end
     end
   end
 
-  def calc_move(destination)
+  def calc_move(start, destination)
     pattern = get_pattern
-    idx = find_piece
+    start = find_piece(start)
+    destination = find_piece(destination)
 
-    possible_moves(idx, pattern)
+    moves = []
+    moves << possible_moves(start[0], pattern[0])
+    moves << possible_moves(start[0], pattern[1]) if can_2_square
 
-
+    return true if moves.include?(destination)
+    false
   end
 
   def possible_moves(idx, pattern)
-    
+    idx + pattern
   end
 end
