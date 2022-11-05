@@ -43,7 +43,7 @@ class Board
     # next only if piece can move on square in board at piece
     start = get_square(string[0..1])
     destination = get_square(string[2..])
-    start.piece.calc_move
+    start.piece.calc_move(destination)
     
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove

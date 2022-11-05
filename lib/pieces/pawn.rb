@@ -27,17 +27,23 @@ class Pawn
   end
 
   def find_piece
-    @board.each do |row|
-      row.each do |node|
-        return node if node == @current_position
+    @board.each_with_index do |row, i|
+      row.each_with_index do |node, j|
+        return [i, j] if node == @current_position
       end
     end
   end
 
-  def calc_move
+  def calc_move(destination)
     pattern = get_pattern
-    pattern << 0
-    can_2_square
+    idx = find_piece
+
+    possible_moves(idx, pattern)
+
+
+  end
+
+  def possible_moves(idx, pattern)
     
   end
 end
