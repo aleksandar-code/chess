@@ -42,21 +42,30 @@ class Pawn
   end
 
   def calc_move(start, destination)
-    return false unless can_move(destination)
+    
     pattern = get_pattern
     start = find_piece(start)
-    destination = find_piece(destination)
-
+    dest = find_piece(destination)
 
     moves = []
-    moves << possible_moves(start[0], pattern[0], start.dup)
-    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square
-    return true if moves.include?(destination) 
+    moves = attacks(start, pattern[0])
+
+    moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
+    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square && can_move(destination)
+    return true if moves.include?(dest)
     false
   end
 
   def possible_moves(idx, pattern, start)
     start[0] = idx + pattern
     start
+  end
+
+  def attacks(start, pattern)
+    x = start[0] + pattern
+    y = start[1] + 1
+    z = start[1] + -1
+
+    [[x, y], [x, z]]
   end
 end
