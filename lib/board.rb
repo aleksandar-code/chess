@@ -11,13 +11,21 @@ class Board
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
-    @pieces.board=(@board)
   end
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
+    add_board_at_piece()
+  end
+
+  def add_board_at_piece
+    @board.each do |row|
+      row.each do |node|
+        node.piece.board=(@board) unless node.piece.nil?
+      end
+    end
   end
 
   def first_board(num)
