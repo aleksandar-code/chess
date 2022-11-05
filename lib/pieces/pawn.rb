@@ -28,8 +28,9 @@ class Pawn
     false
   end
 
-  def can_move
-    # check if a piece is in front
+  def can_move(destination)
+    return true if destination.piece.nil?
+    false
   end
 
   def find_piece(search)
@@ -41,14 +42,16 @@ class Pawn
   end
 
   def calc_move(start, destination)
+    return false unless can_move(destination)
     pattern = get_pattern
     start = find_piece(start)
     destination = find_piece(destination)
 
+
     moves = []
     moves << possible_moves(start[0], pattern[0], start.dup)
     moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square
-    return true if moves.include?(destination)
+    return true if moves.include?(destination) 
     false
   end
 

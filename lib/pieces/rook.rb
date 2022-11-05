@@ -42,6 +42,12 @@ class Rook
 
     moves = []
     moves << possible_moves(start, row_col)
+    i = 0
+    moves.length.times do
+      moves << possible_moves(moves[0][i], row_col)
+      i += 1
+    end
+
     binding.pry
     return true if moves.include?(destination)
     false
@@ -50,10 +56,12 @@ class Rook
   def possible_moves(start, pattern)
     arr = []
     i = 0
+    p start
     4.times do
       x = start[0] + pattern[0][i]
       z = start[1] + pattern[1][i]
       arr << [x, z]
+      p arr
       i += 1
     end
     arr
