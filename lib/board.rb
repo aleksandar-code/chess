@@ -40,7 +40,9 @@ class Board
     destination = get_node(destination) unless string.nil?
     
     destination.piece_move(start.piece, destination.coords)
-    start.piece_remove()
+    start.piece_remove
+
+    create_graph(@board)
   end
 
   def get_node(coords)
@@ -55,7 +57,7 @@ class Board
     gets.chomp
   end
 
-  def add_nodes(board)
+  def create_graph(board)
     board.each do |x|
       x.each do |y|
         @graph.add_node(y)
@@ -98,7 +100,7 @@ class Board
 
   def create_board
     board = board_colors
-    add_nodes(board)
+    create_graph(board)
     add_pieces_to_board(board)
   end
 
