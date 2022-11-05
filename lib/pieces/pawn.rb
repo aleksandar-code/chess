@@ -48,7 +48,6 @@ class Pawn
     moves = []
     moves << possible_moves(start[0], pattern[0], start.dup)
     moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square
-    binding.pry
     return true if moves.include?(destination)
     false
   end

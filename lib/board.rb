@@ -48,7 +48,9 @@ class Board
     if boolean == true
       destination.piece_move(start.piece, destination.coords)
       start.piece_remove
-    end 
+    else
+      puts "please enter a valid input"
+    end
   end
 
   def valid_input(input)
