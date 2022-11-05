@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 class Rook
   def initialize(piece)
     @piece = piece
@@ -15,5 +17,46 @@ class Rook
 
   # write rules for the rook.
 
+  def get_pattern
+    @move_pattern
+  end
+
+  
+
+  def can_move
+    # check if a piece is in front "ally or enemy for pawn" if ally
+  end
+
+  def find_piece(search)
+    @board.each_with_index do |row, i|
+      row.each_with_index do |node, j|
+        return [i, j] if node == search
+      end
+    end
+  end
+
+  def calc_move(start, destination)
+    row_col = get_pattern
+    start = find_piece(start)
+    destination = find_piece(destination)
+
+    moves = []
+    moves << possible_moves(start, row_col)
+    binding.pry
+    return true if moves.include?(destination)
+    false
+  end
+
+  def possible_moves(start, pattern)
+    arr = []
+    i = 0
+    4.times do
+      x = start[0] + pattern[0][i]
+      z = start[1] + pattern[1][i]
+      arr << [x, z]
+      i += 1
+    end
+    arr
+  end
 
 end
