@@ -10,9 +10,10 @@ class Pawn
     @current_position = nil
     @id = id
     @board = nil
+    @en_passant = nil # get the exact info of the pawn that can be taken and the pawn that can take it [can be taken, take it]
     @move_pattern = [[+1, +2, -1, -2], [0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant
 
   #write rules for pawn
   def get_pattern
@@ -43,6 +44,8 @@ class Pawn
 
   def en_passant
     # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
+    
+
   end
 
   def promotion
@@ -55,8 +58,19 @@ class Pawn
     start = find_piece(start)
     dest = find_piece(destination)
 
-    moves = []
+    # moves = en_passant(destination)
     moves = attacks(start, pattern[0])
+    binding.pry
+
+    if @board[moves[0][0]][moves[0][1]].piece.nil? && @board[moves[1][0]][moves[1][1]].piece.nil?
+      moves = []
+    else
+      if @board[moves[0][0]][moves[0][1]].piece.nil?
+        moves.shift
+      elsif @board[moves[1][0]][moves[1][1]].piece.nil?
+        moves.pop
+      end
+    end
 
     moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
     moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square && can_move(destination)
