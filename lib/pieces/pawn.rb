@@ -13,14 +13,24 @@ class Pawn
   attr_accessor :piece, :start_white, :start_black, :current_position, :board
 
   #write rules for pawn
+  def get_pattern
+    @id.zero? ? @move_pattern[0][0..1] : @move_pattern[0][2..]
+  end
+
+  def can_2_square
+    if @id.zero?
+      return true if @start_white.include?(@current_position)
+    else
+      return true if @start_black.include?(@current_position)
+    end
+    false
+  end
 
   def calc_move
-    if @id == 0
-      moves = @move_pattern[0][0..1]
-      p moves
-    else
-      moves = @move_pattern[0][2..]
-      p moves
-    end
+    pattern = get_pattern
+    pattern << 0
+
+
+
   end
 end
