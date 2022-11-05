@@ -33,13 +33,8 @@ class Board
   end
 
   def move(player)
-    string = nil
-    loop do
-      string = valid_input(get_move())
-      break if string
-      puts "enter the start and destination square 'e2e4'"
-    end
-    
+    string = get_move()
+
     start = get_square(string[0..1])
     destination = get_square(string[2..])
     
@@ -65,7 +60,11 @@ class Board
   end
 
   def get_move
-    gets.chomp
+    loop do
+      string = valid_input(gets.chomp)
+      return string if string
+      puts "enter the start and destination square 'e2e4'"
+    end
   end
 
   def create_graph(board)
