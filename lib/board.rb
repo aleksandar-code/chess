@@ -39,18 +39,20 @@ class Board
 
   # may be later add a noteboard to see all the moves made and a fen converter and an ai and board flip for player
   def move(player)
-    string = get_move()
     # next only if piece can move on square in board at piece
-    start = get_square(string[0..1])
-    destination = get_square(string[2..])
-
-    boolean = start.piece.calc_move(start, destination)
-    if boolean == true
-      destination.piece_move(start.piece, destination.coords)
-      start.piece_remove
-    else
+    destination = nil
+    start = nil
+    loop do
+      string = get_move()
+      start = get_square(string[0..1])
+      destination = get_square(string[2..])
+      boolean = start.piece.calc_move(start, destination)
+      break if boolean == true
       puts "please enter a valid input"
     end
+    destination.piece_move(start.piece, destination.coords)
+    start.piece_remove
+    
   end
 
   def valid_input(input)
