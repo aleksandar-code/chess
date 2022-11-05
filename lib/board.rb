@@ -11,6 +11,7 @@ class Board
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
+    @pieces.board=(@board)
   end
 
   def print_board
@@ -34,14 +35,12 @@ class Board
 
   def move(player)
     string = get_move()
-
+    # next only if piece can move on square in graph
     start = get_square(string[0..1])
     destination = get_square(string[2..])
     
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove
-
-    create_graph(@board)
   end
 
   def valid_input(input)
