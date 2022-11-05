@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 class Pawn
   def initialize(piece, id)
     @piece = piece
@@ -14,7 +16,7 @@ class Pawn
 
   #write rules for pawn
   def get_pattern
-    @id.zero? ? @move_pattern[0][0..1] : @move_pattern[0][2..]
+    @id.zero? ? @move_pattern[0][2..] :  @move_pattern[0][0..1]
   end
 
   def can_2_square
@@ -44,14 +46,15 @@ class Pawn
     destination = find_piece(destination)
 
     moves = []
-    moves << possible_moves(start[0], pattern[0])
-    moves << possible_moves(start[0], pattern[1]) if can_2_square
-
+    moves << possible_moves(start[0], pattern[0], start.dup)
+    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square
+    binding.pry
     return true if moves.include?(destination)
     false
   end
 
-  def possible_moves(idx, pattern)
-    idx + pattern
+  def possible_moves(idx, pattern, start)
+    start[0] = idx + pattern
+    start
   end
 end
