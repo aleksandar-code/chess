@@ -18,12 +18,14 @@ class Graph
     @nodes.each do |n|
       return n if coords == n.coords
     end
+    nil
   end
 
   def get_idx(coords)
     @nodes.each_with_index do |n, idx|
       return idx if coords == n.coords
     end
+    nil
   end
 
   def get_edge(coords)

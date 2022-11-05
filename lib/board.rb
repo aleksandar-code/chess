@@ -15,8 +15,17 @@ class Board
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
-    first_board(8) # if game hasn't started
+    first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
+    add_board_at_piece()
+  end
+
+  def add_board_at_piece
+    @board.each do |row|
+      row.each do |node|
+        node.piece.board=(@board) unless node.piece.nil?
+      end
+    end
   end
 
   def first_board(num)
@@ -32,14 +41,45 @@ class Board
     end
   end
 
-  def add_nodes(board)
+  def move(player)
+    string = get_move()
+    # next only if piece can move on square in graph
+    start = get_square(string[0..1])
+    destination = get_square(string[2..])
+    
+    destination.piece_move(start.piece, destination.coords)
+    start.piece_remove
+  end
+
+  def valid_input(input)
+    if input.length == 4
+      return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..])
+    end
+    input = nil
+  end
+
+  def get_square(coords)
+    @board.each do |arr|
+      arr.each do |n|
+        return n if coords == n.coords
+      end
+    end
+  end
+
+  def get_move
+    loop do
+      string = valid_input(gets.chomp)
+      return string if string
+      puts "enter the start and destination square 'e2e4'"
+    end
+  end
+
+  def create_graph(board)
     board.each do |x|
       x.each do |y|
         @graph.add_node(y)
       end
     end
-    # here add pieces to the node & code pieces classes
-    add_pieces_to_board(board)
   end
 
   def piece_placements
@@ -47,12 +87,12 @@ class Board
   end
 
   def add_pieces_to_board(board)
-    board[0..1] = add_per_row(board[0..1], 0, 1)
-    board[6..7] = add_per_row(board[6..7], 0, 0)
+    board[0..1] = add_per_row(board[0..1], 1)
+    board[6..7] = add_per_row(board[6..7], 0)
     board
   end
 
-  def add_per_row(array, idx, i)
+  def add_per_row(array, i)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
     row = 0
@@ -66,10 +106,8 @@ class Board
         idx += 1
         row = 1 if idx == 8
         next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
-      
-        node.piece = piece.piece
-        square = node.square.dup # figure out a way to print the pieces at the start of the game.
-        node.piece_print(square)
+
+        node.piece_move(piece, node.coords)
       end
     end
     arr[0] + arr[1] unless arr.nil?
@@ -79,7 +117,8 @@ class Board
 
   def create_board
     board = board_colors
-    add_nodes(board)
+    create_graph(board)
+    add_pieces_to_board(board)
   end
 
   def board_colors

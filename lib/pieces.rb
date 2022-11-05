@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry-byebug'
+
 require_relative './pieces/king'
 require_relative './pieces/queen'
 require_relative './pieces/rook'
@@ -8,14 +10,14 @@ require_relative './pieces/bishop'
 require_relative './pieces/pawn'
 
 class Pieces
-  def initialize
+  def initialize()
     @white_pieces = []
     @black_pieces = []
     @pieces = %w[ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ]
     create_pieces(white = "\e[1;34m ", 0)
     create_pieces(black = "\e[1;31m ", 1)
   end
-  attr_accessor :white_pieces, :black_pieces
+  attr_accessor :white_pieces, :black_pieces, :board
 
   def add_piece(color, piece)
     @white_pieces << piece if color.zero?
