@@ -7,6 +7,7 @@ class King
     @start_black = ['e8']
     @check_status = nil
     @current_position = nil
+    @move_pattern = [[-1, -1, -1, 0, 0, +1, +1, +1], [0, +1, -1, +1, -1, -1, +1, 0]]
   end
   attr_accessor :piece, :start_white, :start_black, :current_position
 end
