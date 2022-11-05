@@ -29,7 +29,7 @@ class Pawn
   def find_piece
     @board.each do |row|
       row.each do |node|
-        
+        return node if node == @current_position
       end
     end
   end
@@ -38,6 +38,6 @@ class Pawn
     pattern = get_pattern
     pattern << 0
     can_2_square
-
+    
   end
 end
