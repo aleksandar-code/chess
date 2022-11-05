@@ -21,11 +21,7 @@ class Board
   end
 
   def add_board_at_piece
-    @board.each do |row|
-      row.each do |node|
-        node.piece.board=(@board) unless node.piece.nil?
-      end
-    end
+    @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
   end
 
   def first_board(num)
