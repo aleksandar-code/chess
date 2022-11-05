@@ -33,16 +33,27 @@ class Board
   end
 
   def move(player)
-    string = get_move()
-    start = string[0..1]
-    destination = string[2..]
-    start = get_square(start) unless string.nil?
-    destination = get_square(destination) unless string.nil?
+    string = nil
+    loop do
+      string = valid_input(get_move())
+      break if string
+      puts "enter the start and destination square 'e2e4'"
+    end
+    
+    start = get_square(string[0..1])
+    destination = get_square(string[2..])
     
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove
 
     create_graph(@board)
+  end
+
+  def valid_input(input)
+    if input.length == 4
+      return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..])
+    end
+    input = nil
   end
 
   def get_square(coords)
