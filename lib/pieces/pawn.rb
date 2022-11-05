@@ -26,11 +26,18 @@ class Pawn
     false
   end
 
+  def find_piece
+    @board.each do |row|
+      row.each do |node|
+        
+      end
+    end
+  end
+
   def calc_move
     pattern = get_pattern
     pattern << 0
-
-
+    can_2_square
 
   end
 end
