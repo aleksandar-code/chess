@@ -41,6 +41,14 @@ class Pawn
     end
   end
 
+  def en_passant
+    # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
+  end
+
+  def promotion
+    # the pawn reach the enemy camp backrow so he can be promoted to queen
+  end
+
   def calc_move(start, destination)
     
     pattern = get_pattern
