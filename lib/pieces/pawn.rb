@@ -16,10 +16,11 @@ class Pawn
     @current_position = nil
     @id = id
     @board = nil
+    @moves = nil
     @en_passant = nil # get the exact info of the pawn that can be taken and the pawn that can take it [can be taken, take it]
     @move_pattern = [[+1, +2, -1, -2], [0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id, :moves
 
   #write rules for pawn
   def get_pattern
@@ -84,7 +85,6 @@ class Pawn
     if move1.piece.nil? && move2.piece.nil?
       moves = []
     else
-      binding.pry
       if move1.piece.nil? || move1.piece.id == @id
         moves.shift
       end

@@ -20,11 +20,13 @@ class Board
     puts "\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
-    add_board_at_piece()
+    add_board_and_moves()
+
   end
 
-  def add_board_at_piece
+  def add_board_and_moves
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
+    @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.moves=(@moves) } }
   end
 
   def first_board(num)
