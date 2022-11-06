@@ -11,7 +11,9 @@ class Board
     @graph = Graph.new
     @pieces = Pieces.new
     @board = create_board
+    @moves = []
   end
+  attr_accessor :moves
 
   def print_board
     puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
@@ -47,12 +49,17 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination)
+      notation(string) if boolean == true
       break if boolean == true
       puts "please enter a valid input"
     end
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove
     
+  end
+
+  def notation(move)
+    @moves << move
   end
 
   def valid_input(input)
