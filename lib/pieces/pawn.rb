@@ -60,7 +60,6 @@ class Pawn
 
     # moves = en_passant(destination)
     moves = attacks(start, pattern[0])
-    binding.pry
 
     if @board[moves[0][0]][moves[0][1]].piece.nil? && @board[moves[1][0]][moves[1][1]].piece.nil?
       moves = []
