@@ -3,9 +3,9 @@
 require 'pry-byebug'
 
 class Player
-  def initialize(color, name)
-    @color = color
+  def initialize(id, name)
+    @id = id
     @name = name
   end
-  attr_accessor :name, :color
+  attr_accessor :name, :id
 end
