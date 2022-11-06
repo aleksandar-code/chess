@@ -34,7 +34,7 @@ class Pieces
   def create_instances(array_pieces, id)
     array = []
     if id > 0
-      arr = build_pieces(array_pieces)
+      arr = build_pieces(array_pieces, id)
       arr.each do |x|
         array << x
       end
@@ -45,7 +45,7 @@ class Pieces
       array_pieces[8..].each do |piece|
         array << Pawn.new(piece, id)
       end
-      arr = build_pieces(array_pieces)
+      arr = build_pieces(array_pieces, id)
       arr.each do |x|
         array << x
       end
@@ -53,16 +53,16 @@ class Pieces
     array
   end
 
-  def build_pieces(array_pieces)
+  def build_pieces(array_pieces, id)
     array = []
-    array << Rook.new(array_pieces[0])
-    array << Knight.new(array_pieces[1])
-    array << Bishop.new(array_pieces[2])
-    array << Queen.new(array_pieces[3])
-    array << King.new(array_pieces[4])
-    array << Bishop.new(array_pieces[5])
-    array << Knight.new(array_pieces[6])
-    array << Rook.new(array_pieces[7])
+    array << Rook.new(array_pieces[0], id)
+    array << Knight.new(array_pieces[1], id)
+    array << Bishop.new(array_pieces[2], id)
+    array << Queen.new(array_pieces[3], id)
+    array << King.new(array_pieces[4], id)
+    array << Bishop.new(array_pieces[5], id)
+    array << Knight.new(array_pieces[6], id)
+    array << Rook.new(array_pieces[7], id)
     array
   end
 
