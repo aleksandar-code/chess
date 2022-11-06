@@ -16,11 +16,12 @@ class Board
   attr_accessor :moves
 
   def print_board
-    puts "\n\n\n\n                                                       A  B  C  D  E  F  G  H "
+    print_notation()
+    puts "\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
     add_board_at_piece()
-    print_notation()
+    
   end
 
   def add_board_at_piece
