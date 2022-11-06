@@ -20,6 +20,7 @@ class Board
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
     add_board_at_piece()
+    print_notation()
   end
 
   def add_board_at_piece
@@ -63,7 +64,11 @@ class Board
   end
 
   def print_notation
-    @moves
+    i = 1
+    @moves.each_with_index do |move, idx|
+      print "#{i}. #{move}  "
+      i += 1 if idx > i
+    end
   end
 
   def valid_input(input)
