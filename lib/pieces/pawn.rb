@@ -2,6 +2,12 @@
 
 require 'pry-byebug'
 
+class Integer
+  def reverse_aritmethic_symbol
+    self.positive? ? -self : self.abs
+  end
+end
+
 class Pawn
   def initialize(piece, id)
     @piece = piece
@@ -42,9 +48,9 @@ class Pawn
     end
   end
 
-  def en_passant
+  def en_passant(destination, pattern)
     # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
-    
+    p pattern[0].reverse_aritmethic_symbol
 
   end
 
@@ -74,6 +80,8 @@ class Pawn
         moves.pop
       end
     end
+
+    en_passant(dest, pattern)
 
     moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
     moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square && can_move(destination)
