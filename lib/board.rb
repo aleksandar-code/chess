@@ -62,6 +62,10 @@ class Board
     @moves << move
   end
 
+  def print_notation
+    @moves
+  end
+
   def valid_input(input)
     if input.length == 4
       return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..]) && input[0..1] != input[2..]
