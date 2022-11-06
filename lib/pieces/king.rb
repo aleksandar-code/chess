@@ -9,8 +9,8 @@ class King
     @current_position = nil
     @board = nil
     @id = id
-    @moves = moves
+    @moves = nil
     @move_pattern = [[-1, -1, -1, 0, 0, +1, +1, +1], [0, +1, -1, +1, -1, -1, +1, 0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id
 end
