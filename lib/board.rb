@@ -67,7 +67,10 @@ class Board
     i = 1
     @moves.each_with_index do |move, idx|
       print "#{i}. #{move}  "
-      i += 1 if idx > i
+      if idx.odd?
+        i += 1
+        print "\n\n"
+      end
     end
   end
 
