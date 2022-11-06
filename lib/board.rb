@@ -56,7 +56,6 @@ class Board
     end
     destination.piece_move(start.piece, destination.coords)
     start.piece_remove
-    
   end
 
   def notation(move)
