@@ -13,7 +13,7 @@ class Pawn
     @en_passant = nil # get the exact info of the pawn that can be taken and the pawn that can take it [can be taken, take it]
     @move_pattern = [[+1, +2, -1, -2], [0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id
 
   #write rules for pawn
   def get_pattern
@@ -52,13 +52,13 @@ class Pawn
     # the pawn reach the enemy camp backrow so he can be promoted to queen
   end
 
-  def calc_move(start, destination)
+  def calc_move(start, destination, p_id)
     
     pattern = get_pattern
+    binding.pry
+    return false if @id != p_id
     start = find_piece(start)
     dest = find_piece(destination)
-
-    # moves = en_passant(destination)
     moves = attacks(start, pattern[0])
 
     if @board[moves[0][0]][moves[0][1]].piece.nil? && @board[moves[1][0]][moves[1][1]].piece.nil?
