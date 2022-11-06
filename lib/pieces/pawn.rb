@@ -50,8 +50,13 @@ class Pawn
 
   def en_passant(destination, pattern)
     # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
-    p pattern[0].reverse_aritmethic_symbol
-
+    new_pat = pattern[0].reverse_aritmethic_symbol
+    destination[0] = destination[0] + new_pat
+    node = @board[destination[0]][destination[1]]
+    return false  if node.piece.nil?
+     
+    return node if node.piece.id != @id
+    false
   end
 
   def promotion
@@ -64,6 +69,13 @@ class Pawn
     return false if @id != p_id
     start = find_piece(start)
     dest = find_piece(destination)
+
+    to_capture = en_passant(dest.dup, pattern.dup)
+    if to_capture != false
+      to_capture.piece_remove
+      return true
+    end 
+
     moves = attacks(start, pattern[0])
 
     move1 = @board[moves[0][0]][moves[0][1]]
@@ -80,8 +92,6 @@ class Pawn
         moves.pop
       end
     end
-
-    en_passant(dest, pattern)
 
     moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
     moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square && can_move(destination)
