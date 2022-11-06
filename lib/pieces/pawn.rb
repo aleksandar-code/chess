@@ -55,9 +55,21 @@ class Pawn
     destination[0] = destination[0] + new_pat
     node = @board[destination[0]][destination[1]]
     return false  if node.piece.nil?
-     
-    return node if node.piece.id != @id
+    start = @moves.last[0..1]
+    dest = @moves.last[2..]
+    id = node.piece.id
+    arr = get_array_color(id)
+
+    return node if node.piece.id != @id && arr.include?(start) && dest == node.coords
     false
+  end
+
+  def get_array_color(id)
+    if id.zero?
+      @start_white
+    else
+      @start_black
+    end
   end
 
   def promotion
