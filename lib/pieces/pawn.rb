@@ -55,7 +55,6 @@ class Pawn
   def calc_move(start, destination, p_id)
     
     pattern = get_pattern
-    binding.pry
     return false if @id != p_id
     start = find_piece(start)
     dest = find_piece(destination)
