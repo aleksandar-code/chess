@@ -60,12 +60,17 @@ class Pawn
     dest = find_piece(destination)
     moves = attacks(start, pattern[0])
 
-    if @board[moves[0][0]][moves[0][1]].piece.nil? && @board[moves[1][0]][moves[1][1]].piece.nil?
+    move1 = @board[moves[0][0]][moves[0][1]]
+    move2 = @board[moves[1][0]][moves[1][1]]
+
+    if move1.piece.nil? && move2.piece.nil?
       moves = []
     else
-      if @board[moves[0][0]][moves[0][1]].piece.nil?
+      binding.pry
+      if move1.piece.nil? || move1.piece.id == @id
         moves.shift
-      elsif @board[moves[1][0]][moves[1][1]].piece.nil?
+      end
+      if move2.piece.nil? || move2.piece.id == @id
         moves.pop
       end
     end
