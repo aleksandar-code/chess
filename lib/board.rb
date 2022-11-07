@@ -60,7 +60,7 @@ class Board
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo"
     if boolean = "promo"
       # use the pieces file
-      @pieces.promotion
+      @pieces.promotion(player)
     end
     start.piece_remove
   end

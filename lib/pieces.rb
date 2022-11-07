@@ -26,7 +26,7 @@ class Pieces
   end
 
   def create_pieces(color, id)
-    array = create_instances(give_color_piece(color), id)
+    array = create_instances(give_color_piece(color, @pieces), id)
     array.each do |piece|
       add_piece(id, piece)
     end
@@ -67,11 +67,11 @@ class Pieces
     array
   end
 
-  def give_color_piece(color)
+  def give_color_piece(color, arr)
     array = []
     i = 0
-    @pieces.length.times do
-      piece = @pieces[i]
+    arr.length.times do
+      piece = arr[i]
       i += 1
       array << (set_color(color.dup, piece))
     end
@@ -83,7 +83,19 @@ class Pieces
     color
   end
 
-  def promotion
-    
+  def promotion(id)
+    color = "\e[1;34m " if id.zero?
+    color = "\e[1;31m " if id == 1
+    array = give_color_piece(color, @promo)
+    create_instance_promo(array, id)
+  end
+
+  def create_instance_promo(arr, id)
+    array = []
+    array << Rook.new(arr[0], id)
+    array << Knight.new(arr[1], id)
+    array << Bishop.new(arr[2], id)
+    array << Queen.new(arr[3], id)
+    array
   end
 end
