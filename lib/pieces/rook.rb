@@ -50,15 +50,22 @@ class Rook
     current_coords = strt
     node_start = find_node(current_coords)
     node_destination = find_node(dest)
-
+    stop = false
+    until stop
+      
+    end
 
     # create way for rook to go over the square
   end
 
-  def find_node(current_coords)
+  def is_valid?(node)
+
+  end
+
+  def find_node(coords)
     @board.each_with_index do |x, a|
       x.each_with_index do |node, b|
-        return node if [a, b] == current_coords
+        return node if [a, b] == coords
       end
     end
   end
