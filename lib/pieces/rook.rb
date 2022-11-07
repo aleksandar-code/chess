@@ -17,13 +17,9 @@ class Rook
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id
 
-  # write rules for the rook.
-
   def get_pattern
     @move_pattern
   end
-
-  
 
   def can_move
     # check if a piece is in front "ally or enemy for pawn" if ally
@@ -37,36 +33,26 @@ class Rook
     end
   end
 
-  def calc_move(start, destination)
-    row_col = get_pattern
+  def calc_move(start, destination, p_id)
+    pattern = get_pattern
+    return false if @id != p_id
     start = find_piece(start)
-    destination = find_piece(destination)
+    dest = find_piece(destination)
 
-    moves = []
-    moves << possible_moves(start, row_col)
-    i = 0
-    moves.length.times do
-      moves << possible_moves(moves[0][i], row_col)
-      i += 1
-    end
+    
 
-    binding.pry
-    return true if moves.include?(destination)
+    return true if moves.include?(dest)
     false
   end
 
   def possible_moves(start, pattern)
-    arr = []
-    i = 0
-    p start
-    4.times do
-      x = start[0] + pattern[0][i]
-      z = start[1] + pattern[1][i]
-      arr << [x, z]
-      p arr
-      i += 1
+    # up
+    @board.each do |x|
+      x.each do |node|
+        
+      end
     end
-    arr
+    # create way for rook to go over the square
   end
 
 end
