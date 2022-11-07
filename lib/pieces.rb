@@ -87,7 +87,17 @@ class Pieces
     color = "\e[1;34m " if id.zero?
     color = "\e[1;31m " if id == 1
     array = give_color_piece(color, @promo)
-    create_instance_promo(array, id)
+    array = create_instance_promo(array, id)
+    i = get_piece_input
+    array[i]
+  end
+
+  def get_piece_input
+    loop do
+      puts "Choose between a knight, bishop, rook,  queen/ enter 0, 1, 2, 3"
+      i = gets.chomp.to_i
+      return i if (0..3).include?(i)
+    end
   end
 
   def create_instance_promo(arr, id)
