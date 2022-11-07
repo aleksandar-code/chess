@@ -112,6 +112,9 @@ class Pawn
     move1 = @board[moves[0][0]][moves[0][1]]
     move2 = @board[moves[1][0]][moves[1][1]]
 
+    binding.pry
+    move1 = move2 if move1.nil?
+    move2 = move1 if move2.nil?
     if move1.piece.nil? && move2.piece.nil?
       moves = []
     else
