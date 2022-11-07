@@ -91,8 +91,10 @@ class Pawn
     color = "\e[1;31m " if @id == 1
     arr = get_promo_arr
     return false unless arr.include?(pawn_dest)
-    piece = set_color(color, @pieces[0])
+    binding.pry
+    piece = set_color(color.dup, @pieces[0])
     queen = Queen.new(piece, @id)
+    node_dest.piece_remove
     node_dest.piece_move(queen, pawn_dest)
     return "promo"
   end
@@ -108,7 +110,7 @@ class Pawn
     pattern = get_pattern
     return false if @id != p_id
     bool = promotion(destination.coords, destination)
-    return if bool == "promo"
+    return "promo" if bool == "promo"
     start = find_piece(start)
     dest = find_piece(destination)
 
