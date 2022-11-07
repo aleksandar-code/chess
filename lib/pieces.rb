@@ -83,5 +83,7 @@ class Pieces
     color
   end
 
-  def promotion; end
+  def promotion
+    
+  end
 end
