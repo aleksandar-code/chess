@@ -47,12 +47,17 @@ class Rook
 
   def possible_moves(start, pattern)
     # up
+    current_coords = nil
+    find_coords(current_coords)
+    # create way for rook to go over the square
+  end
+
+  def find_coords(current_coords)
     @board.each do |x|
       x.each do |node|
-        
+        node.coords == current_coords
       end
     end
-    # create way for rook to go over the square
   end
 
 end
