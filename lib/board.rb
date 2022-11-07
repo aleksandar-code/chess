@@ -58,9 +58,10 @@ class Board
       puts "please enter a valid input"
     end
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo"
-    if boolean = "promo"
+    if boolean == "promo"
       # use the pieces file
-      @pieces.promotion(player)
+      piece = @pieces.promotion(player)
+      destination.piece_move(piece, destination.coords)
     end
     start.piece_remove
   end
@@ -98,7 +99,15 @@ class Board
   def get_move
     loop do
       string = valid_input(gets.chomp)
-      return string if string
+      bool = nil
+      puts "select a piece" unless string
+      next unless string
+      @board.each do |x|
+        x.each do |node|
+          bool = node.coords == string[0..1] && !(node.piece.nil?)
+        end
+      end
+      return string if string && bool == true
       puts "enter the start and destination square 'e2e4'"
     end
   end
