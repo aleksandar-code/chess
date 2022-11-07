@@ -74,8 +74,23 @@ class Pawn
     end
   end
 
-  def promotion
+  def get_promo_arr
+    if @id.zero?
+      @promo_white
+    else
+      @promo_black
+    end
+  end
+
+  def promotion(pawn_dest)
     # the pawn reach the enemy camp backrow so he can be promoted to queen
+    arr = get_promo_arr
+    return if arr.include?(pawn_dest)
+    array = []
+    array << Rook.new(array_pieces[0], id)
+    array << Knight.new(array_pieces[1], id)
+    array << Bishop.new(array_pieces[2], id)
+    array << Queen.new(array_pieces[3], id)
   end
 
   def calc_move(start, destination, p_id)
