@@ -17,6 +17,7 @@ class Pawn
     @start_black = %w[a7 b7 c7 d7 e7 f7 g7 h7]
     @promo_white = ["a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"]
     @promo_black = ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"]
+    @pieces = %w[ ♜ ♞ ♝ ♛ ]
     @current_position = nil
     @id = id
     @board = nil
