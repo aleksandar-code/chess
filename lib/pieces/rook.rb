@@ -36,26 +36,29 @@ class Rook
   def calc_move(start, destination, p_id)
     pattern = get_pattern
     return false if @id != p_id
-    start = find_piece(start)
+    strt = find_piece(start)
     dest = find_piece(destination)
 
-    
+    possible_moves(strt, dest, pattern)
 
     return true if moves.include?(dest)
     false
   end
 
-  def possible_moves(start, pattern)
+  def possible_moves(strt, dest, pattern)
     # up
-    current_coords = nil
-    find_coords(current_coords)
+    current_coords = strt
+    node_start = find_node(current_coords)
+    node_destination = find_node(dest)
+
+
     # create way for rook to go over the square
   end
 
-  def find_coords(current_coords)
-    @board.each do |x|
-      x.each do |node|
-        node.coords == current_coords
+  def find_node(current_coords)
+    @board.each_with_index do |x, a|
+      x.each_with_index do |node, b|
+        return node if [a, b] == current_coords
       end
     end
   end
