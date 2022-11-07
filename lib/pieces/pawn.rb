@@ -17,7 +17,6 @@ class Pawn
     @start_black = %w[a7 b7 c7 d7 e7 f7 g7 h7]
     @promo_white = ["a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"]
     @promo_black = ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"]
-    @pieces = %w[ ♛ ]
     @current_position = nil
     @id = id
     @board = nil
@@ -87,22 +86,10 @@ class Pawn
 
   def promotion(pawn_dest, node_dest)
     # the pawn reach the enemy camp backrow so he can be promoted to queen
-    color = "\e[1;34m " if @id.zero?
-    color = "\e[1;31m " if @id == 1
     arr = get_promo_arr
-    return false unless arr.include?(pawn_dest)
-    binding.pry
-    piece = set_color(color.dup, @pieces[0])
-    queen = Queen.new(piece, @id)
-    node_dest.piece_remove
-    node_dest.piece_move(queen, pawn_dest)
-    return "promo"
-  end
-  
-
-  def set_color(color, piece)
-    color[7] = piece
-    color
+    return "promo" if arr.include?(pawn_dest)
+    
+    false
   end
 
   def calc_move(start, destination, p_id)

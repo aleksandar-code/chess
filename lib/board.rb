@@ -58,6 +58,9 @@ class Board
       puts "please enter a valid input"
     end
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo"
+    if boolean = "promo"
+      # use the pieces file
+    end
     start.piece_remove
   end
 

@@ -14,6 +14,7 @@ class Pieces
     @white_pieces = []
     @black_pieces = []
     @pieces = %w[ ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ♟︎ ]
+    @promo = %w[ ♜ ♞ ♝ ♛ ]
     create_pieces(white = "\e[1;34m ", 0)
     create_pieces(black = "\e[1;31m ", 1)
   end
