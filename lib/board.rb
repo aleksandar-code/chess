@@ -47,16 +47,17 @@ class Board
     # next only if piece can move on square in board at piece
     destination = nil
     start = nil
+    boolean = nil
     loop do
       string = get_move()
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-      notation(string) if boolean == true
-      break if boolean == true
+      notation(string) if boolean == true || boolean =="promo"
+      break if boolean == true || boolean == "promo"
       puts "please enter a valid input"
     end
-    destination.piece_move(start.piece, destination.coords)
+    destination.piece_move(start.piece, destination.coords) unless boolean == "promo"
     start.piece_remove
   end
 

@@ -2,6 +2,8 @@
 
 require 'pry-byebug'
 
+require_relative '../pieces/queen'
+
 class Integer
   def reverse_aritmethic_symbol
     self.positive? ? -self : self.abs
@@ -82,21 +84,26 @@ class Pawn
     end
   end
 
-  def promotion(pawn_dest)
+  def promotion(pawn_dest, node_dest)
     # the pawn reach the enemy camp backrow so he can be promoted to queen
     arr = get_promo_arr
-    return if arr.include?(pawn_dest)
-    array = []
-    array << Rook.new(array_pieces[0], id)
-    array << Knight.new(array_pieces[1], id)
-    array << Bishop.new(array_pieces[2], id)
-    array << Queen.new(array_pieces[3], id)
+    return false unless arr.include?(pawn_dest)
+    queen = Queen.new()
+    node_dest.piece_move(queen, pawn_dest)
+    return "promo"
+  end
+
+  def set_color(color, piece)
+    color[7] = piece
+    color
   end
 
   def calc_move(start, destination, p_id)
     
     pattern = get_pattern
     return false if @id != p_id
+    bool = promotion(destination.coords, destination)
+    return if bool == "promo"
     start = find_piece(start)
     dest = find_piece(destination)
 
