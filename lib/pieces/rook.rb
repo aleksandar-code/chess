@@ -42,9 +42,6 @@ class Rook
   def possible_moves(strt, dest)
     # up
     valid_moves = []
-    current_coords = strt
-    node_start = coords_to_node(current_coords)
-    node_destination = coords_to_node(dest)
     stop = false
     until stop
 
