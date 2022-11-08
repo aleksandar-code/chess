@@ -41,23 +41,22 @@ class Rook
 
   def possible_moves(strt, dest)
     # up
+    coords = strt.dup
     valid_moves = []
-    coords = strt.dup
     pattern_up = -1
-    loop do
-      coords = validate_move(coords, pattern_up)
-      break if valid_moves.include?(coords) || coords.nil?
-      valid_moves << coords.dup
+
+    curr_moves = add_valid_moves(coords.dup, pattern_up)
+    for move in curr_moves
+      valid_moves << move
     end
-    
     # down
-    coords = strt.dup
     pattern_down = 1
-    loop do
-      coords = validate_move(coords, pattern_down)
-      break if valid_moves.include?(coords) || coords.nil?
-      valid_moves << coords.dup
+
+    curr_moves = add_valid_moves(coords.dup, pattern_down)
+    for move in curr_moves
+      valid_moves << move
     end
+
     return valid_moves
 
 
@@ -70,6 +69,16 @@ class Rook
     node = coords_to_node(coords)
     return nil unless verify_node(node)
     coords
+  end
+
+  def add_valid_moves(coords, pattern)
+    arr = []
+    loop do
+      coords = validate_move(coords, pattern)
+      break if arr.include?(coords) || coords.nil?
+      arr << coords.dup
+    end
+    arr
   end
 
   def verify_node(node)
