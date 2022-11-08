@@ -5,7 +5,7 @@ class King
     @piece = piece
     @start_white = ['e1']
     @start_black = ['e8']
-    @check_status = nil
+    @check_status = false
     @current_position = nil
     @board = nil
     @id = id
@@ -39,6 +39,10 @@ class King
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
     i = 0
+    
+
+    boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
+
     pattern_row.length.times do
       move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
       valid_moves << move if move
@@ -46,6 +50,20 @@ class King
     end
 
     return valid_moves
+  end
+
+  def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
+    # but this one has to look if enemy piece attack him
+    # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
+    # the move counter the attack can be either taking the piece, putting a piece between them
+    # or moving the king. then check if player move counter it then play the move only if it counter it.
+    pattern_row.length.times do
+      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
+      for move in curr_moves
+        valid_moves << move
+      end
+      i += 1
+    end
   end
 
   def validate_move(coords, pattern)
