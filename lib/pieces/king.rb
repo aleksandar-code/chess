@@ -40,10 +40,8 @@ class King
     pattern_col = @move_pattern[1]
     i = 0
     pattern_row.length.times do
-      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]])
-      for move in curr_moves
-        valid_moves << move
-      end
+      move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
+      valid_moves << move if move
       i += 1
     end
 
@@ -57,16 +55,6 @@ class King
     node = coords_to_node(coords)
     return nil unless verify_node(node)
     coords
-  end
-
-  def add_valid_moves(coords, pattern)
-    arr = []
-    loop do
-      coords = validate_move(coords, pattern)
-      break if arr.include?(coords) || coords.nil?
-      arr << coords.dup
-    end
-    arr
   end
 
   def verify_node(node)
