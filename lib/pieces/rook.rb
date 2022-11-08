@@ -46,10 +46,8 @@ class Rook
     pattern_up = -1
     binding.pry
     loop do
-      coords[0] += pattern_up
-      break unless verify_coords(coords)
-      node = coords_to_node(coords)
-      break unless verify_node(node)
+      coords = validate_move(coords, pattern_up)
+      break if valid_moves.include?(coords)
       valid_moves << coords.dup
     end
     return valid_moves
@@ -58,6 +56,14 @@ class Rook
     # down
 
     # create way for rook to go over the square
+  end
+
+  def validate_move(coords, pattern)
+    coords[0] += pattern
+    break unless verify_coords(coords)
+    node = coords_to_node(coords)
+    break unless verify_node(node)
+    coords
   end
 
   def verify_node(node)
