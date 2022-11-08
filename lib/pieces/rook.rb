@@ -45,15 +45,21 @@ class Rook
     coords = strt.dup
     pattern_up = -1
     loop do
-      binding.pry
       coords = validate_move(coords, pattern_up)
+      break if valid_moves.include?(coords) || coords.nil?
+      valid_moves << coords.dup
+    end
+    
+    # down
+    coords = strt.dup
+    pattern_down = 1
+    loop do
+      coords = validate_move(coords, pattern_down)
       break if valid_moves.include?(coords) || coords.nil?
       valid_moves << coords.dup
     end
     return valid_moves
 
-
-    # down
 
     # create way for rook to go over the square
   end
