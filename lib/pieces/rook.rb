@@ -33,25 +33,26 @@ class Rook
     strt = find_piece(start)
     dest = find_piece(destination)
 
-    possible_moves(strt, dest)
+    valid_moves = possible_moves(strt, dest)
 
-    return true if moves.include?(dest)
+    return true if valid_moves.include?(dest)
     false
   end
 
   def possible_moves(strt, dest)
     # up
     valid_moves = []
-    coords = strt
+    coords = strt.dup
     pattern_up = -1
-    stop = false
     binding.pry
-    until stop
+    loop do
       coords[0] += pattern_up
       break unless verify_coords(coords)
       node = coords_to_node(coords)
-      verify_node(node)
+      break unless verify_node(node)
+      valid_moves << coords.dup
     end
+    return valid_moves
 
 
     # down
