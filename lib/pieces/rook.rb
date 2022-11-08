@@ -42,9 +42,14 @@ class Rook
   def possible_moves(strt, dest)
     # up
     valid_moves = []
+    coords = strt
+    pattern_up = -1
     stop = false
+    binding.pry
     until stop
-
+      coords[0] += pattern_up
+      break unless verify_coords(coords)
+      coords_node = coords_to_node(coords)
     end
 
 
