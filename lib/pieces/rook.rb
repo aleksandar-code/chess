@@ -44,10 +44,10 @@ class Rook
     valid_moves = []
     coords = strt.dup
     pattern_up = -1
-    binding.pry
     loop do
+      binding.pry
       coords = validate_move(coords, pattern_up)
-      break if valid_moves.include?(coords)
+      break if valid_moves.include?(coords) || coords.nil?
       valid_moves << coords.dup
     end
     return valid_moves
@@ -60,9 +60,9 @@ class Rook
 
   def validate_move(coords, pattern)
     coords[0] += pattern
-    break unless verify_coords(coords)
+    return nil unless verify_coords(coords)
     node = coords_to_node(coords)
-    break unless verify_node(node)
+    return nil unless verify_node(node)
     coords
   end
 
