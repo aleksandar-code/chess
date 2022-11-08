@@ -11,6 +11,7 @@ class Rook
     @board = nil
     @id = id
     @moves = nil
+    @move_pattern =  [[+1, 0, -1, 0], [0, +1, 0, -1]]
     # Will use graph of nodes to see where this one can move
     # this one can move in 4 directions calculate after every move
   end
@@ -36,34 +37,17 @@ class Rook
   end
 
   def possible_moves(strt, dest)
-    # up
     coords = strt.dup
     valid_moves = []
-    pattern_up = [-1, 0]
-
-    curr_moves = add_valid_moves(coords.dup, pattern_up)
-    for move in curr_moves
-      valid_moves << move
-    end
-    # down
-    pattern_down = [1, 0]
-
-    curr_moves = add_valid_moves(coords.dup, pattern_down)
-    for move in curr_moves
-      valid_moves << move
-    end
-    # left
-    pattern_left = [0, -1]
-    curr_moves = add_valid_moves(coords.dup, pattern_left)
-    for move in curr_moves
-      valid_moves << move
-    end
-
-    # right
-    pattern_right = [0, 1]
-    curr_moves = add_valid_moves(coords.dup, pattern_right)
-    for move in curr_moves
-      valid_moves << move
+    pattern_row = @move_pattern[0]
+    pattern_col = @move_pattern[1]
+    i = 0
+    pattern_row.length.times do
+      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]])
+      for move in curr_moves
+        valid_moves << move
+      end
+      i += 1
     end
 
     return valid_moves
