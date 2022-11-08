@@ -49,7 +49,8 @@ class Rook
     until stop
       coords[0] += pattern_up
       break unless verify_coords(coords)
-      coords_node = coords_to_node(coords)
+      node = coords_to_node(coords)
+      verify_node(node)
     end
 
 
@@ -61,6 +62,12 @@ class Rook
   def verify_node(node)
     # check if the node is empty or has a piece, if it has a piece then check if it is an enemy piece if not then stop
     # and do not put this coords or node in moves
+
+    return true if node.piece.nil?
+
+    return true if node.piece.id != @id
+
+    false
   end
 
   def verify_coords(coords)
