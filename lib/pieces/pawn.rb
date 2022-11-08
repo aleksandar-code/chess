@@ -55,6 +55,7 @@ class Pawn
 
   def en_passant(destination, pattern)
     # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
+    return false if @moves.length < 3
     new_pat = pattern[0].reverse_aritmethic_symbol
     destination[0] = destination[0] + new_pat
     node = @board[destination[0]][destination[1]]
