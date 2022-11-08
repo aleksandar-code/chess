@@ -52,7 +52,7 @@ class Rook
     # create way for rook to go over the square
   end
 
-  def verift_node(node)
+  def verify_node(node)
 
   end
 
