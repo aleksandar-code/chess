@@ -43,16 +43,22 @@ class Rook
     # up
     coords = strt.dup
     valid_moves = []
-    pattern_up = -1
+    pattern_up = [-1, 0]
 
     curr_moves = add_valid_moves(coords.dup, pattern_up)
     for move in curr_moves
       valid_moves << move
     end
     # down
-    pattern_down = 1
+    pattern_down = [1, 0]
 
     curr_moves = add_valid_moves(coords.dup, pattern_down)
+    for move in curr_moves
+      valid_moves << move
+    end
+
+    pattern_left = [0, -1]
+    curr_moves = add_valid_moves(coords.dup, pattern_left)
     for move in curr_moves
       valid_moves << move
     end
@@ -64,7 +70,8 @@ class Rook
   end
 
   def validate_move(coords, pattern)
-    coords[0] += pattern
+    coords[0] += pattern[0]
+    coords[1] += pattern[1]
     return nil unless verify_coords(coords)
     node = coords_to_node(coords)
     return nil unless verify_node(node)
