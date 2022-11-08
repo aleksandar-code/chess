@@ -56,17 +56,21 @@ class Rook
     for move in curr_moves
       valid_moves << move
     end
-
+    # left
     pattern_left = [0, -1]
     curr_moves = add_valid_moves(coords.dup, pattern_left)
     for move in curr_moves
       valid_moves << move
     end
 
+    # right
+    pattern_right = [0, 1]
+    curr_moves = add_valid_moves(coords.dup, pattern_right)
+    for move in curr_moves
+      valid_moves << move
+    end
+
     return valid_moves
-
-
-    # create way for rook to go over the square
   end
 
   def validate_move(coords, pattern)
