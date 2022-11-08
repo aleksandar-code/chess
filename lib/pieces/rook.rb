@@ -62,6 +62,7 @@ class Rook
 
   def verify_coords(coords)
     return true if (0..7).include?(coords[0]) && (0..7).include?(coords[1])
+    false
   end
 
   def coords_to_node(coords)
