@@ -42,8 +42,8 @@ class Rook
   def possible_moves(strt, dest)
     # up
     current_coords = strt
-    node_start = find_node(current_coords)
-    node_destination = find_node(dest)
+    node_start = coords_to_node(current_coords)
+    node_destination = coords_to_node(dest)
     stop = false
     until stop
 
@@ -56,7 +56,7 @@ class Rook
 
   end
 
-  def find_node(coords)
+  def coords_to_node(coords)
     @board.each_with_index do |x, a|
       x.each_with_index do |node, b|
         return node if [a, b] == coords
