@@ -41,6 +41,7 @@ class Rook
 
   def possible_moves(strt, dest)
     # up
+    valid_moves = []
     current_coords = strt
     node_start = coords_to_node(current_coords)
     node_destination = coords_to_node(dest)
@@ -49,11 +50,18 @@ class Rook
 
     end
 
+
+    # down
+
     # create way for rook to go over the square
   end
 
   def verify_node(node)
 
+  end
+
+  def verify_coords(coords)
+    return true if (0..7).include?(coords[0]) && (0..7).include?(coords[1])
   end
 
   def coords_to_node(coords)
