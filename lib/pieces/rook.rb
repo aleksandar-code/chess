@@ -59,7 +59,8 @@ class Rook
   end
 
   def verify_node(node)
-
+    # check if the node is empty or has a piece, if it has a piece then check if it is an enemy piece if not then stop
+    # and do not put this coords or node in moves
   end
 
   def verify_coords(coords)
