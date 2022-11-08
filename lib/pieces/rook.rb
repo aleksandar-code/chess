@@ -16,10 +16,6 @@ class Rook
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id
 
-  def can_move
-    # check if a piece is in front "ally or enemy for pawn" if ally
-  end
-
   def find_piece(search)
     @board.each_with_index do |row, i|
       row.each_with_index do |node, j|
@@ -112,5 +108,4 @@ class Rook
       end
     end
   end
-
 end
