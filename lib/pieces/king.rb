@@ -24,8 +24,12 @@ class King
 
   def calc_move(start, destination, p_id)
     return false if @id != p_id
+    valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
+    binding.pry
+    bool = castling(strt, dest, valid_moves)
+    return "castling" if bool == true
 
     valid_moves = possible_moves(strt, dest)
 
@@ -39,7 +43,6 @@ class King
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
     i = 0
-    castling(coords, dest, valid_moves)
     # add castling
     # boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
 
@@ -52,14 +55,52 @@ class King
     return valid_moves
   end
 
-  def castling(coords, dest, valid_moves)
-    # space between rook and king must be empty
-    # king and rook mustnt have moved during the game
-    # the king goes 2 square on the right or the left side
+  def castling(start, dest, valid_moves)
+    # space between rook and king must be empty /// done
+    # king and rook mustnt have moved during the game /// done
+    # the king goes 2 square on the right or the left side /// done
     # if any of the 2 squares the king travels is attacked then castling cannot happen
     # castling cannot happen if the king is currently in check
-    
+    if @id.zero? # for white
+      arr = %w[e1 h1 a1]
+      binding.pry
+      
+      return unless verify_piece_castling(arr)
+      king = coords_to_node(start)
+      if dest == [7, 6] # 0-0
+        rook = coords_to_node([7, 7])
+        next_king = coords_to_node([7, 6])
+        next_rook = coords_to_node([7, 5])
+        if next_king.piece.nil? && next_rook.piece.nil?
+          next_king.piece_move(king.piece, "g1")
+          next_rook.piece_move(rook.piece, "f1")
+          king.piece_remove
+          rook.piece_remove
+          return true
+        end
+        return false
 
+      elsif dest == [7, 2] # 0-0-0
+        rook = coords_to_node([7, 0])
+      end
+    else
+      arr = %w[e8 h8 a8]
+      return unless verify_piece_castling(arr)
+    end
+
+  end
+
+  def verify_piece_castling(arr)
+    i = 0
+    search = @moves.map do |x|
+      x = x[0..1]
+    end
+
+    arr.length.times do
+      return false if search.include?(arr[i])
+      i += 1
+    end
+    true
   end
 
   # def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
