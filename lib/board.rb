@@ -48,17 +48,22 @@ class Board
     destination = nil
     start = nil
     boolean = nil
+    string = nil
     loop do
       string = get_move()
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-      if boolean != "check"
-        notation(string) if boolean == true || boolean =="promo" 
-        break if boolean == true || boolean == "promo" || boolean == "castling"
-      elsif boolean == "check"
+      break if boolean == true || boolean == "promo" || boolean == "castling" || boolean == "check"
+      
       puts "please enter a valid input"
     end
+
+    if boolean == "check"
+      
+    end
+
+    notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
     if boolean == "promo"
       piece = @pieces.promotion(player)
