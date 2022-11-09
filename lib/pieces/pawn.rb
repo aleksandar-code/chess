@@ -58,7 +58,7 @@ class Pawn
     return false if @moves.length < 3
     new_pat = pattern[0].reverse_aritmethic_symbol
     destination[0] = destination[0] + new_pat
-    binding.pry
+
     return false if !((0..7).include?(destination[0])) || !((0..7).include?(destination[1]))
 
     node = @board[destination[0]][destination[1]]
@@ -102,7 +102,6 @@ class Pawn
     return false if @id != p_id
     bool = promotion(destination.coords, destination)
     return "promo" if bool == "promo"
-    binding.pry if destination.coords == "a1"
     start = find_piece(start)
     dest = find_piece(destination)
 

@@ -27,11 +27,13 @@ class King
     valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
-    binding.pry
+    bool = look_for_checks(strt, valid_moves)
+    return "check" if bool == true
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
 
     valid_moves = possible_moves(strt, dest)
+    return false if valid_moves == true
 
     return true if valid_moves.include?(dest)
     false
@@ -45,6 +47,7 @@ class King
     i = 0
     # add castling
     # boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
+
 
     pattern_row.length.times do
       move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
@@ -132,18 +135,32 @@ class King
     true
   end
 
-  def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
+  def look_for_checks(coords, valid_moves)
     # but this one has to look if enemy piece attack him
     # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
     # the move counter the attack can be either taking the piece, putting a piece between them
     # or moving the king. then check if player move counter it then play the move only if it counter it.
+
+    pattern_row = @move_pattern[0]
+    pattern_col = @move_pattern[1]
+    i = 0
     pattern_row.length.times do
-      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
+      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]])
       for move in curr_moves
         valid_moves << move
       end
       i += 1
     end
+
+    valid_moves.each do |coords|
+      node = coords_to_node(coords)
+      if !(node.piece.nil?)
+        if node.piece.id != @id
+          return true
+        end
+      end
+    end
+    false
   end
 
   def add_valid_moves(coords, pattern)
