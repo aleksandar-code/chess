@@ -54,13 +54,24 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-      break if boolean == true || boolean == "promo" || boolean == "castling" || boolean == "check"
+      break if boolean == true || boolean == "promo" || boolean == "castling"
       
       puts "please enter a valid input"
     end
 
-    if boolean == "check"
-      
+    if boolean
+      coords = nil
+      king = nil
+      @board.each_with_index do |x, i|
+        x.each_with_index do |node, j|
+          if node.piece.instance_of? King 
+            king = node.piece if node.piece.id == player
+            coords = [i, j] if node.piece.id == player
+          end
+        end
+      end
+      bool = king.look_for_checks(coords, [])
+      move(@turn) if bool == "check"
     end
 
     notation(string) if boolean == true || boolean =="promo" 

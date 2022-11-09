@@ -28,7 +28,7 @@ class King
     strt = find_piece(start)
     dest = find_piece(destination)
     bool = look_for_checks(strt, valid_moves)
-    return "check" if bool == true
+    return "check" if bool == "check"
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
 
@@ -156,7 +156,7 @@ class King
       node = coords_to_node(coords)
       if !(node.piece.nil?)
         if node.piece.id != @id
-          return true
+          return "check"
         end
       end
     end
