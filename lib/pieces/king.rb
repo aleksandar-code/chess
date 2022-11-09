@@ -63,8 +63,6 @@ class King
     # castling cannot happen if the king is currently in check
     if @id.zero? # for white
       arr = %w[e1 h1 a1]
-      binding.pry
-      
       return unless verify_piece_castling(arr)
       king = coords_to_node(start)
       if dest == [7, 6] # 0-0
@@ -92,6 +90,29 @@ class King
     else
       arr = %w[e8 h8 a8]
       return unless verify_piece_castling(arr)
+      king = coords_to_node(start)
+      if dest == [0, 6] # 0-0
+        rook = coords_to_node([0, 7])
+        next_king = coords_to_node([0, 6])
+        next_rook = coords_to_node([0, 5])
+        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        next_king.piece_move(king.piece, next_king.coords)
+        next_rook.piece_move(rook.piece, next_rook.coords)
+        king.piece_remove
+        rook.piece_remove
+        return true
+
+      elsif dest == [0, 2] # 0-0-0
+        rook = coords_to_node([0, 0])
+        next_king = coords_to_node([0, 2])
+        next_rook = coords_to_node([0, 3])
+        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        next_king.piece_move(king.piece, next_king.coords)
+        next_rook.piece_move(rook.piece, next_rook.coords)
+        king.piece_remove
+        rook.piece_remove
+        return true
+      end
     end
 
   end
