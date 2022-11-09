@@ -55,6 +55,8 @@ class King
     return valid_moves
   end
 
+  # next step is making checks
+
   def castling(start, dest, valid_moves)
     # space between rook and king must be empty /// done
     # king and rook mustnt have moved during the game /// done
@@ -130,19 +132,19 @@ class King
     true
   end
 
-  # def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
-  #   # but this one has to look if enemy piece attack him
-  #   # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
-  #   # the move counter the attack can be either taking the piece, putting a piece between them
-  #   # or moving the king. then check if player move counter it then play the move only if it counter it.
-  #   pattern_row.length.times do
-  #     curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
-  #     for move in curr_moves
-  #       valid_moves << move
-  #     end
-  #     i += 1
-  #   end
-  # end
+  def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
+    # but this one has to look if enemy piece attack him
+    # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
+    # the move counter the attack can be either taking the piece, putting a piece between them
+    # or moving the king. then check if player move counter it then play the move only if it counter it.
+    pattern_row.length.times do
+      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
+      for move in curr_moves
+        valid_moves << move
+      end
+      i += 1
+    end
+  end
 
   def add_valid_moves(coords, pattern)
     arr = []
