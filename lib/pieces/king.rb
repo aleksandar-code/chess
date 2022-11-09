@@ -39,9 +39,9 @@ class King
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
     i = 0
-    
-
-    boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
+    castling(coords, dest, valid_moves)
+    # add castling
+    # boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
 
     pattern_row.length.times do
       move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
@@ -52,18 +52,38 @@ class King
     return valid_moves
   end
 
-  def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
-    # but this one has to look if enemy piece attack him
-    # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
-    # the move counter the attack can be either taking the piece, putting a piece between them
-    # or moving the king. then check if player move counter it then play the move only if it counter it.
-    pattern_row.length.times do
-      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
-      for move in curr_moves
-        valid_moves << move
-      end
-      i += 1
+  def castling(coords, dest, valid_moves)
+    # space between rook and king must be empty
+    # king and rook mustnt have moved during the game
+    # the king goes 2 square on the right or the left side
+    # if any of the 2 squares the king travels is attacked then castling cannot happen
+    # castling cannot happen if the king is currently in check
+    
+
+  end
+
+  # def look_for_checks(pattern_row, pattern_col, coords, valid_moves)
+  #   # but this one has to look if enemy piece attack him
+  #   # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
+  #   # the move counter the attack can be either taking the piece, putting a piece between them
+  #   # or moving the king. then check if player move counter it then play the move only if it counter it.
+  #   pattern_row.length.times do
+  #     curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]]) 
+  #     for move in curr_moves
+  #       valid_moves << move
+  #     end
+  #     i += 1
+  #   end
+  # end
+
+  def add_valid_moves(coords, pattern)
+    arr = []
+    loop do
+      coords = validate_move(coords, pattern)
+      break if arr.include?(coords) || coords.nil?
+      arr << coords.dup
     end
+    arr
   end
 
   def validate_move(coords, pattern)
