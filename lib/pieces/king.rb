@@ -71,17 +71,23 @@ class King
         rook = coords_to_node([7, 7])
         next_king = coords_to_node([7, 6])
         next_rook = coords_to_node([7, 5])
-        if next_king.piece.nil? && next_rook.piece.nil?
-          next_king.piece_move(king.piece, "g1")
-          next_rook.piece_move(rook.piece, "f1")
-          king.piece_remove
-          rook.piece_remove
-          return true
-        end
-        return false
+        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        next_king.piece_move(king.piece, next_king.coords)
+        next_rook.piece_move(rook.piece, next_rook.coords)
+        king.piece_remove
+        rook.piece_remove
+        return true
 
       elsif dest == [7, 2] # 0-0-0
         rook = coords_to_node([7, 0])
+        next_king = coords_to_node([7, 2])
+        next_rook = coords_to_node([7, 3])
+        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        next_king.piece_move(king.piece, next_king.coords)
+        next_rook.piece_move(rook.piece, next_rook.coords)
+        king.piece_remove
+        rook.piece_remove
+        return true
       end
     else
       arr = %w[e8 h8 a8]

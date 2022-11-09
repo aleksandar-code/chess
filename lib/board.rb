@@ -54,7 +54,7 @@ class Board
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
       notation(string) if boolean == true || boolean =="promo" 
-      break if boolean == true || boolean == "promo" || "castling"
+      break if boolean == true || boolean == "promo" || boolean == "castling"
       puts "please enter a valid input"
     end
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
