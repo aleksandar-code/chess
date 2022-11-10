@@ -27,7 +27,7 @@ class King
     valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
-    bool = look_for_checks(destination, valid_moves, @id)
+    bool = look_for_checks(destination, @id)
     return true if bool == "check"
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
@@ -135,12 +135,12 @@ class King
     true
   end
 
-  def look_for_checks(dest_node, valid_moves, king_id, board = nil) 
+  def look_for_checks(dest_node, king_id) 
     # instead make sure the player cannot
     # do a move that will result in his king being taken by any of the enemy pieces the move after
     # check if any enemy piece on the board can take the king
-    board = @board if board.nil?
-    board.each do |x|
+    
+    @board.each do |x|
       x.each do |node|
         unless node.piece.nil?
           next if node.piece.instance_of? King

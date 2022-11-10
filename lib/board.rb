@@ -79,7 +79,7 @@ class Board
       # find a way to reverse this if bool is check
 
       
-      bool = king.look_for_checks(coords, [], player)
+      bool = king.look_for_checks(coords, player)
       if bool == "check"
         puts "you're in check"
         return false
