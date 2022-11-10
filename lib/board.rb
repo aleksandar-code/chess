@@ -69,7 +69,7 @@ class Board
             coords = [i, j] if node.piece.id == player
           end
         end
-      end
+      end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
       bool = king.look_for_checks(coords, [])
       move(@turn) if bool == "check"
     end

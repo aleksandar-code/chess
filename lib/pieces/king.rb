@@ -135,11 +135,8 @@ class King
     true
   end
 
-  def look_for_checks(coords, valid_moves)
-    # but this one has to look if enemy piece attack him
-    # and then we should do methods to find what move if there is any, can counter this attack. if not then checkmate.
-    # the move counter the attack can be either taking the piece, putting a piece between them
-    # or moving the king. then check if player move counter it then play the move only if it counter it.
+  def look_for_checks(coords, valid_moves) # instead make sure the player cannot
+    # do a move that will result in his king being taken by any of the enemy pieces
 
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
