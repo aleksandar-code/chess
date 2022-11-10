@@ -65,7 +65,7 @@ class King
     # king and rook mustnt have moved during the game /// done
     # the king goes 2 square on the right or the left side /// done
     # if any of the 2 squares the king travels is attacked then castling cannot happen
-    # castling cannot happen if the king is currently in check
+    # castling cannot happen if the king is currently in check /// done
     if @id.zero? # for white
       arr = %w[e1 h1 a1]
       return unless verify_piece_castling(arr)
@@ -135,7 +135,7 @@ class King
     true
   end
 
-  def look_for_checks(dest_node, king_id) 
+  def look_for_checks(dest_node, king_id) # so here put the 2 nodes of castling to check them
     # instead make sure the player cannot
     # do a move that will result in his king being taken by any of the enemy pieces the move after
     # check if any enemy piece on the board can take the king
