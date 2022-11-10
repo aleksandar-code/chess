@@ -135,12 +135,12 @@ class King
     true
   end
 
-  def look_for_checks(dest_node, valid_moves, king_id) 
+  def look_for_checks(dest_node, valid_moves, king_id, board = nil) 
     # instead make sure the player cannot
     # do a move that will result in his king being taken by any of the enemy pieces the move after
     # check if any enemy piece on the board can take the king
-
-    @board.each do |x|
+    board = @board if board.nil?
+    board.each do |x|
       x.each do |node|
         unless node.piece.nil?
           next if node.piece.instance_of? King

@@ -21,7 +21,6 @@ class Board
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
     add_board_and_moves()
-
   end
 
   def add_board_and_moves
@@ -70,11 +69,32 @@ class Board
           end
         end
       end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
+   
+
+      
+      back_up = Marshal.load( Marshal.dump(@board) )
+      
+      destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
+      start.piece_remove unless boolean == "castling"
+      # find a way to reverse this if bool is check
+
+      
       bool = king.look_for_checks(coords, [], player)
-      move(player) if bool == "check"
+      if bool == "check"
+        puts "you're in check"
+        return false
+      end
+      @board = Marshal.load( Marshal.dump(back_up) )
+      start = get_square(string[0..1])
+      destination = get_square(string[2..])
+
+
     elsif start.piece.instance_of? King
       boolean = start.piece.calc_move(start, destination, player)
-      move(player) if boolean == false
+      if boolean == false
+        puts "you're in check"
+        return false
+      end
     end
 
     notation(string) if boolean == true || boolean =="promo" 
