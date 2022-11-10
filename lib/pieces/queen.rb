@@ -61,8 +61,16 @@ class Queen
 
   def add_valid_moves(coords, pattern)
     arr = []
+    node = nil
     loop do
       coords = validate_move(coords, pattern)
+      node = coords_to_node(coords) unless coords.nil?
+      if !(node.nil?)
+        if !(node.piece.nil?) && node.piece.id != @id
+          arr << coords.dup
+          break
+        end
+      end
       break if arr.include?(coords) || coords.nil?
       arr << coords.dup
     end
