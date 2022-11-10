@@ -136,7 +136,7 @@ class King
   end
 
   def look_for_checks(coords, valid_moves) # instead make sure the player cannot
-    # do a move that will result in his king being taken by any of the enemy pieces
+    # do a move that will result in his king being taken by any of the enemy pieces the move after
 
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
