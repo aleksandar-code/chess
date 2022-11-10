@@ -53,7 +53,7 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-      break if boolean == true || boolean == "promo" || boolean == "castling"
+      break if boolean == true || boolean == "promo" || boolean == "castling" || boolean == "check"
       
       puts "please enter a valid input"
     end
@@ -82,6 +82,9 @@ class Board
       bool = king.look_for_checks(coords, player)
       if bool == "check"
         puts "you're in check"
+        @board = Marshal.load( Marshal.dump(back_up) )
+        start = get_square(string[0..1])
+        destination = get_square(string[2..])
         return false
       end
       @board = Marshal.load( Marshal.dump(back_up) )
@@ -96,9 +99,11 @@ class Board
 
       boolean = king.piece.calc_move(start, destination, player)
       
-      binding.pry if string[2..] == "g1"
       if boolean == "check"
         puts "you're in check"
+        @board = Marshal.load( Marshal.dump(back_up) )
+        start = get_square(string[0..1])
+        destination = get_square(string[2..])
         return false
       end
       @board = Marshal.load( Marshal.dump(back_up) )
