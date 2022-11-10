@@ -68,16 +68,14 @@ class Rook
     loop do
       coords = validate_move(coords, pattern)
       node = coords_to_node(coords) unless coords.nil?
-      if coords.nil?
-          break if arr.include?(coords) || coords.nil?
-          arr << coords.dup
-      end
       if !(node.nil?)
         if !(node.piece.nil?)
           arr << coords.dup
           break if node.piece.id != @id
         end
       end
+      break if arr.include?(coords) || coords.nil?
+      arr << coords.dup
     end
     arr
   end
