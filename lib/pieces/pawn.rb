@@ -31,12 +31,15 @@ class Pawn
     @id.zero? ? @move_pattern[0][2..] :  @move_pattern[0][0..1]
   end
 
-  def can_2_square
+  def can_2_square(dest)
+ 
     if @id.zero?
-      return true if @start_white.include?(@current_position)
+      return true if @start_white.include?(@current_position) && can_move(dest)
+        
     else
-      return true if @start_black.include?(@current_position)
+      return true if @start_black.include?(@current_position) && can_move(dest)
     end
+    
     false
   end
 
@@ -128,9 +131,14 @@ class Pawn
         moves.pop
       end
     end
+    d = dest.dup
+    d[0] = d[0] + 1 if id.zero?
+    d[0] = d[0] - 1 if id == 1
+
+    d = coords_to_node(d)
 
     moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
-    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square && can_move(destination)
+    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square(d) && can_move(destination)
     return true if moves.include?(dest)
     false
   end
@@ -146,5 +154,26 @@ class Pawn
     z = start[1] + -1
 
     [[x, y], [x, z]]
+  end
+
+  def verify_node(node)
+    return true if node.piece.nil?
+
+    return true if node.piece.id != @id
+
+    false
+  end
+
+  def verify_coords(coords)
+    return true if (0..7).include?(coords[0]) && (0..7).include?(coords[1])
+    false
+  end
+
+  def coords_to_node(coords)
+    @board.each_with_index do |x, a|
+      x.each_with_index do |node, b|
+        return node if [a, b] == coords
+      end
+    end
   end
 end
