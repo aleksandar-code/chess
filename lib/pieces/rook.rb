@@ -64,19 +64,27 @@ class Rook
 
   def add_valid_moves(coords, pattern)
     arr = []
+    node = nil
     loop do
       coords = validate_move(coords, pattern)
-      break if arr.include?(coords) || coords.nil?
-      arr << coords.dup
+      node = coords_to_node(coords) unless coords.nil?
+      if coords.nil?
+          break if arr.include?(coords) || coords.nil?
+          arr << coords.dup
+      end
+      if !(node.nil?)
+        if !(node.piece.nil?)
+          arr << coords.dup
+          break if node.piece.id != @id
+        end
+      end
     end
     arr
   end
 
   def verify_node(node)
     return true if node.piece.nil?
-
-    return true if node.piece.id != @id
-
+    return true if node.piece.id != @id 
     false
   end
 
