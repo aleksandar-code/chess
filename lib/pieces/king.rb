@@ -28,7 +28,7 @@ class King
     strt = find_piece(start)
     dest = find_piece(destination)
     bool = look_for_checks(destination, @id)
-    return true if bool == "check"
+    return "check" if bool == "check"
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
 

@@ -87,14 +87,23 @@ class Board
       @board = Marshal.load( Marshal.dump(back_up) )
       start = get_square(string[0..1])
       destination = get_square(string[2..])
-
-
+      
     elsif start.piece.instance_of? King
-      boolean = start.piece.calc_move(start, destination, player)
-      if boolean == false
+      king = start.dup
+      back_up = Marshal.load( Marshal.dump(@board) )
+      destination.piece_move(start.piece, destination.coords)
+      start.piece_remove 
+
+      boolean = king.piece.calc_move(start, destination, player)
+      
+      binding.pry if string[2..] == "g1"
+      if boolean == "check"
         puts "you're in check"
         return false
       end
+      @board = Marshal.load( Marshal.dump(back_up) )
+      start = get_square(string[0..1])
+      destination = get_square(string[2..])
     end
 
     notation(string) if boolean == true || boolean =="promo" 
