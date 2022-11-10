@@ -27,8 +27,8 @@ class King
     valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
-    bool = look_for_checks(strt, valid_moves)
-    return "check" if bool == "check"
+    bool = look_for_checks(destination, valid_moves, @id)
+    return true if bool == "check"
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
 
@@ -135,25 +135,22 @@ class King
     true
   end
 
-  def look_for_checks(coords, valid_moves) # instead make sure the player cannot
+  def look_for_checks(dest_node, valid_moves, king_id) 
+    # instead make sure the player cannot
     # do a move that will result in his king being taken by any of the enemy pieces the move after
+    # check if any enemy piece on the board can take the king
 
-    pattern_row = @move_pattern[0]
-    pattern_col = @move_pattern[1]
-    i = 0
-    pattern_row.length.times do
-      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]])
-      for move in curr_moves
-        valid_moves << move
-      end
-      i += 1
-    end
-
-    valid_moves.each do |coords|
-      node = coords_to_node(coords)
-      if !(node.piece.nil?)
-        if node.piece.id != @id
-          return "check"
+    @board.each do |x|
+      x.each do |node|
+        unless node.piece.nil?
+          next if node.piece.instance_of? King
+          if node.piece.id != king_id
+            print dest_node
+            bool = node.piece.calc_move(node, dest_node, node.piece.id)
+            if bool == true
+              return "check"
+            end
+          end
         end
       end
     end

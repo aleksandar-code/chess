@@ -59,19 +59,22 @@ class Board
       puts "please enter a valid input"
     end
 
-    if boolean
+    if boolean && !(start.piece.instance_of? King)
       coords = nil
       king = nil
       @board.each_with_index do |x, i|
         x.each_with_index do |node, j|
           if node.piece.instance_of? King 
             king = node.piece if node.piece.id == player
-            coords = [i, j] if node.piece.id == player
+            coords = node if node.piece.id == player
           end
         end
       end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
-      bool = king.look_for_checks(coords, [])
-      move(@turn) if bool == "check"
+      bool = king.look_for_checks(coords, [], player)
+      move(player) if bool == "check"
+    elsif start.piece.instance_of? King
+      boolean = start.piece.calc_move(start, destination, player)
+      move(player) if boolean == false
     end
 
     notation(string) if boolean == true || boolean =="promo" 
