@@ -74,7 +74,13 @@ class King
         rook = coords_to_node([7, 7])
         next_king = coords_to_node([7, 6])
         next_rook = coords_to_node([7, 5])
-        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        if next_king.piece.nil? && next_rook.piece.nil?
+          bool1 = look_for_checks(next_king, @id)
+          bool2 = look_for_checks(next_rook, @id)
+          return false unless bool1 == false && bool2 == false
+        else
+          return false
+        end
         next_king.piece_move(king.piece, next_king.coords)
         next_rook.piece_move(rook.piece, next_rook.coords)
         king.piece_remove
@@ -85,7 +91,13 @@ class King
         rook = coords_to_node([7, 0])
         next_king = coords_to_node([7, 2])
         next_rook = coords_to_node([7, 3])
-        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        if next_king.piece.nil? && next_rook.piece.nil?
+          bool1 = look_for_checks(next_king, @id)
+          bool2 = look_for_checks(next_rook, @id)
+          return false unless bool1 == false && bool2 == false
+        else
+          return false
+        end
         next_king.piece_move(king.piece, next_king.coords)
         next_rook.piece_move(rook.piece, next_rook.coords)
         king.piece_remove
@@ -100,7 +112,13 @@ class King
         rook = coords_to_node([0, 7])
         next_king = coords_to_node([0, 6])
         next_rook = coords_to_node([0, 5])
-        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        if next_king.piece.nil? && next_rook.piece.nil?
+          bool1 = look_for_checks(next_king, @id)
+          bool2 = look_for_checks(next_rook, @id)
+          return false unless bool1 == false && bool2 == false
+        else
+          return false
+        end
         next_king.piece_move(king.piece, next_king.coords)
         next_rook.piece_move(rook.piece, next_rook.coords)
         king.piece_remove
@@ -111,7 +129,13 @@ class King
         rook = coords_to_node([0, 0])
         next_king = coords_to_node([0, 2])
         next_rook = coords_to_node([0, 3])
-        return false unless next_king.piece.nil? && next_rook.piece.nil?
+        if next_king.piece.nil? && next_rook.piece.nil?
+          bool1 = look_for_checks(next_king, @id)
+          bool2 = look_for_checks(next_rook, @id)
+          return false unless bool1 == false && bool2 == false
+        else
+          return false
+        end
         next_king.piece_move(king.piece, next_king.coords)
         next_rook.piece_move(rook.piece, next_rook.coords)
         king.piece_remove
