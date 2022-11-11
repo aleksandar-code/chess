@@ -180,6 +180,10 @@ class King
     false
   end
 
+  def check_mate
+    
+  end
+
   def add_valid_moves(coords, pattern)
     arr = []
     loop do
