@@ -20,12 +20,13 @@ class Board
     puts "\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
-    add_board_and_moves()
+    add_board_and_moves_and_graph()
   end
 
-  def add_board_and_moves
+  def add_board_and_moves_and_graph
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.moves=(@moves) } }
+    @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.graph=(@graph) } }
   end
 
   def first_board(num)
@@ -170,7 +171,7 @@ class Board
     end
   end
 
-  def create_graph(board)
+  def update_graph(board)
     board.each do |x|
       x.each do |y|
         @graph.add_node(y)
