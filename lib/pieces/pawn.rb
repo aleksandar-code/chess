@@ -122,6 +122,7 @@ class Pawn
 
   def can_en_passant(dest, pattern)
     # binding.pry if dest == [2, 5]
+    return false if @moves.length < 3
     new_pat = pattern[0][0].reverse_aritmethic_symbol
     dest[0] = dest[0] + new_pat
 
