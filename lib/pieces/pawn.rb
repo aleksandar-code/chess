@@ -87,8 +87,6 @@ class Pawn
   end
 
   def calc_move(start, destination, p_id)
-    valid_moves = []
-    pattern = get_pattern
     return false if @id != p_id
     strt = find_piece(start)
     dest = find_piece(destination)
