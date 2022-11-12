@@ -14,7 +14,8 @@ class Game
 
   def play
     loop do
-      @board.print_board
+      bool = @board.print_board
+      return puts "game over" if bool == true
       puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       loop do
         bool = @board.move(@turn)

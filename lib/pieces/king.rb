@@ -181,8 +181,14 @@ class King
 
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
-    binding.pry
-    
+    array_checks = []
+    all_moves.each do |x|
+      array_checks << look_for_checks(x, our_id)
+    end
+    if array_checks.any?(false)
+      return false
+    end
+    true
   end
 
   def add_valid_moves(coords, pattern)

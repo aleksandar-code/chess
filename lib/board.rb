@@ -20,7 +20,17 @@ class Board
     puts "\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
+    bool = check_mate?
+    return true if bool == true
     add_board_and_moves_and_graph()
+  end
+
+  def check_mate?
+    @board.each do |x|
+      x.each do |node|
+        
+      end
+    end
   end
 
   def add_board_and_moves_and_graph
@@ -91,7 +101,6 @@ class Board
       
       bool = king.look_for_checks(coords, player)
       if bool == "check"
-        # king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])
@@ -111,7 +120,6 @@ class Board
       boolean = king.piece.calc_move(start, destination, player)
       
       if boolean == "check"
-        # king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])
