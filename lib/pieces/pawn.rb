@@ -62,8 +62,8 @@ class Pawn
     end
   end
 
-  def get_array_color(id)
-    if id.zero?
+  def get_array_color
+    if @id.zero?
       @start_white
     else
       @start_black
@@ -90,7 +90,7 @@ class Pawn
     valid_moves = []
     pattern = get_pattern
     return false if @id != p_id
-    start = find_piece(start)
+    strt = find_piece(start)
     dest = find_piece(destination)
 
     d = dest.dup
@@ -99,9 +99,8 @@ class Pawn
 
     d = coords_to_node(d)
 
-    valid_moves << possible_moves(start[0], pattern[0][0], start.dup) if can_move(destination)
+    valid_moves = possible_moves(strt, dest) if can_move(destination)
    
-    valid_moves << possible_moves(start[0], pattern[0][1], start.dup) if can_2_square(d) && can_move(destination)
     return true if valid_moves.include?(dest)
     false
   end
@@ -121,18 +120,21 @@ class Pawn
   def possible_moves(strt, dest)
     coords = strt.dup
     valid_moves = []
-    pattern_row = @move_pattern[0]
-    pattern_col = @move_pattern[1]
+    pattern = get_pattern
+    pattern_row = pattern[0]
+    pattern_col = pattern[1]
     i = 0
     arr = get_array_color
+    node = coords_to_node(strt)
+
     pattern_row.delete_at(1) unless arr.include?(node.coords)
     pattern_col.delete_at(1) unless arr.include?(node.coords)
+
     pattern_row.length.times do
       move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
       valid_moves << move if move
       i += 1
     end
-
     return valid_moves
   end
 
