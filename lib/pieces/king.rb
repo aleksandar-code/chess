@@ -27,6 +27,8 @@ class King
     valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
+    bool = check_mate(destination, @id)
+    return "checkmate" if bool = true
     bool = look_for_checks(destination, @id)
     return "check" if bool == "check"
     bool = castling(strt, dest, valid_moves)
@@ -180,7 +182,7 @@ class King
     false
   end
 
-  def check_mate
+  def check_mate()
     
   end
 
