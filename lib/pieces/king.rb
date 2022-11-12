@@ -10,9 +10,10 @@ class King
     @board = nil
     @id = id
     @moves = nil
+    @graph = nil
     @move_pattern = [[-1, -1, -1, 0, 0, +1, +1, +1], [0, +1, -1, +1, -1, -1, +1, 0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id, :graph
 
   def find_piece(search)
     @board.each_with_index do |row, i|
@@ -185,15 +186,8 @@ class King
   def check_mate(dest_node, our_id)
     state = look_for_checks(dest_node, id)
     return false if state == false
-    @board.each do |row|
-      row.each do |node|
-        if !(node.piece.nil?)
-          if node.piece.id == our_id
-            
-          end
-        end
-      end
-    end
+
+    
   end
 
   def add_valid_moves(coords, pattern)

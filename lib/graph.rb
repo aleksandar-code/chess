@@ -32,4 +32,6 @@ class Graph
     start = @nodes[get_idx(coords)]
     start.neighbors[0].coords
   end
+
+  # make method to get all moves of our id pieces if in check to check if checkmate if not return false
 end
