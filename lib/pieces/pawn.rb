@@ -78,7 +78,7 @@ class Pawn
     end
   end
 
-  def promotion(pawn_dest, node_dest)
+  def promotion(pawn_dest)
     # the pawn reach the enemy camp backrow so he can be promoted to queen
     arr = get_promo_arr
     return "promo" if arr.include?(pawn_dest)
@@ -94,6 +94,10 @@ class Pawn
     
 
     valid_moves = possible_moves(strt, dest) if can_move(destination) || can_attack(destination)
+    bool = promotion(destination.coords)
+    if bool == "promo"
+      return "promo" if valid_moves.include?(dest)
+    end
    
     return true if valid_moves.include?(dest)
     false
