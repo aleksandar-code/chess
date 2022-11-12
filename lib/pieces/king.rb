@@ -182,8 +182,18 @@ class King
     false
   end
 
-  def check_mate()
-    
+  def check_mate(dest_node, our_id)
+    state = look_for_checks(dest_node, id)
+    return false if state == false
+    @board.each do |row|
+      row.each do |node|
+        if !(node.piece.nil?)
+          if node.piece.id == our_id
+            
+          end
+        end
+      end
+    end
   end
 
   def add_valid_moves(coords, pattern)
