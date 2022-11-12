@@ -33,5 +33,9 @@ class Graph
     start.neighbors[0].coords
   end
 
+  def check_all_moves
+    
+  end
+
   # make method to get all moves of our id pieces if in check to check if checkmate if not return false
 end
