@@ -62,8 +62,8 @@ class Pawn
     end
   end
 
-  def get_array_color
-    if @id.zero?
+  def get_array_color(id)
+    if id.zero?
       @start_white
     else
       @start_black
@@ -99,8 +99,14 @@ class Pawn
     if bool == "promo"
       return "promo" if valid_moves.include?(dest)
     end
-
-    bool = can_en_passant(destination, get_pattern)
+    pattern = get_pattern
+    pawn = can_en_passant(dest.dup, pattern)
+    if pawn != false
+      if pawn.piece.instance_of? Pawn
+        pawn.piece_remove
+        return true
+      end
+    end
    
     return true if valid_moves.include?(dest)
     false
@@ -114,12 +120,22 @@ class Pawn
     end
   end
 
-  def can_en_passant(destination, pattern)
+  def can_en_passant(dest, pattern)
+    # binding.pry if dest == [2, 5]
+    new_pat = pattern[0][0].reverse_aritmethic_symbol
+    dest[0] = dest[0] + new_pat
 
-    new_pat = pattern[0].reverse_aritmethic_symbol
-    destination[0] = destination[0] + new_pat
-    
-    return false if !((0..7).include?(destination[0])) || !((0..7).include?(destination[1]))
+    return false if !((0..7).include?(dest[0])) || !((0..7).include?(dest[1]))
+
+    node = @board[dest[0]][dest[1]]
+    return false  if node.piece.nil?
+    start = @moves.last[0..1]
+    d = @moves.last[2..]
+    id = node.piece.id
+    arr = get_array_color(id)
+
+    return node if node.piece.id != @id && arr.include?(start) && d == node.coords
+    false
 
   end
 
@@ -130,7 +146,7 @@ class Pawn
     pattern_row = pattern[0]
     pattern_col = pattern[1]
     i = 0
-    arr = get_array_color
+    arr = get_array_color(@id)
 
     # can 2 square, can attack, can en passant
     d = coords_to_node(dest)
