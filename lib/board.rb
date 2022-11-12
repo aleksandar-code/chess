@@ -91,7 +91,7 @@ class Board
       
       bool = king.look_for_checks(coords, player)
       if bool == "check"
-        king.check_mate(coords, player)
+        # king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])
@@ -111,7 +111,7 @@ class Board
       boolean = king.piece.calc_move(start, destination, player)
       
       if boolean == "check"
-        king.check_mate(coords, player)
+        # king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])

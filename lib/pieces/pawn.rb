@@ -137,14 +137,14 @@ class Pawn
 
     d = coords_to_node(d)
 
-    moves << possible_moves(start[0] += pattern[0], start.dup) if can_move(destination)
-    moves << possible_moves(start[0] += pattern[1], start.dup) if can_2_square(d) && can_move(destination)
+    moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
+    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square(d) && can_move(destination)
     return true if moves.include?(dest)
     false
   end
 
-  def possible_moves(addition, start)
-    start[0] = addition
+  def possible_moves(idx, pat, start)
+    start[0] = idx + pat
     start
   end
 
