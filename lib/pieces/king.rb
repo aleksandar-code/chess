@@ -47,9 +47,7 @@ class King
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
     i = 0
-    # add castling
-    # boolean = look_for_checks(pattern_row, pattern_col, coords.dup, valid_moves.dup)
-
+    
 
     pattern_row.length.times do
       move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])

@@ -28,7 +28,13 @@ class Pawn
 
   #write rules for pawn
   def get_pattern
-    @id.zero? ? @move_pattern : @move_pattern.reverse_aritmethic_symbol
+    black = @move_pattern.map do |x|
+      x.map do |n|
+        n = n.reverse_aritmethic_symbol
+      end
+    end
+
+    @id.zero? ? @move_pattern : black
   end
 
   def can_2_square(dest)
@@ -81,7 +87,7 @@ class Pawn
   end
 
   def calc_move(start, destination, p_id)
-    
+    valid_moves = []
     pattern = get_pattern
     return false if @id != p_id
     start = find_piece(start)
@@ -93,23 +99,51 @@ class Pawn
 
     d = coords_to_node(d)
 
-    moves << possible_moves(start[0], pattern[0], start.dup) if can_move(destination)
-    moves << possible_moves(start[0], pattern[1], start.dup) if can_2_square(d) && can_move(destination)
-    return true if moves.include?(dest)
+    valid_moves << possible_moves(start[0], pattern[0][0], start.dup) if can_move(destination)
+   
+    valid_moves << possible_moves(start[0], pattern[0][1], start.dup) if can_2_square(d) && can_move(destination)
+    return true if valid_moves.include?(dest)
     false
   end
 
-  def possible_moves(idx, pat, start)
-    start[0] = idx + pat
-    start
+  def can_attack(destination)
+    if !(destination.piece.nil?) 
+      if destination.piece.id != @id
+        return true
+      end
+    end
   end
 
-  def attacks(start, pattern)
-    x = start[0] + pattern
-    y = start[1] + 1
-    z = start[1] + -1
+  def can_en_passant(destination)
 
-    [[x, y], [x, z]]
+  end
+
+  def possible_moves(strt, dest)
+    coords = strt.dup
+    valid_moves = []
+    pattern_row = @move_pattern[0]
+    pattern_col = @move_pattern[1]
+    i = 0
+    arr = get_array_color
+    pattern_row.delete_at(1) unless arr.include?(node.coords)
+    pattern_col.delete_at(1) unless arr.include?(node.coords)
+    pattern_row.length.times do
+      move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
+      valid_moves << move if move
+      i += 1
+    end
+
+    return valid_moves
+  end
+
+
+  def validate_move(coords, pattern)
+    coords[0] += pattern[0]
+    coords[1] += pattern[1]
+    return nil unless verify_coords(coords)
+    node = coords_to_node(coords)
+    return nil unless verify_node(node)
+    coords
   end
 
   def verify_node(node)
