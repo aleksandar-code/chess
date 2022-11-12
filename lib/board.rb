@@ -15,22 +15,31 @@ class Board
   end
   attr_accessor :moves
 
-  def print_board
+  def print_board(id)
     print_notation()
     puts "\n\n                                                       A  B  C  D  E  F  G  H "
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
-    bool = check_mate?
-    return true if bool == true
     add_board_and_moves_and_graph()
+    return true if check_mate?(id)
   end
 
-  def check_mate?
+  def check_mate?(id)
+    return false if @moves.length < 3
+    king = nil
+    coords = nil
     @board.each do |x|
       x.each do |node|
-        
+        if node.piece.instance_of? King
+          if node.piece.id == id
+            coords = node
+            king = node.piece
+          end
+        end
       end
     end
+    # binding.pry
+    king.check_mate(coords, id) unless king.nil?
   end
 
   def add_board_and_moves_and_graph
