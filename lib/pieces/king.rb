@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative './pawn'
+
 class King
   def initialize(piece, id)
     @piece = piece
@@ -182,14 +184,15 @@ class King
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
     array_checks = []
-    p all_moves
+    
+    
     all_moves = all_moves.map do |coord|
       coord = coords_to_node(coord)
     end
-    all_moves.each do |x|
-      array_checks << look_for_checks(x, our_id)
-    end
-    p array_checks
+    
+    # check if moving any piece on any square will move me out of check?
+  
+
     if array_checks.any?(false)
       return false
     end
