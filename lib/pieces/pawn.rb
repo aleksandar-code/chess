@@ -91,13 +91,9 @@ class Pawn
     strt = find_piece(start)
     dest = find_piece(destination)
     valid_moves = []
-    d = dest.dup
-    d[0] = d[0] + 1 if id.zero?
-    d[0] = d[0] - 1 if id == 1
+    
 
-    d = coords_to_node(d)
-
-    valid_moves = possible_moves(strt, dest) if can_move(destination)
+    valid_moves = possible_moves(strt, dest) if can_move(destination) || can_attack(destination)
    
     return true if valid_moves.include?(dest)
     false
@@ -123,22 +119,13 @@ class Pawn
     pattern_col = pattern[1]
     i = 0
     arr = get_array_color
-    node = coords_to_node(strt)
 
     # can 2 square, can attack, can en passant
-    d = dest.dup
-    d[0] = d[0] + 1 if id.zero?
-    d[0] = d[0] - 1 if id == 1
-
-    d = coords_to_node(d)
-
-    valid_moves << validate_move(coords.dup, [pattern_row[0], pattern_col[0]])
+    d = coords_to_node(dest)
+    valid_moves << validate_move(coords.dup, [pattern_row[0], pattern_col[0]]) if can_move(d)
     valid_moves << validate_move(coords.dup, [pattern_row[1], pattern_col[1]]) if can_2_square(d)
     valid_moves << validate_move(coords.dup, [pattern_row[2], pattern_col[2]]) if can_attack(d)
     valid_moves << validate_move(coords.dup, [pattern_row[3], pattern_col[3]]) if can_attack(d)
-      
-
-
     return valid_moves
   end
 
