@@ -90,7 +90,7 @@ class Pawn
     return false if @id != p_id
     strt = find_piece(start)
     dest = find_piece(destination)
-
+    valid_moves = []
     d = dest.dup
     d[0] = d[0] + 1 if id.zero?
     d[0] = d[0] - 1 if id == 1
