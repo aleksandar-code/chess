@@ -94,6 +94,7 @@ class Pawn
     
 
     valid_moves = possible_moves(strt, dest) if can_move(destination) || can_attack(destination)
+
     bool = promotion(destination.coords)
     if bool == "promo"
       return "promo" if valid_moves.include?(dest)
@@ -112,7 +113,7 @@ class Pawn
   end
 
   def can_en_passant(destination)
-
+    
   end
 
   def possible_moves(strt, dest)
