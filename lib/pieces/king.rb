@@ -186,7 +186,7 @@ class King
   def check_mate(dest_node, our_id)
     state = look_for_checks(dest_node, id)
     return false if state == false
-    @graph.check_all_moves
+    @graph.check_all_moves(our_id)
     
   end
 

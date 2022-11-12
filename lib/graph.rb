@@ -33,8 +33,14 @@ class Graph
     start.neighbors[0].coords
   end
 
-  def check_all_moves
-    
+  def check_all_moves(our_id)
+    @nodes.each do |node|
+      if !(node.piece.nil?)
+        if node.piece.id == our_id
+          
+        end
+      end
+    end
   end
 
   # make method to get all moves of our id pieces if in check to check if checkmate if not return false
