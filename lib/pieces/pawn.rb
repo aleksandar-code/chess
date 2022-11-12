@@ -22,13 +22,13 @@ class Pawn
     @board = nil
     @moves = nil
     @en_passant = nil # get the exact info of the pawn that can be taken and the pawn that can take it [can be taken, take it]
-    @move_pattern = [[+1, +2, -1, -2], [0]]
+    @move_pattern = [[-1, -2, -1, -1], [0, 0, -1, 1]]
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id, :moves
 
   #write rules for pawn
   def get_pattern
-    @id.zero? ? @move_pattern[0][2..] :  @move_pattern[0][0..1]
+    @id.zero? ? @move_pattern : @move_pattern.reverse_aritmethic_symbol
   end
 
   def can_2_square(dest)
@@ -54,25 +54,6 @@ class Pawn
         return [i, j] if node == search
       end
     end
-  end
-
-  def en_passant(destination, pattern)
-    # same row as an enemy pawn and enemy pawn advanced by 2 square in one turn
-    return false if @moves.length < 3
-    new_pat = pattern[0].reverse_aritmethic_symbol
-    destination[0] = destination[0] + new_pat
-
-    return false if !((0..7).include?(destination[0])) || !((0..7).include?(destination[1]))
-
-    node = @board[destination[0]][destination[1]]
-    return false  if node.piece.nil?
-    start = @moves.last[0..1]
-    dest = @moves.last[2..]
-    id = node.piece.id
-    arr = get_array_color(id)
-
-    return node if node.piece.id != @id && arr.include?(start) && dest == node.coords
-    false
   end
 
   def get_array_color(id)
@@ -103,34 +84,9 @@ class Pawn
     
     pattern = get_pattern
     return false if @id != p_id
-    bool = promotion(destination.coords, destination)
-    return "promo" if bool == "promo"
     start = find_piece(start)
     dest = find_piece(destination)
 
-    to_capture = en_passant(dest.dup, pattern.dup)
-    if to_capture != false
-      to_capture.piece_remove
-      return true
-    end 
-
-    moves = attacks(start, pattern[0])
-
-    move1 = @board[moves[0][0]][moves[0][1]]
-    move2 = @board[moves[1][0]][moves[1][1]]
-
-    move1 = move2 if move1.nil?
-    move2 = move1 if move2.nil?
-    if move1.piece.nil? && move2.piece.nil?
-      moves = []
-    else
-      if move1.piece.nil? || move1.piece.id == @id
-        moves.shift
-      end
-      if move2.piece.nil? || move2.piece.id == @id
-        moves.pop
-      end
-    end
     d = dest.dup
     d[0] = d[0] + 1 if id.zero?
     d[0] = d[0] - 1 if id == 1
