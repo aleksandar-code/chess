@@ -26,8 +26,16 @@ class Board
   def add_board_and_moves_and_graph
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.moves=(@moves) } }
-    update_graph(@board)
-    @board.map { |x| x.each { |n| n.piece.instance_of? King ? n.piece.graph=(@graph) if !(n.piece.nil?) } }
+    if !(@board.nil?)
+      update_graph(@board)
+      @board.map do |x|
+        x.each do|n|
+          if !(n.piece.nil?)
+            n.piece.graph=(@graph) if n.piece.instance_of? King 
+          end
+        end
+      end
+    end
   end
 
   def first_board(num)
@@ -83,6 +91,7 @@ class Board
       
       bool = king.look_for_checks(coords, player)
       if bool == "check"
+        king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])
@@ -102,6 +111,7 @@ class Board
       boolean = king.piece.calc_move(start, destination, player)
       
       if boolean == "check"
+        king.check_mate(coords, player)
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back_up) )
         start = get_square(string[0..1])
@@ -173,7 +183,7 @@ class Board
   end
 
   def update_graph(board)
-    @graph = nil
+    @graph = Graph.new
     board.each do |x|
       x.each do |y|
         @graph.add_node(y)
@@ -216,7 +226,7 @@ class Board
 
   def create_board
     board = board_colors
-    create_graph(board)
+    update_graph(board)
     add_pieces_to_board(board)
   end
 

@@ -46,6 +46,7 @@ class Graph
         end
       end
     end
+    all_moves
 
     # if there's any valid then not checkmate // remove all moves that return check
   end

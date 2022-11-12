@@ -28,10 +28,9 @@ class King
     valid_moves = []
     strt = find_piece(start)
     dest = find_piece(destination)
-    bool = check_mate(destination, @id)
-    return "checkmate" if bool = true
     bool = look_for_checks(destination, @id)
     return "check" if bool == "check"
+    return "checkmate" if bool == true
     bool = castling(strt, dest, valid_moves)
     return "castling" if bool == true
 
@@ -166,7 +165,6 @@ class King
     # instead make sure the player cannot
     # do a move that will result in his king being taken by any of the enemy pieces the move after
     # check if any enemy piece on the board can take the king
-    
     @board.each do |x|
       x.each do |node|
         unless node.piece.nil?
@@ -184,9 +182,8 @@ class King
   end
 
   def check_mate(dest_node, our_id)
-    state = look_for_checks(dest_node, id)
-    return false if state == false
-    @graph.check_all_moves(our_id)
+    all_moves = @graph.check_all_moves(our_id)
+    binding.pry
     
   end
 
