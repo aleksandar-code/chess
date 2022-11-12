@@ -99,6 +99,8 @@ class Pawn
     if bool == "promo"
       return "promo" if valid_moves.include?(dest)
     end
+
+    bool = can_en_passant(destination, get_pattern)
    
     return true if valid_moves.include?(dest)
     false
@@ -112,8 +114,13 @@ class Pawn
     end
   end
 
-  def can_en_passant(destination)
+  def can_en_passant(destination, pattern)
+
+    new_pat = pattern[0].reverse_aritmethic_symbol
+    destination[0] = destination[0] + new_pat
     
+    return false if !((0..7).include?(destination[0])) || !((0..7).include?(destination[1]))
+
   end
 
   def possible_moves(strt, dest)
