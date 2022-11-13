@@ -87,6 +87,20 @@ class Board
       puts "please enter a valid input"
     end
 
+    
+
+    notation(string) if boolean == true || boolean =="promo" 
+    destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
+    if boolean == "promo"
+      piece = @pieces.promotion(player)
+      destination.piece_move(piece, destination.coords)
+    end
+
+    
+    start.piece_remove unless boolean == "castling"
+  end
+
+  def check_status
     if boolean && !(start.piece.instance_of? King)
       coords = nil
       king = nil
@@ -139,16 +153,6 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
     end
-
-    notation(string) if boolean == true || boolean =="promo" 
-    destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
-    if boolean == "promo"
-      piece = @pieces.promotion(player)
-      destination.piece_move(piece, destination.coords)
-    end
-
-    
-    start.piece_remove unless boolean == "castling"
   end
 
   def notation(move)
