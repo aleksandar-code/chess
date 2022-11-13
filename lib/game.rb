@@ -21,6 +21,9 @@ class Game
         bool = @board.move(@turn)
         break if bool != false
       end
+
+      return puts "checkmate" if bool == "checkmate"
+        
       switch_player()
 
       

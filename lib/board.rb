@@ -87,9 +87,10 @@ class Board
       
       puts "please enter a valid input"
     end
-    return false unless check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
-    binding.pry
-
+    bool = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
+    return false if bool == false
+    binding.pry if bool == "checkmate"
+    return "checkmate" if bool == "checkmate"
     notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
     if boolean == "promo"
@@ -104,6 +105,10 @@ class Board
   def check_status(boolean, start, destination, string, player)
 
     back = Marshal.load( Marshal.dump(@board) )
+
+
+    return "checkmate" if check_mate?(player)
+    
     if boolean && !(start.piece.instance_of? King)
       coords = nil
       king = nil
