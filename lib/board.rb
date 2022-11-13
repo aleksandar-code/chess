@@ -26,7 +26,7 @@ class Board
   end
 
   def check_mate?(id)
-    return false if @moves.length < 3
+    return false if @moves.length < 4
     king = nil
     coords = nil
     id = 1 if id.zero?
@@ -41,7 +41,6 @@ class Board
         end
       end
     end
-    binding.pry
     
     king.check_mate(coords, id) unless king.nil?
   end
@@ -76,6 +75,11 @@ class Board
 
   # may be later add a noteboard to see all the moves made and a fen converter and an ai and board flip for player
   def move(player)
+    
+    if check_mate?(player)
+      print_board(player)
+      return "checkmate"
+    end
     # next only if piece can move on square in board at piece
     destination = nil
     start = nil
@@ -90,33 +94,29 @@ class Board
       
       puts "please enter a valid input"
     end
-    bool = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
-    return false if bool == false
-    if bool == "checkmate"
-      destination.piece_move(start.piece, destination.coords)
-      start.piece_remove
-      string +="#"
-      notation(string)
-      print_board(player)
-      return "checkmate"
-    end
+    boole = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
+    return false if boole == false
+
+    
+
     notation(string) if boolean == true || boolean =="promo" 
-    destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
+    destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling" 
     if boolean == "promo"
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
-
+    
     
     start.piece_remove unless boolean == "castling"
+
+    
   end
+
+ 
 
   def check_status(boolean, start, destination, string, player)
 
     back = Marshal.load( Marshal.dump(@board) )
-
-
-    return "checkmate" if check_mate?(player)
     
     if boolean && !(start.piece.instance_of? King)
       coords = nil

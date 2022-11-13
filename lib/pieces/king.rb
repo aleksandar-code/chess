@@ -170,6 +170,7 @@ class King
         unless node.piece.nil?
           next if node.piece.instance_of? King
           if node.piece.id != king_id
+            # binding.pry if node.piece.instance_of? Queen
             bool = node.piece.calc_move(node, dest_node, node.piece.id)
             if bool == true
               return "check"
@@ -183,22 +184,81 @@ class King
 
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
-    binding.pry
+    # binding.pry
     array_checks = []
     
     
-    all_moves = all_moves.map do |coord|
-      coord = coords_to_node(coord)
-    end
     
-    # check if moving any piece on any square will move me out of check?
-    back = Marshal.load( Marshal.dump(@board) )
+
+    z = Marshal.load( Marshal.dump(@board) )
+    array_checks = test_moves(all_moves, our_id)
+    @board = Marshal.load( Marshal.dump(z) )
+    binding.pry
+
 
     
-    if array_checks.any?(false)
+    # check if moving any piece on any square will move me out of check?
+    
+    
+    if array_checks.any?(nil)
       return false
     end
     true
+  end
+  
+  def test_moves(start_dest, player)
+    array_checks = []
+    start_dest.each do |pair|
+      back = Marshal.load( Marshal.dump(@board) )
+      start = coords_to_node(pair[0])
+      destination = coords_to_node(pair[1])
+      if !(start.piece.instance_of? King)
+        coords = nil
+        king = nil
+        @board.each_with_index do |x, i|
+          x.each_with_index do |node, j|
+            if node.piece.instance_of? King 
+              king = node.piece if node.piece.id == player
+              coords = node if node.piece.id == player
+            end
+          end
+        end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
+        destination.piece_move(start.piece, destination.coords) 
+        start.piece_remove
+  
+        
+        bool = king.look_for_checks(coords, player)
+        if bool == "check"
+          array_checks << "check"
+          @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
+        else
+          array_checks << nil
+          @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
+        end
+       
+        
+      elsif start.piece.instance_of? King
+        king = start.dup
+        destination.piece_move(start.piece, destination.coords)
+        start.piece_remove 
+  
+        boolean = king.piece.calc_move(start, destination, player)
+        
+        if boolean == "check"
+          array_checks << "check"
+          @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
+        else
+          array_checks << nil
+          @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
+        end
+       
+      end
+      
+      if array_checks.any?(nil)
+        return array_checks
+      end
+    end
+    array_checks
   end
 
   def add_valid_moves(coords, pattern)
