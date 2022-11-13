@@ -81,6 +81,7 @@ class Board
       print_board(player)
       return "checkmate"
     end
+    @board = Marshal.load( Marshal.dump(back) )
     # next only if piece can move on square in board at piece
     destination = nil
     start = nil
