@@ -41,7 +41,7 @@ class Graph
           coords = node.piece.find_piece(node)
           curr_moves = node.piece.possible_moves(coords, 0)
           for move in curr_moves
-            all_moves << move
+            all_moves << [coords, move]
           end
         end
       end

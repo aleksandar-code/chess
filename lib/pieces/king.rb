@@ -192,8 +192,9 @@ class King
     end
     
     # check if moving any piece on any square will move me out of check?
-  
+    back = Marshal.load( Marshal.dump(@board) )
 
+    
     if array_checks.any?(false)
       return false
     end
