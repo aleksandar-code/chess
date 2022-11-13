@@ -92,6 +92,8 @@ class Board
     if bool == "checkmate"
       destination.piece_move(start.piece, destination.coords)
       start.piece_remove
+      string += "#"
+      notation(string)
       print_board(player)
       return "checkmate"
     end
