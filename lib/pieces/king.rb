@@ -186,19 +186,10 @@ class King
     all_moves = @graph.check_all_moves(our_id)
     # binding.pry
     array_checks = []
-    
-    
-    
 
-    z = Marshal.load( Marshal.dump(@board) )
+    
     array_checks = test_moves(all_moves, our_id)
-    @board = Marshal.load( Marshal.dump(z) )
-    binding.pry
 
-
-    
-    # check if moving any piece on any square will move me out of check?
-    
     
     if array_checks.any?(nil)
       return false
@@ -223,6 +214,7 @@ class King
             end
           end
         end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
+        # binding.pry if destination.coords == "g5"
         destination.piece_move(start.piece, destination.coords) 
         start.piece_remove
   

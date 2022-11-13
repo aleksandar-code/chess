@@ -75,8 +75,9 @@ class Board
 
   # may be later add a noteboard to see all the moves made and a fen converter and an ai and board flip for player
   def move(player)
-    
+    back = Marshal.load( Marshal.dump(@board) )
     if check_mate?(player)
+      @board = Marshal.load( Marshal.dump(back) )
       print_board(player)
       return "checkmate"
     end
