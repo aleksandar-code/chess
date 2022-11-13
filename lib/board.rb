@@ -12,8 +12,9 @@ class Board
     @pieces = Pieces.new
     @board = create_board
     @moves = []
+    @back_up = nil
   end
-  attr_accessor :moves
+  attr_accessor :moves, :back_up
 
   def print_board(id)
     print_notation()
@@ -21,7 +22,7 @@ class Board
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
     add_board_and_moves_and_graph()
-    return true if check_mate?(id)
+    
   end
 
   def check_mate?(id)
@@ -86,8 +87,8 @@ class Board
       
       puts "please enter a valid input"
     end
-
-    
+    return false unless check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
+    binding.pry
 
     notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
@@ -100,7 +101,9 @@ class Board
     start.piece_remove unless boolean == "castling"
   end
 
-  def check_status
+  def check_status(boolean, start, destination, string, player)
+
+    back = Marshal.load( Marshal.dump(@board) )
     if boolean && !(start.piece.instance_of? King)
       coords = nil
       king = nil
@@ -113,9 +116,6 @@ class Board
         end
       end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
    
-
-      
-      back_up = Marshal.load( Marshal.dump(@board) )
       
       destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
       start.piece_remove unless boolean == "castling"
@@ -125,18 +125,13 @@ class Board
       bool = king.look_for_checks(coords, player)
       if bool == "check"
         puts "you're in check"
-        @board = Marshal.load( Marshal.dump(back_up) )
-        start = get_square(string[0..1])
-        destination = get_square(string[2..])
+        @board = Marshal.load( Marshal.dump(back) )
         return false
       end
-      @board = Marshal.load( Marshal.dump(back_up) )
-      start = get_square(string[0..1])
-      destination = get_square(string[2..])
+     
       
     elsif start.piece.instance_of? King
       king = start.dup
-      back_up = Marshal.load( Marshal.dump(@board) )
       destination.piece_move(start.piece, destination.coords)
       start.piece_remove 
 
@@ -144,15 +139,12 @@ class Board
       
       if boolean == "check"
         puts "you're in check"
-        @board = Marshal.load( Marshal.dump(back_up) )
-        start = get_square(string[0..1])
-        destination = get_square(string[2..])
+        @board = Marshal.load( Marshal.dump(back) )
         return false
       end
-      @board = Marshal.load( Marshal.dump(back_up) )
-      start = get_square(string[0..1])
-      destination = get_square(string[2..])
+     
     end
+    true
   end
 
   def notation(move)
