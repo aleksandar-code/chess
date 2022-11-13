@@ -183,6 +183,7 @@ class King
 
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
+    binding.pry
     array_checks = []
     
     

@@ -29,6 +29,8 @@ class Board
     return false if @moves.length < 3
     king = nil
     coords = nil
+    id = 1 if id.zero?
+    id = 0 if id == 1
     @board.each do |x|
       x.each do |node|
         if node.piece.instance_of? King
@@ -39,7 +41,8 @@ class Board
         end
       end
     end
-    # binding.pry
+    binding.pry
+    
     king.check_mate(coords, id) unless king.nil?
   end
 
@@ -92,7 +95,7 @@ class Board
     if bool == "checkmate"
       destination.piece_move(start.piece, destination.coords)
       start.piece_remove
-      string += "#"
+      string +="#"
       notation(string)
       print_board(player)
       return "checkmate"
