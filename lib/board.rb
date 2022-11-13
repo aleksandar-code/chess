@@ -89,8 +89,12 @@ class Board
     end
     bool = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
     return false if bool == false
-    binding.pry if bool == "checkmate"
-    return "checkmate" if bool == "checkmate"
+    if bool == "checkmate"
+      destination.piece_move(start.piece, destination.coords)
+      start.piece_remove
+      print_board(player)
+      return "checkmate"
+    end
     notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
     if boolean == "promo"

@@ -14,17 +14,22 @@ class Game
 
   def play
     loop do
-      bool = @board.print_board(@turn)
-      return puts "game over" if bool == true
-      puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
+      boolean = nil
+
+      @board.print_board(@turn)
+
       loop do
-        bool = @board.move(@turn)
-        break if bool != false
+        puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
+        boolean = @board.move(@turn)
+        break if boolean != false
       end
 
-      return puts "checkmate" if bool == "checkmate"
-        
+      if boolean == "checkmate"
+        return puts "checkmate #{@players[@turn].name} wins!"
+      end
+
       switch_player()
+        
 
       
     end
