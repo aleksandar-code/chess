@@ -160,7 +160,7 @@ class King
         unless node.piece.nil?
           next if node.piece.instance_of? King
           if node.piece.id != king_id
-            # binding.pry if node.piece.instance_of? Queen
+            # binding.pry if node.piece.instance_of? Pawn
             bool = node.piece.calc_move(node, dest_node, node.piece.id)
             if bool == true
               return "check"

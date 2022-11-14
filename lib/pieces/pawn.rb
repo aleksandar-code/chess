@@ -93,7 +93,7 @@ class Pawn
     valid_moves = []
     
 
-    valid_moves = possible_moves(strt, dest) if can_move(destination) || can_attack(destination)
+    valid_moves = possible_moves(strt, dest)
 
     bool = promotion(destination.coords)
     if bool == "promo"
@@ -150,23 +150,32 @@ class Pawn
 
 
     move = validate_move(coords.dup, [pattern_row[0], pattern_col[0]])
-    node = coords_to_node(move) unless move.nil?
-    valid_moves << move if can_move(node)
+    unless move.nil?
+      node = coords_to_node(move)
+      valid_moves << move if can_move(node)
+    end
     move = nil
 
     move = validate_move(coords.dup, [pattern_row[1], pattern_col[1]])
-    node = coords_to_node(move) unless move.nil?
-    valid_moves << move if can_2_square(node)
+    unless move.nil?
+      node = coords_to_node(move)
+      valid_moves << move if can_2_square(node)
+    end
+
     move = nil
 
     move = validate_move(coords.dup, [pattern_row[2], pattern_col[2]])
-    node = coords_to_node(move) unless move.nil?
-    valid_moves << move if can_attack(node)
+    unless move.nil?
+      node = coords_to_node(move)
+      valid_moves << move if can_attack(node)
+    end
     move = nil
 
     move = validate_move(coords.dup, [pattern_row[3], pattern_col[3]])
-    node = coords_to_node(move) unless move.nil?
-    valid_moves << move if can_attack(node)
+    unless move.nil?
+      node = coords_to_node(move)
+      valid_moves << move if can_attack(node)
+    end
 
     return valid_moves
   end
