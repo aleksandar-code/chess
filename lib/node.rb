@@ -15,7 +15,7 @@ class Node
 
   def piece_print(sqr)
     return if piece.nil?
-    
+
     sqr[8] = @piece.piece
     @print_with_piece = sqr
   end
