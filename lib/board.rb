@@ -73,7 +73,6 @@ class Board
     end
   end
 
-  # may be later add a noteboard to see all the moves made and a fen converter and an ai and board flip for player
   def move(player)
     back = Marshal.load( Marshal.dump(@board) )
     if check_mate?(player)
@@ -82,7 +81,7 @@ class Board
       return "checkmate"
     end
     @board = Marshal.load( Marshal.dump(back) )
-    # next only if piece can move on square in board at piece
+
     destination = nil
     start = nil
     boolean = nil
@@ -99,25 +98,19 @@ class Board
     boole = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
     return false if boole == false
 
-    
-
     notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling" 
     if boolean == "promo"
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
-    
-    
-    start.piece_remove unless boolean == "castling"
 
-    
+    start.piece_remove unless boolean == "castling" 
   end
 
  
 
   def check_status(boolean, start, destination, string, player)
-
     back = Marshal.load( Marshal.dump(@board) )
     
     if boolean && !(start.piece.instance_of? King)
@@ -130,14 +123,11 @@ class Board
             coords = node if node.piece.id == player
           end
         end
-      end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
-   
-      
+      end
+
       destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
       start.piece_remove unless boolean == "castling"
-      # find a way to reverse this if bool is check
 
-      
       bool = king.look_for_checks(coords, player)
       if bool == "check"
         puts "you're in check"

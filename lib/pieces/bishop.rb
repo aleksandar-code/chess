@@ -34,7 +34,6 @@ class Bishop
   def possible_moves(strt, dest)
     coords = strt.dup
     valid_moves = []
-    # diagonals
 
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
