@@ -180,7 +180,6 @@ class Pawn
     return valid_moves
   end
 
-
   def validate_move(coords, pattern)
     coords[0] += pattern[0]
     coords[1] += pattern[1]
