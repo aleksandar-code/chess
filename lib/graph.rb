@@ -41,8 +41,8 @@ class Graph
       next unless node.piece.id == our_id
 
       start = node.piece.find_piece(node)
-      curr_moves = node.piece.possible_moves(coords, 0)
-      for dest in curr_moves
+      array_moves = node.piece.possible_moves(start, 0)
+      for dest in array_moves
         all_moves << [start, dest]
       end
 
