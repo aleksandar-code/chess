@@ -15,9 +15,7 @@ class Game
   def play
     loop do
       boolean = nil
-
       @board.print_board(@turn)
-
       loop do
         puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
         boolean = @board.move(@turn)
@@ -27,11 +25,7 @@ class Game
       if boolean == "checkmate"
         return puts "checkmate #{@players[@turn].name} wins!"
       end
-
       switch_player()
-        
-
-      
     end
   end
 
