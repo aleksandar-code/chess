@@ -20,7 +20,7 @@ class Game
         puts alert
         boolean = @board.move(@turn)
         break unless is_game_over?(boolean)
-        return puts "checkmate #{@players[@turn].name} wins!"if is_game_over?(boolean)
+        return puts "checkmate #{@players[@turn].name} wins!" if is_game_over?(boolean)
       end
       switch_player()
     end
@@ -31,8 +31,6 @@ class Game
       true
     elsif boolean != false
       false
-    elsif boolean == nil
-      nil
     end
   end
 
