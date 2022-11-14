@@ -60,14 +60,7 @@ class King
     return valid_moves
   end
 
-  # next step is making checks
-
   def castling(start, dest, valid_moves)
-    # space between rook and king must be empty /// done
-    # king and rook mustnt have moved during the game /// done
-    # the king goes 2 square on the right or the left side /// done
-    # if any of the 2 squares the king travels is attacked then castling cannot happen
-    # castling cannot happen if the king is currently in check /// done
     if @id.zero? # for white
       arr = %w[e1 h1 a1]
       return unless verify_piece_castling(arr)
@@ -161,10 +154,7 @@ class King
     true
   end
 
-  def look_for_checks(dest_node, king_id) # so here put the 2 nodes of castling to check them
-    # instead make sure the player cannot
-    # do a move that will result in his king being taken by any of the enemy pieces the move after
-    # check if any enemy piece on the board can take the king
+  def look_for_checks(dest_node, king_id)
     @board.each do |x|
       x.each do |node|
         unless node.piece.nil?
@@ -184,7 +174,6 @@ class King
 
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
-    # binding.pry
     array_checks = []
 
     
@@ -213,8 +202,8 @@ class King
               coords = node if node.piece.id == player
             end
           end
-        end # instead of this may be i should check can the king be taken after that move? so have 2 boards at the same time?
-        # binding.pry if destination.coords == "g5"
+        end
+
         destination.piece_move(start.piece, destination.coords) 
         start.piece_remove
   
