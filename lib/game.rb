@@ -14,17 +14,25 @@ class Game
 
   def play
     loop do
+      alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
       loop do
-        puts "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
+        puts alert
         boolean = @board.move(@turn)
-        if boolean == "checkmate"
-          return puts "checkmate #{@players[@turn].name} wins!"
-        elsif boolean != false
-          break
-        end
+        break unless is_game_over?(boolean)
+        return puts "checkmate #{@players[@turn].name} wins!"if is_game_over?(boolean)
       end
       switch_player()
+    end
+  end
+
+  def is_game_over?(boolean)
+    if boolean == "checkmate"
+      true
+    elsif boolean != false
+      false
+    elsif boolean == nil
+      nil
     end
   end
 
