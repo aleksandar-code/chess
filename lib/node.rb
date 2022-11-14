@@ -7,21 +7,17 @@ class Node
   def initialize(coords, square, piece = nil)
     @coords = convert_data(coords)
     @square = square
-    @piece = piece # get obj
+    @piece = piece
     @print_with_piece = nil
-    @neighbors = []
-    @visited = false
   end
-  attr_accessor :piece, :neighbors, :visited, :print_with_piece
+  attr_accessor :piece, :print_with_piece
   attr_reader :square, :coords
 
-  def add_edge(neighbor)
-    @neighbors << neighbor
-  end
-
   def piece_print(sqr)
-    sqr[8] = @piece.piece unless @piece.nil? # if there is a piece
-    @print_with_piece = sqr unless @piece.nil?
+    unless @piece.nil?
+      sqr[8] = @piece.piece
+      @print_with_piece = sqr
+    end
   end
 
   def piece_move(data, coord)
