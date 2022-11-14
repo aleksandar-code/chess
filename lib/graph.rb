@@ -36,14 +36,16 @@ class Graph
   def check_all_moves(our_id)
     all_moves = []
     @nodes.each do |node|
-      next if node.piece.nil?
-      if node.piece.id == our_id
-        coords = node.piece.find_piece(node)
-        curr_moves = node.piece.possible_moves(coords, 0)
-        for move in curr_moves
-          all_moves << [coords, move]
-        end
+      next if node.piece.nil? 
+      
+      next unless node.piece.id == our_id
+
+      coords = node.piece.find_piece(node)
+      curr_moves = node.piece.possible_moves(coords, 0)
+      for move in curr_moves
+        all_moves << [coords, move]
       end
+
     end
     all_moves
   end
