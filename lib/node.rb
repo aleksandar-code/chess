@@ -14,10 +14,10 @@ class Node
   attr_reader :square, :coords
 
   def piece_print(sqr)
-    unless @piece.nil?
-      sqr[8] = @piece.piece
-      @print_with_piece = sqr
-    end
+    return if piece.nil?
+    
+    sqr[8] = @piece.piece
+    @print_with_piece = sqr
   end
 
   def piece_move(data, coord)
