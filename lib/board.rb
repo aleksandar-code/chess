@@ -250,27 +250,26 @@ class Board
   end
 
   def build_board
+    array = []
+    index = 0
+    8.times do
+      index += 1
+      array << add_nodes_with_colors(Array.new(8), index, index.odd?)
+    end
+    array
+  end
+  
+  def add_nodes_with_colors(array, num, boolean)
     black = "\e[1;40m   \e[0m"
     white = "\e[1;47m   \e[0m"
-    final_array = []
-    j = 0
-    8.times do
-      j += 1
-      arr = Array.new(8)
-      final_array << board_colors_nodes(arr, j, j.odd?, black, white)
-    end
-    final_array
-  end
-
-  def board_colors_nodes(arr, num, id, black, white)
-    arr.each_with_index do |_x, idx|
+    array.each_with_index do |_x, idx|
       data = [num - 1, idx]
-      if id == false && arr[idx].nil?
-        arr[idx] = Node.new(data, black)
-        id = true
-      elsif id == true && arr[idx].nil?
-        arr[idx] = Node.new(data, white)
-        id = false
+      if boolean == false && array[idx].nil?
+        array[idx] = Node.new(data, black)
+        boolean = true
+      elsif boolean == true && array[idx].nil?
+        array[idx] = Node.new(data, white)
+        boolean = false
       end
     end
   end
