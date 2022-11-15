@@ -258,19 +258,17 @@ class Board
     end
     array
   end
-  
-  def add_nodes_with_colors(array, num, boolean)
+
+  def add_nodes_with_colors(array, row_index, boolean)
     black = "\e[1;40m   \e[0m"
     white = "\e[1;47m   \e[0m"
-    array.each_with_index do |_x, idx|
-      data = [num - 1, idx]
-      if boolean == false && array[idx].nil?
-        array[idx] = Node.new(data, black)
-        boolean = true
-      elsif boolean == true && array[idx].nil?
-        array[idx] = Node.new(data, white)
-        boolean = false
-      end
+    array.each_with_index do |_x, index|
+      coords = [row_index - 1, index]
+      next unless array[index].nil?
+
+      color = boolean ? white : black
+      boolean = boolean ? false : true
+      array[index] = Node.new(coords, color)
     end
   end
 end
