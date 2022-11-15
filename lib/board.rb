@@ -244,12 +244,12 @@ class Board
   end
 
   def create_board
-    board = board_colors
+    board = build_board
     update_graph(board)
     add_pieces_to_board(board)
   end
 
-  def board_colors
+  def build_board
     black = "\e[1;40m   \e[0m"
     white = "\e[1;47m   \e[0m"
     final_array = []
