@@ -203,11 +203,7 @@ class Board
 
   def update_graph(board)
     @graph = Graph.new
-    board.each do |x|
-      x.each do |y|
-        @graph.add_node(y)
-      end
-    end
+    board.each { |x| x.each { |y| @graph.add_node(y) } }
   end
 
   def piece_placements
