@@ -211,32 +211,35 @@ class Board
   end
 
   def add_pieces_to_board(board)
-    board[0..1] = add_per_row(board[0..1], 1)
-    board[6..7] = add_per_row(board[6..7], 0)
+    board[0..1] = add_per_row(board[0..1], 1) # Black pieces
+    board[6..7] = add_per_row(board[6..7], 0) # White pieces
     board
   end
 
-  def add_per_row(array, i)
+  def add_per_row(array, piece_color_index)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
     row = 0
-    idx = 0
-    arr = []
-    2.times do
-      arr << array[row].each do |node|
-        next unless piece_placements.any?(node.coords) && i == 1 || i == 0 # only run first 2 and last 2 rows
-        piece = array_white[idx] if i == 0
-        piece = array_black[idx] if i == 1
-        idx += 1
-        row = 1 if idx == 8
-        next unless piece.start_black.any?(node.coords) || piece.start_white.any?(node.coords)
+    index = 0
+    new_array = []
 
-        node.piece_move(piece, node.coords)
+    2.times do
+      new_array << array[row].each do |square|
+        next unless piece_placements.any?(square.coords)
+        
+        piece = array_white[index] if piece_color_index == 0
+        piece = array_black[index] if piece_color_index == 1
+        index += 1
+        row = 1 if index == 8
+        next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
+
+        square.piece_move(piece, square.coords)
       end
     end
-    arr[0] + arr[1] unless arr.nil?
-    return arr unless arr.nil?
-    false
+
+    new_array.nil? ? false : new_array[0] + new_array[1]
+
+    new_array
   end
 
   def create_board
@@ -246,25 +249,16 @@ class Board
   end
 
   def build_board
-    array = []
-    index = 0
-    8.times do
-      index += 1
-      array << add_nodes_with_colors(Array.new(8), index, index.odd?)
-    end
-    array
-  end
-
-  def add_nodes_with_colors(array, row_index, boolean)
     black = "\e[1;40m   \e[0m"
     white = "\e[1;47m   \e[0m"
-    array.each_with_index do |_x, index|
-      coords = [row_index - 1, index]
-      next unless array[index].nil?
-
-      color = boolean ? white : black
-      boolean = boolean ? false : true
-      array[index] = Node.new(coords, color)
+    board = Array.new(8) { Array.new(8) }
+    
+    8.times do |rank|
+      [white, black].rotate(rank % 2).cycle(4).with_index do |color, file|
+        coords = [rank, file]
+        board[rank][file] = Node.new(coords, color)
+      end
     end
+    board
   end
 end
