@@ -216,32 +216,20 @@ class Board
     @board
   end
 
-  def add_per_row(array, piece_color_index)
+  def add_per_row(array, piece_color)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
     index = 0
-    new_array = []
 
-    
-      new_array = array.each do |row|
-        row.each do |square|
+    array.each do |row|
+      row.each do |square|
+        piece = piece_color.zero? ? array_white[index] : array_black[index]
+        next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
 
-          next unless piece_placements.any?(square.coords)
-          
-          piece = array_white[index] if piece_color_index == 0
-          piece = array_black[index] if piece_color_index == 1
-          
-          next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
-          index += 1
-          
-          square.piece_move(piece, square.coords)
-        end
+        index += 1
+        square.piece_move(piece, square.coords)
       end
-   
-
-    # new_array.nil? ? false : new_array[0] + new_array[1]
-
-    new_array
+    end
   end
 
   def create_board
