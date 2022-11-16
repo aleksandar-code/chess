@@ -49,7 +49,7 @@ class Board
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.moves=(@moves) } }
     if !(@board.nil?)
-      update_graph(@board)
+      update_graph
       @board.map do |x|
         x.each do|n|
           if !(n.piece.nil?)
@@ -201,64 +201,65 @@ class Board
     end
   end
 
-  def update_graph(board)
+  def update_graph
     @graph = Graph.new
-    board.each { |x| x.each { |y| @graph.add_node(y) } }
+    @board.each { |x| x.each { |y| @graph.add_node(y) } }
   end
 
   def piece_placements
     array = %w[a1 b1 c1 d1 e1 f1 g1 h1 a2 b2 c2 d2 e2 f2 g2 h2 a8 b8 c8 d8 e8 f8 g8 h8 a7 b7 c7 d7 e7 f7 g7 h7]
   end
 
-  def add_pieces_to_board(board)
-    board[0..1] = add_per_row(board[0..1], 1) # Black pieces
-    board[6..7] = add_per_row(board[6..7], 0) # White pieces
-    board
+  def add_pieces_to_board
+    @board[0..1] = add_per_row(@board[0..1], 1) # Black pieces
+    @board[6..7] = add_per_row(@board[6..7], 0) # White pieces
+    @board
   end
 
   def add_per_row(array, piece_color_index)
     array_white = @pieces.white_pieces
     array_black = @pieces.black_pieces
-    row = 0
     index = 0
     new_array = []
 
-    2.times do
-      new_array << array[row].each do |square|
-        next unless piece_placements.any?(square.coords)
-        
-        piece = array_white[index] if piece_color_index == 0
-        piece = array_black[index] if piece_color_index == 1
-        index += 1
-        row = 1 if index == 8
-        next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
+    
+      new_array = array.each do |row|
+        row.each do |square|
 
-        square.piece_move(piece, square.coords)
+          next unless piece_placements.any?(square.coords)
+          
+          piece = array_white[index] if piece_color_index == 0
+          piece = array_black[index] if piece_color_index == 1
+          
+          next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
+          index += 1
+          
+          square.piece_move(piece, square.coords)
+        end
       end
-    end
+   
 
-    new_array.nil? ? false : new_array[0] + new_array[1]
+    # new_array.nil? ? false : new_array[0] + new_array[1]
 
     new_array
   end
 
   def create_board
     board = build_board
-    update_graph(board)
-    add_pieces_to_board(board)
+    update_graph
+    add_pieces_to_board
   end
 
   def build_board
     black = "\e[1;40m   \e[0m"
     white = "\e[1;47m   \e[0m"
-    board = Array.new(8) { Array.new(8) }
+    @board = Array.new(8) { Array.new(8) }
     
     8.times do |rank|
       [white, black].rotate(rank % 2).cycle(4).with_index do |color, file|
         coords = [rank, file]
-        board[rank][file] = Node.new(coords, color)
+        @board[rank][file] = Node.new(coords, color)
       end
     end
-    board
   end
 end
