@@ -91,10 +91,12 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-      break if boolean == true || boolean == "promo" || boolean == "castling" || boolean == "check"
+
+      break if boolean == true || boolean == "promo" || boolean == "castling"
       
       puts "please enter a valid input"
     end
+
     boole = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
     return false if boole == false
 
@@ -134,21 +136,7 @@ class Board
         @board = Marshal.load( Marshal.dump(back) )
         return false
       end
-     
-      
-    elsif start.piece.instance_of? King
-      king = start.dup
-      destination.piece_move(start.piece, destination.coords)
-      start.piece_remove 
 
-      boolean = king.piece.calc_move(start, destination, player)
-      
-      if boolean == "check"
-        puts "you're in check"
-        @board = Marshal.load( Marshal.dump(back) )
-        return false
-      end
-     
     end
     true
   end
