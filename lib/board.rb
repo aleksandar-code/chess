@@ -186,17 +186,14 @@ class Board
   def get_move
     loop do
       string = valid_input(gets.chomp)
-      bool = nil
-      puts "select a piece and it's destination : e2e4" unless string
-      next unless string
       @board.each do |x|
         x.each do |node|
-          if node.coords == string[0..1]
-            bool = !(node.piece.nil?)
-          end
+          next if string.nil? || string[0..1].nil? || !(node.coords == string[0..1])
+
+          bool = !(node.piece.nil?)
+          return string if string && bool == true
         end
       end
-      return string if string && bool == true
       puts "select a piece and it's destination : e2e4"
     end
   end
