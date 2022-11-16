@@ -216,18 +216,17 @@ class Board
     @board
   end
 
-  def add_per_row(array, piece_color)
-    array_white = @pieces.white_pieces
-    array_black = @pieces.black_pieces
+  def add_per_row(array, i)
+    array_color = [@pieces.white_pieces, @pieces.black_pieces]
     index = 0
 
     array.each do |row|
       row.each do |square|
-        piece = piece_color.zero? ? array_white[index] : array_black[index]
+        piece = array_color[i][index]
         next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
 
-        index += 1
         square.piece_move(piece, square.coords)
+        index += 1
       end
     end
   end
