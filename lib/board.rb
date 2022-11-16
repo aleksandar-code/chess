@@ -210,31 +210,30 @@ class Board
     array = %w[a1 b1 c1 d1 e1 f1 g1 h1 a2 b2 c2 d2 e2 f2 g2 h2 a8 b8 c8 d8 e8 f8 g8 h8 a7 b7 c7 d7 e7 f7 g7 h7]
   end
 
-  def add_pieces_to_board
-    @board[0..1] = add_per_row(@board[0..1], 1) # Black pieces
-    @board[6..7] = add_per_row(@board[6..7], 0) # White pieces
-    @board
-  end
-
-  def add_per_row(array, i)
-    array_color = [@pieces.white_pieces, @pieces.black_pieces]
+  def add_pieces
+    array_color = [@pieces.black_pieces, @pieces.white_pieces]
+    array = [@board[0..1], @board[6..7]]
     index = 0
 
-    array.each do |row|
-      row.each do |square|
-        piece = array_color[i][index]
-        next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
-
-        square.piece_move(piece, square.coords)
-        index += 1
+    array.each_with_index do |board, i|
+      board.each do |row|
+        row.each do |square|
+          piece = array_color[i][index]
+          next unless piece.start_black.any?(square.coords) || piece.start_white.any?(square.coords)
+          
+          square.piece_move(piece, square.coords)
+          index += 1
+          index = 0 if index > 15
+        end
       end
     end
+    @board
   end
 
   def create_board
     board = build_board
     update_graph
-    add_pieces_to_board
+    add_pieces
   end
 
   def build_board
