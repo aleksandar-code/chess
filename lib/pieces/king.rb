@@ -73,8 +73,6 @@ class King
     info_moves = ["e#{number}", "h#{number}", "a#{number}"]
     info_move = ["g#{number}", "c#{number}"]
     info_coords = [[pat, 7], [pat, 6], [pat, 5]], [[pat, 0], [pat, 2], [pat, 3]]
-
-
       return unless verify_piece_castling(start.dup, dest.dup)
       king = coords_to_node(start)
       idx = nil
@@ -103,7 +101,7 @@ class King
     end
   end
 
-  def verify_piece_castling(start, dest) # not working as intended since if one castle is false then the other too but this might just be false because of one rook moving
+  def verify_piece_castling(start, dest)
     i = 0
     search = @moves.map do |x|
       x = x[0..1]
@@ -163,11 +161,9 @@ class King
             end
           end
         end
-
         destination.piece_move(start.piece, destination.coords) 
         start.piece_remove
-  
-        
+
         bool = king.look_for_checks(coords, player)
         if bool == "check"
           array_checks << "check"
@@ -176,8 +172,6 @@ class King
           array_checks << nil
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         end
-       
-        
       elsif start.piece.instance_of? King
         king = start.dup
         destination.piece_move(start.piece, destination.coords)
@@ -192,9 +186,7 @@ class King
           array_checks << nil
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         end
-       
       end
-      
       if array_checks.any?(nil)
         return array_checks
       end
