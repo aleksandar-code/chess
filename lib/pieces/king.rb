@@ -61,11 +61,24 @@ class King
   end
 
   def castling(start, dest, valid_moves) # Refactor castling and test_moves
+
+    if @id.zero?
+      pat = 7
+      number = 1
+    else
+      pat = 0
+      number = 8
+    end
+
+    info_moves = ["e#{number}", "h#{number}", "a#{number}"]
+    info_move = ["g#{number}", "c#{number}"]
+    info_coords = [[pat, 7], [pat, 6], [pat, 5]], [[pat, 0], [pat, 2], [pat, 3]]
+
+
     if @id.zero? # for white
-      arr = %w[e1 h1 a1]
-      return unless verify_piece_castling(arr)
+      return unless verify_piece_castling(info_moves)
       king = coords_to_node(start)
-      if dest == [7, 6] # 0-0
+      if coords_to_node(dest).coords == info_move[0]
         rook = coords_to_node([7, 7])
         next_king = coords_to_node([7, 6])
         next_rook = coords_to_node([7, 5])
@@ -82,7 +95,7 @@ class King
         rook.piece_remove
         return true
 
-      elsif dest == [7, 2] # 0-0-0
+      elsif coords_to_node(dest).coords == info_move[1] # 0-0-0
         rook = coords_to_node([7, 0])
         next_king = coords_to_node([7, 2])
         next_rook = coords_to_node([7, 3])
@@ -100,10 +113,11 @@ class King
         return true
       end
     else
+      
       arr = %w[e8 h8 a8]
-      return unless verify_piece_castling(arr)
+      return unless verify_piece_castling(info_moves)
       king = coords_to_node(start)
-      if dest == [0, 6] # 0-0
+      if coords_to_node(dest).coords == info_move[0]
         rook = coords_to_node([0, 7])
         next_king = coords_to_node([0, 6])
         next_rook = coords_to_node([0, 5])
@@ -120,7 +134,7 @@ class King
         rook.piece_remove
         return true
 
-      elsif dest == [0, 2] # 0-0-0
+      elsif coords_to_node(dest).coords == info_move[1]
         rook = coords_to_node([0, 0])
         next_king = coords_to_node([0, 2])
         next_rook = coords_to_node([0, 3])
@@ -141,7 +155,7 @@ class King
 
   end
 
-  def verify_piece_castling(arr)
+  def verify_piece_castling(arr) # not working as intended since if one castle is false then the other too but this might just be false because of one rook moving
     i = 0
     search = @moves.map do |x|
       x = x[0..1]
