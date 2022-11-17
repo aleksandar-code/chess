@@ -32,14 +32,11 @@ class Pawn
   end
 
   def can_2_square(dest)
- 
     if @id.zero?
       return true if @start_white.include?(@current_position) && can_move(dest)
-        
     else
       return true if @start_black.include?(@current_position) && can_move(dest)
     end
-    
     false
   end
 
@@ -57,19 +54,11 @@ class Pawn
   end
 
   def get_array_color(id)
-    if id.zero?
-      @start_white
-    else
-      @start_black
-    end
+    id.zero? ? @start_white : @start_black
   end
 
   def get_promo_arr
-    if @id.zero?
-      @promo_white
-    else
-      @promo_black
-    end
+    id.zero? ? @promo_white : @promo_black
   end
 
   def promotion(pawn_dest)
