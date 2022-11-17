@@ -60,7 +60,7 @@ class King
     return valid_moves
   end
 
-  def castling(start, dest, valid_moves)
+  def castling(start, dest, valid_moves) # Refactor castling and test_moves
     if @id.zero? # for white
       arr = %w[e1 h1 a1]
       return unless verify_piece_castling(arr)
@@ -161,7 +161,6 @@ class King
           next if node.piece.instance_of? King
           if node.piece.id != king_id
             bool = node.piece.calc_move(node, dest_node, node.piece.id)
-            # binding.pry
             if bool == true
               return "check"
             end
@@ -174,12 +173,7 @@ class King
 
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
-    array_checks = []
-
-    
     array_checks = test_moves(all_moves, our_id)
-
-    
     if array_checks.any?(nil)
       return false
     end
