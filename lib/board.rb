@@ -155,11 +155,7 @@ class Board
   end
 
   def get_square(coords)
-    @board.each do |arr|
-      arr.each do |n|
-        return n if coords == n.coords
-      end
-    end
+    @board.each { |a| a.each { |n| return n if coords == n.coords } }
   end
 
   def get_move
