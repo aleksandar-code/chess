@@ -75,13 +75,13 @@ class King
     info_coords = [[pat, 7], [pat, 6], [pat, 5]], [[pat, 0], [pat, 2], [pat, 3]]
 
 
-    if @id.zero? # for white
-      return unless verify_piece_castling(info_moves)
+      return unless verify_piece_castling(start.dup, dest.dup)
       king = coords_to_node(start)
       if coords_to_node(dest).coords == info_move[0]
-        rook = coords_to_node([7, 7])
-        next_king = coords_to_node([7, 6])
-        next_rook = coords_to_node([7, 5])
+        info_coords = info_coords[0]
+        rook = coords_to_node(info_coords[0])
+        next_king = coords_to_node(info_coords[1])
+        next_rook = coords_to_node(info_coords[2])
         if next_king.piece.nil? && next_rook.piece.nil?
           bool1 = look_for_checks(next_king, @id)
           bool2 = look_for_checks(next_rook, @id)
@@ -96,9 +96,10 @@ class King
         return true
 
       elsif coords_to_node(dest).coords == info_move[1] # 0-0-0
-        rook = coords_to_node([7, 0])
-        next_king = coords_to_node([7, 2])
-        next_rook = coords_to_node([7, 3])
+        info_coords = info_coords[1]
+        rook = coords_to_node(info_coords[0])
+        next_king = coords_to_node(info_coords[1])
+        next_rook = coords_to_node(info_coords[2])
         if next_king.piece.nil? && next_rook.piece.nil?
           bool1 = look_for_checks(next_king, @id)
           bool2 = look_for_checks(next_rook, @id)
@@ -112,58 +113,22 @@ class King
         rook.piece_remove
         return true
       end
-    else
-      
-      arr = %w[e8 h8 a8]
-      return unless verify_piece_castling(info_moves)
-      king = coords_to_node(start)
-      if coords_to_node(dest).coords == info_move[0]
-        rook = coords_to_node([0, 7])
-        next_king = coords_to_node([0, 6])
-        next_rook = coords_to_node([0, 5])
-        if next_king.piece.nil? && next_rook.piece.nil?
-          bool1 = look_for_checks(next_king, @id)
-          bool2 = look_for_checks(next_rook, @id)
-          return false unless bool1 == false && bool2 == false
-        else
-          return false
-        end
-        next_king.piece_move(king.piece, next_king.coords)
-        next_rook.piece_move(rook.piece, next_rook.coords)
-        king.piece_remove
-        rook.piece_remove
-        return true
-
-      elsif coords_to_node(dest).coords == info_move[1]
-        rook = coords_to_node([0, 0])
-        next_king = coords_to_node([0, 2])
-        next_rook = coords_to_node([0, 3])
-        if next_king.piece.nil? && next_rook.piece.nil?
-          bool1 = look_for_checks(next_king, @id)
-          bool2 = look_for_checks(next_rook, @id)
-          return false unless bool1 == false && bool2 == false
-        else
-          return false
-        end
-        next_king.piece_move(king.piece, next_king.coords)
-        next_rook.piece_move(rook.piece, next_rook.coords)
-        king.piece_remove
-        rook.piece_remove
-        return true
-      end
-    end
 
   end
 
-  def verify_piece_castling(arr) # not working as intended since if one castle is false then the other too but this might just be false because of one rook moving
+  def verify_piece_castling(start, dest) # not working as intended since if one castle is false then the other too but this might just be false because of one rook moving
     i = 0
     search = @moves.map do |x|
       x = x[0..1]
     end
-
-    arr.length.times do
-      return false if search.include?(arr[i])
-      i += 1
+    
+    if search.include?(coords_to_node(start).coords)
+      return false
+    end
+    dest[1] = 7 if dest[1] > 4
+    dest[1] = 0 if dest[1] < 4
+    if search.include?(coords_to_node(dest).coords)
+      return false
     end
     true
   end
