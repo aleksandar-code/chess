@@ -26,14 +26,8 @@ class Pawn
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id, :moves
 
-  #write rules for pawn
   def get_pattern
-    black = @move_pattern.map do |x|
-      x.map do |n|
-        n = n.reverse_aritmethic_symbol
-      end
-    end
-
+    black = @move_pattern.map { |x| x.map { |n| n = n.reverse_aritmethic_symbol} }
     @id.zero? ? @move_pattern : black
   end
 
@@ -79,7 +73,6 @@ class Pawn
   end
 
   def promotion(pawn_dest)
-    # the pawn reach the enemy camp backrow so he can be promoted to queen
     arr = get_promo_arr
     return "promo" if arr.include?(pawn_dest)
     
