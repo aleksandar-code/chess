@@ -38,11 +38,11 @@ class Knight
     pattern_row = @move_pattern[0]
     pattern_col = @move_pattern[1]
     i = 0
+    
+
     pattern_row.length.times do
-      curr_moves = add_valid_moves(coords.dup, [pattern_row[i], pattern_col[i]])
-      for move in curr_moves
-        valid_moves << move
-      end
+      move = validate_move(coords.dup, [pattern_row[i], pattern_col[i]])
+      valid_moves << move if move
       i += 1
     end
 
@@ -60,8 +60,16 @@ class Knight
 
   def add_valid_moves(coords, pattern)
     arr = []
+    node = nil
     loop do
       coords = validate_move(coords, pattern)
+      node = coords_to_node(coords) unless coords.nil?
+      if !(node.nil?)
+        if !(node.piece.nil?) && node.piece.id != @id
+          arr << coords.dup
+          break
+        end
+      end
       break if arr.include?(coords) || coords.nil?
       arr << coords.dup
     end
