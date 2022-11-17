@@ -91,7 +91,6 @@ class Board
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       boolean = start.piece.calc_move(start, destination, player)
-
       break if boolean == true || boolean == "promo" || boolean == "castling"
       
       puts "please enter a valid input"
@@ -106,7 +105,6 @@ class Board
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
-
     start.piece_remove unless boolean == "castling" 
   end
 
@@ -116,6 +114,7 @@ class Board
     back = Marshal.load( Marshal.dump(@board) )
     
     if boolean && !(start.piece.instance_of? King)
+
       coords = nil
       king = nil
       @board.each_with_index do |x, i|
@@ -126,7 +125,6 @@ class Board
           end
         end
       end
-
       destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
       start.piece_remove unless boolean == "castling"
 
@@ -136,7 +134,6 @@ class Board
         @board = Marshal.load( Marshal.dump(back) )
         return false
       end
-
     end
     true
   end
