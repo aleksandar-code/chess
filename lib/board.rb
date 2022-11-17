@@ -48,15 +48,9 @@ class Board
   def add_board_and_moves_and_graph
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.board=(@board) } }
     @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.moves=(@moves) } }
-    if !(@board.nil?)
+    unless @board.nil?
       update_graph
-      @board.map do |x|
-        x.each do|n|
-          if !(n.piece.nil?)
-            n.piece.graph=(@graph) if n.piece.instance_of? King 
-          end
-        end
-      end
+      @board.map { |x| x.each { |n| n.piece.nil? ? nil : n.piece.graph=(@graph) if n.piece.instance_of? King} }
     end
   end
 
