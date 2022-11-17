@@ -22,7 +22,6 @@ class Board
     first_board(8)
     puts "                                                       A  B  C  D  E  F  G  H \n\n\n\n\n"
     add_board_and_moves_and_graph()
-    
   end
 
   def check_mate?(id)
@@ -41,7 +40,6 @@ class Board
         end
       end
     end
-    
     king.check_mate(coords, id) unless king.nil?
   end
 
@@ -101,8 +99,6 @@ class Board
     end
     start.piece_remove unless boolean == "castling" 
   end
-
- 
 
   def check_status(boolean, start, destination, string, player)
     back = Marshal.load( Marshal.dump(@board) )
