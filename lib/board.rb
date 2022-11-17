@@ -40,7 +40,10 @@ class Board
         end
       end
     end
-    king.check_mate(coords, id) unless king.nil?
+    back = Marshal.load( Marshal.dump(@board) )
+    value = king.check_mate(coords, id) unless king.nil?
+    @board = Marshal.load( Marshal.dump(back) )
+    value
   end
 
   def add_board_and_moves_and_graph
@@ -65,14 +68,12 @@ class Board
     end
   end
 
-  def move(player)
-    back = Marshal.load( Marshal.dump(@board) )
+  def move(player) # refactor move and check_status and king class
+    
     if check_mate?(player)
-      @board = Marshal.load( Marshal.dump(back) )
       print_board(player)
       return "checkmate"
     end
-    @board = Marshal.load( Marshal.dump(back) )
 
     destination = nil
     start = nil
