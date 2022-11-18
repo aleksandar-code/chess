@@ -19,8 +19,8 @@ class Game
       loop do
         puts alert
         boolean = @board.move(@turn)
-        return puts "stalemate" if is_game_over?(boolean)
-        return puts "checkmate #{@players[@turn].name} wins!" if is_stalemate(boolean)
+        return puts "stalemate" if is_stalemate(boolean)
+        return puts "checkmate #{@players[@turn].name} wins!" if is_game_over?(boolean)
         break if boolean != false
       end
       switch_player()

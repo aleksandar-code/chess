@@ -138,10 +138,10 @@ class King
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
     array_checks = test_moves(all_moves, our_id)
-    if array_checks.any?(nil)
-      return false
+    if array_checks.all?("check")
+      return true
     end
-    true
+    false
   end
   
   def test_moves(start_dest, player)
@@ -169,7 +169,7 @@ class King
           array_checks << "check"
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         else
-          array_checks << nil
+          array_checks << pair
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         end
       elsif start.piece.instance_of? King
@@ -183,22 +183,28 @@ class King
           array_checks << "check"
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         else
-          array_checks << nil
+          array_checks << pair
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
         end
       end
-      if array_checks.any?(nil)
-        return array_checks
-      end
+      
     end
     array_checks
   end
 
   def stalemate(coords, id)
-    boolean = check_mate(coords, id)
-    if boolean == false # and can't make any legal move
+      array = []
       all_moves = @graph.check_all_moves(id)
-    end
+      array_checks = test_moves(all_moves, id)
+
+      array_checks.each do |element|
+        array << element unless element == "check"
+      end
+      binding.pry if id == 1
+      if array.nil?
+        return true
+      end
+  
   end
 
   def add_valid_moves(coords, pattern)

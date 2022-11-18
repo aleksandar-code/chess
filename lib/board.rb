@@ -28,8 +28,6 @@ class Board
     return false if @moves.length < 4
     king = nil
     coords = nil
-    id = 1 if id.zero?
-    id = 0 if id == 1
     @board.each do |x|
       x.each do |node|
         if node.piece.instance_of? King
@@ -101,6 +99,7 @@ class Board
       print_board(player)
       return "stalemate"
     end
+    
 
     destination = nil
     start = nil
@@ -125,7 +124,7 @@ class Board
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
-    start.piece_remove unless boolean == "castling" 
+    start.piece_remove unless boolean == "castling"
   end
 
   def check_status(boolean, start, destination, string, player)
