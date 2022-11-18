@@ -201,10 +201,9 @@ class King
         array << element unless element == "check"
       end
       binding.pry if id == 1
-      if array.nil?
-        return true
-      end
-  
+
+      return true if array.length == 0
+      false
   end
 
   def add_valid_moves(coords, pattern)
