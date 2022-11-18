@@ -197,7 +197,7 @@ class King
   def stalemate(coords, id)
     boolean = check_mate(coords, id)
     if boolean == false # and can't make any legal move
-      
+      all_moves = @graph.check_all_moves(id)
     end
   end
 
