@@ -194,6 +194,13 @@ class King
     array_checks
   end
 
+  def stalemate(coords, id)
+    boolean = check_mate(coords, id)
+    if boolean == false # and can't make any legal move
+      
+    end
+  end
+
   def add_valid_moves(coords, pattern)
     arr = []
     loop do

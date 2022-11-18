@@ -41,7 +41,7 @@ class Board
       end
     end
     back = Marshal.load( Marshal.dump(@board) )
-    value = king.stalemate unless king.nil?
+    value = king.stalemate(coords, id) unless king.nil?
     @board = Marshal.load( Marshal.dump(back) )
     value
   end
