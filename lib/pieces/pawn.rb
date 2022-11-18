@@ -135,14 +135,18 @@ class Pawn
     unless move.nil?
       node = coords_to_node(move)
       valid_moves << move if can_move(node)
+      if can_move(node)
+        move = nil
+        move = validate_move(coords.dup, [pattern_row[1], pattern_col[1]])
+        unless move.nil?
+          node = coords_to_node(move)
+          valid_moves << move if can_2_square(node)
+        end
+      end
     end
     move = nil
 
-    move = validate_move(coords.dup, [pattern_row[1], pattern_col[1]])
-    unless move.nil?
-      node = coords_to_node(move)
-      valid_moves << move if can_2_square(node)
-    end
+    
 
     move = nil
 
