@@ -24,6 +24,28 @@ class Board
     add_board_and_moves_and_graph()
   end
 
+  def stalemate?(id)
+    return false if @moves.length < 4
+    king = nil
+    coords = nil
+    id = 1 if id.zero?
+    id = 0 if id == 1
+    @board.each do |x|
+      x.each do |node|
+        if node.piece.instance_of? King
+          if node.piece.id == id
+            coords = node
+            king = node.piece
+          end
+        end
+      end
+    end
+    back = Marshal.load( Marshal.dump(@board) )
+    value = king.stalemate unless king.nil?
+    @board = Marshal.load( Marshal.dump(back) )
+    value
+  end
+
   def check_mate?(id)
     return false if @moves.length < 4
     king = nil
@@ -73,6 +95,11 @@ class Board
     if check_mate?(player)
       print_board(player)
       return "checkmate"
+    end
+
+    if stalemate?(player)
+      print_board(player)
+      return "stalemate"
     end
 
     destination = nil
