@@ -200,9 +200,8 @@ class King
       array_checks.each do |element|
         array << element unless element == "check"
       end
-      binding.pry if id == 1
-
       return true if array.length == 0
+      
       false
   end
 
