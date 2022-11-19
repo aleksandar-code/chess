@@ -32,10 +32,10 @@ class Game
   end
 
   def threefold_repetion?
-    @positions << @board.get_position if player_color == 'white'
+    @positions << @board.get_position
 
     array = @positions.uniq
-    return true if array.length + 4 == @positions.length
+    return true if array.length + 6 == @positions.length
     false
   end
 
