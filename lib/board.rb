@@ -27,7 +27,8 @@ class Board
   def get_position
     array = ""
     @graph.nodes.each do |node|
-      array += node.coords.to_s + node.print_with_piece.to_s
+      data = node.piece unless node.piece.nil?
+      array += node.coords.to_s + node.print_with_piece.to_s 
     end
     array
   end

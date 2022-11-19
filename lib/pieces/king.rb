@@ -11,11 +11,32 @@ class King
     @current_position = nil
     @board = nil
     @id = id
+    @can_castle = nil
     @moves = nil
     @graph = nil
     @move_pattern = [[-1, -1, -1, 0, 0, +1, +1, +1], [0, +1, -1, +1, -1, -1, +1, 0]]
   end
-  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id, :graph
+  attr_accessor :piece, :start_white, :start_black, :current_position, :board, :moves, :id, :graph, :can_castle
+
+  def can_castle?
+    i = 0
+    search = @moves.map do |x|
+      x = x[0..1]
+    end
+
+    if search.include?(coords_to_node(@current_position).coords)
+      @can_castle = false
+    end
+
+    if search.include?("h1")
+      @can_castle = false
+    else
+      if search.include?("a1")
+        @can_castle = false
+      end
+      @can_castle = true
+    end
+  end
 
   def find_piece(search)
     @board.each_with_index do |row, i|
@@ -34,6 +55,7 @@ class King
     return "check" if bool == "check"
     return "checkmate" if bool == true
     bool = castling(strt, dest, valid_moves)
+    @can_castle = false if bool == true
     return "castling" if bool == true
 
     valid_moves = possible_moves(strt, dest)
