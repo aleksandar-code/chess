@@ -48,8 +48,7 @@ class Board
     return false if @moves.length < 4
     king = nil
     coords = nil
-    id = 1 if id.zero?
-    id = 0 if id == 1
+
     @board.each do |x|
       x.each do |node|
         if node.piece.instance_of? King
@@ -89,7 +88,7 @@ class Board
   end
 
   def move(player) # refactor move and check_status and king class
-    
+    binding.pry
     if check_mate?(player)
       print_board(player)
       return "checkmate"

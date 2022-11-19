@@ -10,9 +10,15 @@ class Game
     @turn = 0
     @board = Board.new
     @players = [Player.new(0, player_name), Player.new(1, player_name)]
+    @positions = []
   end
+  attr_accessor :positions
 
   def play
+
+    if player_color == 'white'
+      positions << Marshal.load( Marshal.dump(@board) )
+    end
     loop do
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
