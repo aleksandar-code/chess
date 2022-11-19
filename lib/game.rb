@@ -16,9 +16,10 @@ class Game
 
   def play
     loop do
-      threefold_repetion?
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
+      @positions << @board.get_position if @positions.length == 0
+      return puts "draw" if threefold_repetion?
       loop do
         puts alert
         boolean = @board.move(@turn)
@@ -31,13 +32,11 @@ class Game
   end
 
   def threefold_repetion?
-    if player_color == 'white'
-      @positions << @board.board
-      idx = 0
-      @positions.each do |position|
-        
-      end
-    end
+    @positions << @board.get_position if player_color == 'white'
+
+    array = @positions.uniq
+    return true if array.length + 4 == @positions.length
+    false
   end
 
   def is_game_over?(boolean)
