@@ -50,16 +50,10 @@ class Game
   end
 
   def player_color
-    return 'white' if @turn.zero?
-
-    'black'
+    @turn.zero? ? 'white' : 'black'
   end
 
   def switch_player
-    @turn = if @turn.zero?
-              1
-            else
-              0
-            end
+    @turn = @turn.zero? ? 1 : 0 
   end
 end
