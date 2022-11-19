@@ -15,11 +15,8 @@ class Game
   attr_accessor :positions
 
   def play
-
-    if player_color == 'white'
-      positions << Marshal.load( Marshal.dump(@board) )
-    end
     loop do
+      threefold_repetion?
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
       loop do
@@ -30,6 +27,16 @@ class Game
         break if boolean != false
       end
       switch_player()
+    end
+  end
+
+  def threefold_repetion?
+    if player_color == 'white'
+      @positions << @board.board
+      idx = 0
+      @positions.each do |position|
+        
+      end
     end
   end
 

@@ -14,7 +14,7 @@ class Board
     @moves = []
     @back_up = nil
   end
-  attr_accessor :moves, :back_up
+  attr_accessor :moves, :back_up, :board
 
   def print_board(id)
     print_notation()
@@ -88,7 +88,7 @@ class Board
   end
 
   def move(player) # refactor move and check_status and king class
-    binding.pry
+
     if check_mate?(player)
       print_board(player)
       return "checkmate"

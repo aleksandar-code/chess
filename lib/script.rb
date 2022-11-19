@@ -9,3 +9,5 @@ require_relative './player'
 chess = Game.new
 chess.play
 binding.pry
+chess.positions
+binding.pry

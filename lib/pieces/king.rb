@@ -138,7 +138,7 @@ class King
   def check_mate(dest_node, our_id)
     all_moves = @graph.check_all_moves(our_id)
     array_checks = test_moves(all_moves, our_id)
-    binding.pry
+
     if array_checks.all?("check")
       return true
     end
