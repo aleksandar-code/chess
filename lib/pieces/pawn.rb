@@ -21,16 +21,14 @@ class Pawn
     @id = id
     @board = nil
     @moves = nil
-    @en_passant = nil
+    @en_passant = false
     @move_pattern = [[-1, -2, -1, -1], [0, 0, -1, 1]]
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id, :moves
 
   def is_en_passant(dest)
-    
-    array = @start_white.each { |x| x[1] = "4" }
-    array2 = @start_black.each { |x| x[1] = "5" }
-    if array.include?(dest.coords) || array2.include?(dest.coords)
+
+    if %w[a4 b4 c4 d4 e4 f4 g4 h4].include?(dest.coords) || %w[a5 b5 c5 d5 e5 f5 g5 h5].include?(dest.coords)
       @en_passant = true
       return
     end
@@ -80,8 +78,8 @@ class Pawn
   end
 
   def calc_move(start, destination, p_id)
-    is_en_passant(coords_to_node(dest))
     return false if @id != p_id
+    is_en_passant(destination)
     strt = find_piece(start)
     dest = find_piece(destination)
     valid_moves = []
