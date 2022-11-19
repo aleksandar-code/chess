@@ -21,10 +21,21 @@ class Pawn
     @id = id
     @board = nil
     @moves = nil
-    @en_passant = nil # get the exact info of the pawn that can be taken and the pawn that can take it [can be taken, take it]
+    @en_passant = nil
     @move_pattern = [[-1, -2, -1, -1], [0, 0, -1, 1]]
   end
   attr_accessor :piece, :start_white, :start_black, :current_position, :board, :en_passant, :id, :moves
+
+  def is_en_passant(dest)
+    
+    array = @start_white.each { |x| x[1] = "4" }
+    array2 = @start_black.each { |x| x[1] = "5" }
+    if array.include?(dest.coords) || array2.include?(dest.coords)
+      @en_passant = true
+      return
+    end
+    @en_passant = false
+  end
 
   def get_pattern
     black = @move_pattern.map { |x| x.map { |n| n = n.reverse_aritmethic_symbol} }
@@ -69,6 +80,7 @@ class Pawn
   end
 
   def calc_move(start, destination, p_id)
+    is_en_passant(coords_to_node(dest))
     return false if @id != p_id
     strt = find_piece(start)
     dest = find_piece(destination)
@@ -103,7 +115,7 @@ class Pawn
   end
 
   def can_en_passant(dest, pattern)
-    return false if @moves.length < 3
+    return false if @moves.length < 2
     new_pat = pattern[0][0].reverse_aritmethic_symbol
     dest[0] = dest[0] + new_pat
 
