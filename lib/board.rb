@@ -124,8 +124,11 @@ class Board
       puts "please enter a valid input"
     end
 
-    boole = check_status(boolean.dup, start.dup, destination.dup, string.dup, player)
+    boole = check_status(boolean, start, destination, string, player)
     return false if boole == false
+
+    start = get_square(string[0..1])
+    destination = get_square(string[2..])
 
     notation(string) if boolean == true || boolean =="promo" 
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling" 
@@ -153,7 +156,6 @@ class Board
       end
       destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
       start.piece_remove unless boolean == "castling"
-
       bool = king.look_for_checks(coords, player)
       if bool == "check"
         puts "you're in check"
@@ -161,6 +163,7 @@ class Board
         return false
       end
     end
+    @board = Marshal.load( Marshal.dump(back) )
     true
   end
 
