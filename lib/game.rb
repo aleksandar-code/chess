@@ -17,7 +17,7 @@ class Game
 
   def play
     loop do
-      alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m If you want to save the game type save, or you want to replay a saved game type replay"
+      alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m If you want to save the game type save"
       @board.print_board(@turn)
       @positions << @board.get_position if @positions.length == 0
       return puts "50 moves rule, draw" if fifty_moves_rule?
@@ -26,7 +26,9 @@ class Game
       loop do
         puts alert
         boolean = @board.move(@turn)
-        save_or_replay? if boolean == "save" || boolean == "replay"
+        binding.pry
+        serialize if boolean == "save"
+        return puts "Game saved" if boolean == "save"
         return puts "stalemate" if is_stalemate(boolean)
         return puts "checkmate #{@players[@turn].name} wins!" if is_game_over?(boolean)
         break if boolean != false
@@ -35,9 +37,7 @@ class Game
     end
   end
 
-  def save_or_replay?
-    serialize if boolean == "save"
-  end
+
 
   def serialize
     yaml = YAML::dump(self)
