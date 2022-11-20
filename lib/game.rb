@@ -55,7 +55,7 @@ class Game
       return if node.instance_of? Pawn
     end
 
-    return if pawns
+    return false if pawns
 
     nodes.each do |node|
       next if node.piece.nil?
