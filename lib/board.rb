@@ -13,7 +13,7 @@ class Board
     @board = create_board
     @moves = []
     @back_up = nil
-    @pawn_moves
+    @pawn_moves = []
   end
   attr_accessor :moves, :back_up, :board, :graph, :pawn_moves
 
