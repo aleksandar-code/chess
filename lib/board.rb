@@ -114,10 +114,14 @@ class Board
     start = nil
     boolean = nil
     string = nil
+    capture = false
     loop do
       string = get_move()
       start = get_square(string[0..1])
       destination = get_square(string[2..])
+      if !(destination.piece.nil?)
+        capture = true if destination.piece.id != player
+      end
       boolean = start.piece.calc_move(start, destination, player)
       break if boolean == true || boolean == "promo" || boolean == "castling"
       
@@ -130,7 +134,12 @@ class Board
     start = get_square(string[0..1])
     destination = get_square(string[2..])
 
-    notation(string) if boolean == true || boolean =="promo" 
+    str = string[0..1] + "x" + string[1..] if capture == true
+    notation(str) if capture == true
+    if boolean == true || boolean =="promo"
+      notation(string) if str == nil
+    end
+    
     destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling" 
     if boolean == "promo"
       piece = @pieces.promotion(player)
