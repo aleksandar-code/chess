@@ -66,10 +66,18 @@ class Game
     end
 
     if array_white.length == 2 || array_black.length == 2
-      return true if array_white.any?(Knight) && array_black.any?(Knight)
-      return true if array_white.any?(Bishop) && array_black.any?(Knight)
-      return true if array_white.any?(Knight) && array_black.any?(Bishop)
-      return true if array_white.any?(Bishop) && array_black.any?(Bishop)
+      if array_white.length == 2 && array_black.length == 2
+        return true if array_white.any?(Knight) && array_black.any?(Knight)
+        return true if array_white.any?(Bishop) && array_black.any?(Knight)
+        return true if array_white.any?(Knight) && array_black.any?(Bishop)
+        return true if array_white.any?(Bishop) && array_black.any?(Bishop)
+      elsif array_white.length == 2 && array_black.length == 1
+        return true if array_white.any?(Knight)
+        return true if array_white.any?(Bishop)
+      elsif array_white.length == 1 && array_black.length == 2
+        return true if array_black.any?(Knight)
+        return true if array_black.any?(Knight)
+      end
     end
 
     if array_white.length == 1 && array_black.length == 1
