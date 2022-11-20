@@ -40,8 +40,21 @@ class Game
   end
 
   def insufficient_mating_material?
-    board = @board.graph
+    nodes = @board.graph.nodes
 
+    array_white = []
+    array_black = []
+
+    nodes.each do |node|
+      next if node.piece.nil?
+
+      array_white << node.piece if node.piece.id == 0
+      array_black << node.piece if node.piece.id == 1
+    end
+
+    array_white.each do |piece|
+      
+    end
   end
 
   def is_game_over?(boolean)
