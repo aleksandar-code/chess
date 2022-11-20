@@ -39,6 +39,11 @@ class Game
     false
   end
 
+  def insufficient_mating_material?
+    board = @board.graph
+
+  end
+
   def is_game_over?(boolean)
     if boolean == "checkmate"
       true

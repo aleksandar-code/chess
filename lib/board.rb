@@ -14,7 +14,7 @@ class Board
     @moves = []
     @back_up = nil
   end
-  attr_accessor :moves, :back_up, :board
+  attr_accessor :moves, :back_up, :board, :graph
 
   def print_board(id)
     print_notation()
