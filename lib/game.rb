@@ -18,6 +18,7 @@ class Game
     loop do
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
+      save?
       @positions << @board.get_position if @positions.length == 0
       return puts "50 moves rule, draw" if fifty_moves_rule?
       return puts "threefold repetition, draw" if threefold_repetion?
@@ -31,6 +32,10 @@ class Game
       end
       switch_player()
     end
+  end
+
+  def save?
+    
   end
 
   def fifty_moves_rule?
