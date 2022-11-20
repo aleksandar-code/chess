@@ -20,6 +20,7 @@ class Game
       @board.print_board(@turn)
       @positions << @board.get_position if @positions.length == 0
       return puts "draw" if threefold_repetion?
+      return puts "insufficient material, draw" if insufficient_mating_material?
       loop do
         puts alert
         boolean = @board.move(@turn)
@@ -45,16 +46,36 @@ class Game
     array_white = []
     array_black = []
 
+    pawns = false
+
     nodes.each do |node|
       next if node.piece.nil?
+      
+      pawns = node.instance_of? Pawn
+      return if node.instance_of? Pawn
+    end
 
+    return if pawns
+
+    nodes.each do |node|
+      next if node.piece.nil?
+      
       array_white << node.piece if node.piece.id == 0
       array_black << node.piece if node.piece.id == 1
-    end
-
-    array_white.each do |piece|
       
     end
+
+    if array_white.length == 2 || array_black.length == 2
+      return true if array_white.any?(Knight) && array_black.any?(Knight)
+      return true if array_white.any?(Bishop) && array_black.any?(Knight)
+      return true if array_white.any?(Knight) && array_black.any?(Bishop)
+      return true if array_white.any?(Bishop) && array_black.any?(Bishop)
+    end
+
+    if array_white.length == 1 && array_black.length == 1
+      return true
+    end
+    
   end
 
   def is_game_over?(boolean)
