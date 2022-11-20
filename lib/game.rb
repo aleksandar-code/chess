@@ -36,10 +36,18 @@ class Game
   def fifty_moves_rule?
     array = @board.moves
     i = 0
-    array.reverse.each { |x| i += 1 if x[2] != "x" }
+    array.reverse.each do |x|
+      i += 1 unless x[2] == "x" 
+      return unless x[2] == "x"
+    end
     return false if i < 50
-    i = 0 
-    @board.pawn_moves.reverse.each { |x| i += 1 if  }
+    j = 0 
+    @board.pawn_moves.reverse.each do |x|
+      j += 1 unless x.include?("P")
+    end
+
+    return true if j > 49 && i > 49
+    false
 
 
   end
