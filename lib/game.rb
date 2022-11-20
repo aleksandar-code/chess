@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'pry-byebug'
+require 'yaml'
 
 require_relative './board'
 require_relative './player'
@@ -34,8 +35,17 @@ class Game
     end
   end
 
-  def save?
-    
+  def serialize
+    yaml = YAML::dump(self)
+
+    Dir.mkdir('saved_games') unless Dir.exist?('saved_games')
+
+    game_file = "saved_games/saved.yaml"
+
+    File.open(game_file, "w") do |file|
+        file.puts yaml
+    end
+
   end
 
   def fifty_moves_rule?
