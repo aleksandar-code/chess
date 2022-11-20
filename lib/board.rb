@@ -99,7 +99,7 @@ class Board
   end
 
   def move(player) # refactor move and check_status and king class
-
+    
     if check_mate?(player)
       print_board(player)
       return "checkmate"
@@ -118,6 +118,7 @@ class Board
     capture = false
     loop do
       string = get_move()
+      return string if string == "save" || string == "replay"
       start = get_square(string[0..1])
       destination = get_square(string[2..])
       if !(destination.piece.nil?)
@@ -199,6 +200,7 @@ class Board
   end
 
   def valid_input(input)
+    return input if input == "save" || input == "replay"
     if input.length == 4
       return input if @graph.get_node(input[0..1]) && @graph.get_node(input[2..]) && input[0..1] != input[2..]
     end
@@ -212,6 +214,7 @@ class Board
   def get_move
     loop do
       string = valid_input(gets.chomp)
+      return string if string == "save" || string == "replay"
       @board.each do |x|
         x.each do |node|
           next if string.nil? || string[0..1].nil? || !(node.coords == string[0..1])
