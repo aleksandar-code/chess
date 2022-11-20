@@ -34,6 +34,13 @@ class Game
   end
 
   def fifty_moves_rule?
+    array = @board.moves
+    i = 0
+    array.reverse.each { |x| i += 1 if x[2] != "x" }
+    return false if i < 50
+    i = 0 
+    @board.pawn_moves.reverse.each { |x| i += 1 if  }
+
 
   end
 

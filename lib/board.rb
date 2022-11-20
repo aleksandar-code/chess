@@ -13,8 +13,9 @@ class Board
     @board = create_board
     @moves = []
     @back_up = nil
+    @pawn_moves
   end
-  attr_accessor :moves, :back_up, :board, :graph
+  attr_accessor :moves, :back_up, :board, :graph, :pawn_moves
 
   def print_board(id)
     print_notation()
@@ -145,7 +146,12 @@ class Board
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
+    get_pawns(destination) if destination.instance_of? Pawn
     start.piece_remove unless boolean == "castling"
+  end
+
+  def get_pawns(destination)
+    @pawn_moves << destination
   end
 
   def check_status(boolean, start, destination, string, player)
