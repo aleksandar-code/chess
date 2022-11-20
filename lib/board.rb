@@ -146,11 +146,12 @@ class Board
       piece = @pieces.promotion(player)
       destination.piece_move(piece, destination.coords)
     end
-    get_pawns(destination) if destination.instance_of? Pawn
+    get_pawns(destination.to_s)
     start.piece_remove unless boolean == "castling"
   end
 
   def get_pawns(destination)
+    destination += "P" if destination.instance_of? Pawn
     @pawn_moves << destination
   end
 
