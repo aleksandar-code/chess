@@ -134,7 +134,7 @@ class Board
     start = get_square(string[0..1])
     destination = get_square(string[2..])
 
-    str = string[0..1] + "x" + string[1..] if capture == true
+    str = string[0..1] + "x" + string[2..] if capture == true
     notation(str) if capture == true
     if boolean == true || boolean =="promo"
       notation(string) if str == nil
