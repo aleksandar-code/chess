@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require 'pry-byebug'
 
 require_relative './game'
 require_relative './board'
@@ -17,7 +16,6 @@ if Dir.exist?('saved_games') && do_load == "replay"
     
     game_file = File.new("saved_games/saved.yaml")
     yaml = game_file.read
-    binding.pry
     $chess = Psych.unsafe_load(yaml)
     puts "\n"
 end

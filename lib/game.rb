@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
 require 'yaml'
 
 require_relative './board'
@@ -26,7 +25,6 @@ class Game
       loop do
         puts alert
         boolean = @board.move(@turn)
-        binding.pry
         serialize if boolean == "save"
         return puts "Game saved" if boolean == "save"
         return puts "stalemate" if is_stalemate(boolean)

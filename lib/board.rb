@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
-
 require_relative './node'
 require_relative './graph'
 require_relative './pieces'
