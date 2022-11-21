@@ -35,8 +35,6 @@ class Game
     end
   end
 
-
-
   def serialize
     yaml = YAML::dump(self)
 
@@ -65,8 +63,6 @@ class Game
 
     return true if j > 49 && i > 49
     false
-
-
   end
 
   def threefold_repetion?
@@ -99,7 +95,6 @@ class Game
       
       array_white << node.piece if node.piece.id == 0
       array_black << node.piece if node.piece.id == 1
-      
     end
 
     if array_white.length == 2 || array_black.length == 2
@@ -120,7 +115,6 @@ class Game
     if array_white.length == 1 && array_black.length == 1
       return true
     end
-    
   end
 
   def is_game_over?(boolean)
