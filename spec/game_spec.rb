@@ -32,6 +32,18 @@ RSpec.describe Game do
     end
   end
 
-end
+  describe '#fifty_moves_rule?' do
+  let(:game_fifty_moves) { instance_double(Game) }
+    context 'when turn is zero' do
 
-# might add a test for the loop game
+        before do
+          allow(game_player).to receive(:switch_player).and_return(1)
+        end
+
+      it 'returns 1' do
+        expect(game_player.switch_player).to be(1)
+      end
+    end
+  end
+
+end
