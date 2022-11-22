@@ -117,7 +117,4 @@ RSpec.describe Game do
       end
     end
   end
-
- 
-
 end
