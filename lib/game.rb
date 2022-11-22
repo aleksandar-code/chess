@@ -9,12 +9,14 @@ class Game
   def initialize
     @turn = 0
     @board = Board.new
-    @players = [Player.new(0, player_name), Player.new(1, player_name)]
+    @players = [Player.new(0), Player.new(1)]
     @positions = []
   end
   attr_accessor :positions
 
   def play
+    @players[@turn].name=(player_name)
+    @players[@turn].name=(player_name)
     loop do
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m If you want to save the game type save"
       @board.print_board(@turn)
