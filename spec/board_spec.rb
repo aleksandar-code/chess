@@ -43,7 +43,7 @@ RSpec.describe Board do
 
     let(:board) { Board.new }
     let(:king) { King.new(0, 0) }
-    context 'when correct values are given' do
+    context 'when it is a legal move' do
       before do
       end
       it 'returns true' do
@@ -52,6 +52,20 @@ RSpec.describe Board do
         allow(board).to receive(:check?).and_return(false)
         
         expect(board.check_status(true, start, dest, "a2a3", 0 )).to be(true)
+      end
+    end
+
+    let(:board) { Board.new }
+    let(:king) { King.new(0, 0) }
+    context 'when the king is in check' do
+      before do
+      end
+      it 'returns false' do
+        start = board.get_square("a2")
+        dest = board.get_square("a3")
+        allow(board).to receive(:check?).and_return("check")
+        allow(board).to receive(:puts).and_return(nil)
+        expect(board.check_status(true, start, dest, "a2a3", 0)).to be(false)
       end
     end
   end
