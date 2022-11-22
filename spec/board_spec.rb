@@ -1,8 +1,41 @@
 # frozen_string_literal: true
 
 require_relative '../lib/board'
+require_relative '../lib/game'
 
 RSpec.describe Board do
   
+  describe '#move' do
+    let(:game) { Game.new }
+    let(:board) { Board.new }
+
+    before do
+      game.board=(board)
+      game.board.add_board_and_moves_and_graph
+    end
+
+    context 'when input is valid' do
+      it 'returns nil' do
+        allow(board).to receive(:get_move).and_return("g1f3")
+        expect(game.board.move(0)).to be_nil
+      end
+    end
+
+    let(:game) { Game.new }
+    let(:board) { Board.new }
+
+    before do
+      game.board=(board)
+      game.board.add_board_and_moves_and_graph
+      allow(board).to receive(:get_move).and_return("g2f3", "g1f3")
+    end
+
+    context 'when input is not valid' do
+      it 'returns an error message once' do
+        expect(board).to receive(:puts).with("please enter a valid input").once
+        board.move(0)
+      end
+    end
+  end
   
 end
