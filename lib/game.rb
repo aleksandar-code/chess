@@ -15,8 +15,7 @@ class Game
   attr_accessor :positions
 
   def play
-    @players[@turn].name=(player_name)
-    @players[@turn].name=(player_name)
+    2.times { @players[@turn].name=(player_name) }
     loop do
       alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m If you want to save the game type save"
       @board.print_board(@turn)
