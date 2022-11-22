@@ -58,6 +58,27 @@ RSpec.describe Game do
     end
   end
 
+  describe '#threefold_repetion?' do
+    let(:game_threefold) { Game.new }
+    context 'when the rule does not apply' do
+
+      it 'returns false' do
+        expect(game_threefold.threefold_repetion?).to be(false)
+      end
+    end
+
+    context 'when the rule does apply' do
+
+      before do
+        game_threefold.positions=([1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6])
+      end
+
+      it 'returns true' do
+        expect(game_threefold.threefold_repetion?).to be(true)
+      end
+    end
+  end
+
  
 
 end
