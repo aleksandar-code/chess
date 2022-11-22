@@ -2,6 +2,7 @@
 
 require_relative '../lib/board'
 require_relative '../lib/game'
+require_relative '../lib/pieces/king'
 
 RSpec.describe Board do
   
@@ -34,6 +35,23 @@ RSpec.describe Board do
       it 'returns an error message once' do
         expect(board).to receive(:puts).with("please enter a valid input").once
         board.move(0)
+      end
+    end
+  end
+
+  describe '#check_status' do
+
+    let(:board) { Board.new }
+    let(:king) { King.new(0, 0) }
+    context 'when correct values are given' do
+      before do
+      end
+      it 'returns true' do
+        start = board.get_square("a2")
+        dest = board.get_square("a3")
+        allow(board).to receive(:check?).and_return(false)
+        
+        expect(board.check_status(true, start, dest, "a2a3", 0 )).to be(true)
       end
     end
   end

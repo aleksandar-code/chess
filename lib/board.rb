@@ -171,7 +171,7 @@ class Board
       end
       destination.piece_move(start.piece, destination.coords) unless boolean == "promo" || boolean == "castling"
       start.piece_remove unless boolean == "castling"
-      bool = king.look_for_checks(coords, player)
+      bool = check?(king, coords, player)
       if bool == "check"
         puts "you're in check"
         @board = Marshal.load( Marshal.dump(back) )
@@ -180,6 +180,10 @@ class Board
     end
     @board = Marshal.load( Marshal.dump(back) )
     true
+  end
+
+  def check?(king, coords, player)
+    king.look_for_checks(coords, player)
   end
 
   def notation(move)
