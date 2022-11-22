@@ -2,6 +2,9 @@
 
 require_relative '../lib/game'
 require_relative '../lib/board'
+require_relative '../lib/node'
+require_relative '../lib/pieces/pawn'
+require_relative '../lib/pieces/bishop'
 
 RSpec.describe Game do
 
@@ -75,6 +78,42 @@ RSpec.describe Game do
 
       it 'returns true' do
         expect(game_threefold.threefold_repetion?).to be(true)
+      end
+    end
+  end
+
+  describe '#insufficient_mating_material?' do
+    context 'when the rule does not apply' do
+      let(:game_material) { Game.new }
+      let(:board_material) { Board.new } 
+      before do
+        node1 = Node.new([1, 0], "white", Pawn.new(0, 0))
+        node2 = Node.new([0, 1], "black", Bishop.new(1, 1))
+
+        board_material.graph.nodes = [node1, node2]
+
+        game_material.board=(board_material)
+      end
+
+      it 'returns false' do
+        expect(game_material.insufficient_mating_material?).to be(false)
+      end
+    end
+
+    context 'when the rule does apply' do
+      let(:game_material2) { Game.new }
+      let(:board_material2) { Board.new } 
+      before do
+        node1 = Node.new([1, 0], "white", Bishop.new(0, 0))
+        node2 = Node.new([0, 1], "black", Bishop.new(1, 1))
+        node3 = Node.new([3, 0], "white", Bishop.new(0, 0))
+        board_material2.graph.nodes = [node1, node2, node3]
+
+        game_material2.board=(board_material2)
+      end
+
+      it 'returns true' do
+        expect(game_material2.insufficient_mating_material?).to be(true)
       end
     end
   end

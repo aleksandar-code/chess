@@ -86,9 +86,9 @@ class Game
 
     nodes.each do |node|
       next if node.piece.nil?
-      
-      pawns = node.instance_of? Pawn
-      return if node.instance_of? Pawn
+
+      pawns = true if node.piece.instance_of? Pawn
+      break if node.piece.instance_of? Pawn
     end
 
     return false if pawns
