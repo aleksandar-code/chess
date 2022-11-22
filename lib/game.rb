@@ -2,6 +2,8 @@
 
 require 'yaml'
 
+require 'pry-byebug'
+
 require_relative './board'
 require_relative './player'
  
@@ -12,7 +14,7 @@ class Game
     @players = [Player.new(0), Player.new(1)]
     @positions = []
   end
-  attr_accessor :positions
+  attr_accessor :positions, :board
 
   def play
     2.times { @players[@turn].name=(player_name) }
@@ -54,9 +56,10 @@ class Game
     i = 0
     array.reverse.each do |x|
       i += 1 unless x[2] == "x" 
-      return unless x[2] == "x"
+      break if x[2] == "x"
     end
     return false if i < 50
+
     j = 0 
     @board.pawn_moves.reverse.each do |x|
       j += 1 unless x.include?("P")

@@ -34,17 +34,30 @@ RSpec.describe Game do
   end
 
   describe '#fifty_moves_rule?' do
-  let(:game_fifty_moves) { instance_double(Game) }
+  let(:game_fifty_moves) { Game.new }
     context 'when the rule does not apply' do
-
-        before do
-          allow(game_fifty_moves).to receive(:fifty_moves_rule?).and_return(false)
-        end
 
       it 'returns false' do
         expect(game_fifty_moves.fifty_moves_rule?).to be(false)
       end
     end
+
+    let(:game_fifty) { Game.new }
+    let(:board) { Board.new }
+    context 'when the rule does apply' do
+
+      before do
+        board.moves=(["e2xe4", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2"])
+        board.pawn_moves=(["P", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2", "e1e2"])
+        game_fifty.board=(board)
+      end
+
+      it 'returns true' do
+        expect(game_fifty.fifty_moves_rule?).to be(true)
+      end
+    end
   end
+
+ 
 
 end
