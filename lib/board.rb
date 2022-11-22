@@ -96,7 +96,7 @@ class Board
     end
   end
 
-  def move(player) # refactor move and check_status and king class
+  def move(player)
     
     if check_mate?(player)
       print_board(player)
