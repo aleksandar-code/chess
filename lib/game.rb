@@ -32,11 +32,16 @@ class Game
         serialize if boolean == "save"
         return puts "Game saved" if boolean == "save"
         return puts "stalemate" if is_stalemate(boolean)
-        return puts "checkmate #{@players[@turn].name} wins!" if is_game_over?(boolean)
+        return puts "checkmate #{get_winner} wins!" if is_game_over?(boolean)
         break if boolean != false
       end
       switch_player()
     end
+  end
+
+  def get_winner
+    switch_player
+    player_color
   end
 
   def serialize
