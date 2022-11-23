@@ -17,9 +17,12 @@ class Game
   attr_accessor :positions, :board
 
   def play
+    puts "\e[1;31mTo move pieces enter their current coordinates and the destination coordinates. Any illegal move will not be displayed.\e[0m"
     2.times { @players[@turn].name=(player_name) }
     loop do
-      alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m If you want to save the game type save"
+      puts "\e[1;31m[save]\e[0m save the game"
+      puts "\e[1;31m[quit]\e[0m quit the game"
+      alert = "\e[1;31m#{@players[@turn].name}\e[0m" + "\e[1;33m your turn with #{player_color} pieces. \e[0m"
       @board.print_board(@turn)
       @positions << @board.get_position if @positions.length == 0
       @positions << @board.get_position
@@ -30,6 +33,7 @@ class Game
         puts alert
         boolean = @board.move(@turn)
         serialize if boolean == "save"
+        return puts "#{player_color} resigns"if boolean == "quit"
         return puts "Game saved" if boolean == "save"
         return puts "stalemate" if is_stalemate(boolean)
         return puts "checkmate #{get_winner} wins!" if is_game_over?(boolean)
