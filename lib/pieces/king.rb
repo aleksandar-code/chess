@@ -158,7 +158,7 @@ class King
   end
 
   def check_mate(our_id)
-    all_moves = @graph.check_all_moves(our_id)
+    all_moves = get_all_moves(id)
     array_checks = test_moves(all_moves, our_id)
 
     if array_checks.all?("check")
@@ -166,12 +166,16 @@ class King
     end
     false
   end
+
+  def get_all_moves(id)
+    @graph.check_all_moves(id)
+  end
   
   def stalemate(id)
     array = []
-    all_moves = @graph.check_all_moves(id)
+    all_moves = get_all_moves(id)
     array_checks = test_moves(all_moves, id)
-    
+
     array_checks.each do |element|
       array << element unless element == "check"
     end
