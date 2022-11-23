@@ -1,11 +1,16 @@
 --- !ruby/object:Game
 turn: 1
 board: !ruby/object:Board
-  graph: &4 !ruby/object:Graph
+  graph: &72 !ruby/object:Graph
     nodes:
     - &1 !ruby/object:Node
       coords: a8
       square: "\e[1;47m   \e[0m"
+      piece:
+      print_with_piece:
+    - &2 !ruby/object:Node
+      coords: b8
+      square: "\e[1;40m   \e[0m"
       piece: !ruby/object:Rook
         piece: "\e[1;31m♜"
         start_white:
@@ -14,46 +19,11 @@ board: !ruby/object:Board
         start_black:
         - a8
         - h8
-        current_position: a8
-        board: &2
+        current_position: b8
+        board: &3
         - - *1
-          - &5 !ruby/object:Node
-            coords: b8
-            square: "\e[1;40m   \e[0m"
-            piece: !ruby/object:Knight
-              piece: "\e[1;31m♞"
-              start_white:
-              - b1
-              - g1
-              start_black:
-              - b8
-              - g8
-              current_position: b8
-              board: *2
-              id: 1
-              moves: &3
-              - e2e4
-              - e7e5
-              - g1f3
-              move_pattern:
-              - - -2
-                - -2
-                - -1
-                - -1
-                - 2
-                - 2
-                - 1
-                - 1
-              - - -1
-                - 1
-                - -2
-                - 2
-                - -1
-                - 1
-                - -2
-                - 2
-            print_with_piece: "\e[1;40m \e[1;31m♞ \e[0m"
-          - &6 !ruby/object:Node
+          - *2
+          - &73 !ruby/object:Node
             coords: c8
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Bishop
@@ -65,9 +35,14 @@ board: !ruby/object:Board
               - c8
               - f8
               current_position: c8
-              board: *2
+              board: *3
               id: 1
-              moves: *3
+              moves: &4
+              - e2e4
+              - e7e5
+              - g1f3
+              - b8c6
+              - f1c4
               move_pattern:
               - - -1
                 - 1
@@ -78,7 +53,7 @@ board: !ruby/object:Board
                 - 1
                 - 1
             print_with_piece: "\e[1;47m \e[1;31m♝ \e[0m"
-          - &7 !ruby/object:Node
+          - &74 !ruby/object:Node
             coords: d8
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Queen
@@ -88,9 +63,9 @@ board: !ruby/object:Board
               start_black:
               - d8
               current_position: d8
-              board: *2
+              board: *3
               id: 1
-              moves: *3
+              moves: *4
               move_pattern:
               - - 1
                 - 0
@@ -109,7 +84,7 @@ board: !ruby/object:Board
                 - 1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♛ \e[0m"
-          - &8 !ruby/object:Node
+          - &75 !ruby/object:Node
             coords: e8
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:King
@@ -120,11 +95,1600 @@ board: !ruby/object:Board
               - e8
               check_status: false
               current_position: e8
-              board: *2
+              board: &5
+              - - &7 !ruby/object:Node
+                  coords: a8
+                  square: "\e[1;47m   \e[0m"
+                  piece: !ruby/object:Rook
+                    piece: "\e[1;31m♜"
+                    start_white:
+                    - a1
+                    - h1
+                    start_black:
+                    - a8
+                    - h8
+                    current_position: a8
+                    board: *5
+                    id: 1
+                    moves: &6
+                    - e2e4
+                    - e7e5
+                    - g1f3
+                    - b8c6
+                    - f1c4
+                    move_pattern:
+                    - - 1
+                      - 0
+                      - -1
+                      - 0
+                    - - 0
+                      - 1
+                      - 0
+                      - -1
+                  print_with_piece: "\e[1;47m \e[1;31m♜ \e[0m"
+                - &8 !ruby/object:Node
+                  coords: b8
+                  square: "\e[1;40m   \e[0m"
+                  piece:
+                  print_with_piece:
+                - &9 !ruby/object:Node
+                  coords: c8
+                  square: "\e[1;47m   \e[0m"
+                  piece: !ruby/object:Bishop
+                    piece: "\e[1;31m♝"
+                    start_white:
+                    - c1
+                    - f1
+                    start_black:
+                    - c8
+                    - f8
+                    current_position: c8
+                    board: *5
+                    id: 1
+                    moves: *6
+                    move_pattern:
+                    - - -1
+                      - 1
+                      - -1
+                      - 1
+                    - - -1
+                      - -1
+                      - 1
+                      - 1
+                  print_with_piece: "\e[1;47m \e[1;31m♝ \e[0m"
+                - &10 !ruby/object:Node
+                  coords: d8
+                  square: "\e[1;40m   \e[0m"
+                  piece: !ruby/object:Queen
+                    piece: "\e[1;31m♛"
+                    start_white:
+                    - d1
+                    start_black:
+                    - d8
+                    current_position: d8
+                    board: *5
+                    id: 1
+                    moves: *6
+                    move_pattern:
+                    - - 1
+                      - 0
+                      - -1
+                      - 0
+                      - -1
+                      - 1
+                      - -1
+                      - 1
+                    - - 0
+                      - 1
+                      - 0
+                      - -1
+                      - -1
+                      - -1
+                      - 1
+                      - 1
+                  print_with_piece: "\e[1;40m \e[1;31m♛ \e[0m"
+                - &11 !ruby/object:Node
+                  coords: e8
+                  square: "\e[1;47m   \e[0m"
+                  piece: !ruby/object:King
+                    piece: "\e[1;31m♚"
+                    start_white:
+                    - e1
+                    start_black:
+                    - e8
+                    check_status: false
+                    current_position: e8
+                    board: *5
+                    id: 1
+                    can_castle:
+                    moves: *6
+                    graph: &12 !ruby/object:Graph
+                      nodes:
+                      - *7
+                      - *8
+                      - *9
+                      - *10
+                      - *11
+                      - &13 !ruby/object:Node
+                        coords: f8
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Bishop
+                          piece: "\e[1;31m♝"
+                          start_white:
+                          - c1
+                          - f1
+                          start_black:
+                          - c8
+                          - f8
+                          current_position: f8
+                          board: *5
+                          id: 1
+                          moves: *6
+                          move_pattern:
+                          - - -1
+                            - 1
+                            - -1
+                            - 1
+                          - - -1
+                            - -1
+                            - 1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;31m♝ \e[0m"
+                      - &14 !ruby/object:Node
+                        coords: g8
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Knight
+                          piece: "\e[1;31m♞"
+                          start_white:
+                          - b1
+                          - g1
+                          start_black:
+                          - b8
+                          - g8
+                          current_position: g8
+                          board: *5
+                          id: 1
+                          moves: *6
+                          move_pattern:
+                          - - -2
+                            - -2
+                            - -1
+                            - -1
+                            - 2
+                            - 2
+                            - 1
+                            - 1
+                          - - -1
+                            - 1
+                            - -2
+                            - 2
+                            - -1
+                            - 1
+                            - -2
+                            - 2
+                        print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
+                      - &15 !ruby/object:Node
+                        coords: h8
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Rook
+                          piece: "\e[1;31m♜"
+                          start_white:
+                          - a1
+                          - h1
+                          start_black:
+                          - a8
+                          - h8
+                          current_position: h8
+                          board: *5
+                          id: 1
+                          moves: *6
+                          move_pattern:
+                          - - 1
+                            - 0
+                            - -1
+                            - 0
+                          - - 0
+                            - 1
+                            - 0
+                            - -1
+                        print_with_piece: "\e[1;40m \e[1;31m♜ \e[0m"
+                      - &16 !ruby/object:Node
+                        coords: a7
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: a7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+                      - &17 !ruby/object:Node
+                        coords: b7
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: b7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+                      - &18 !ruby/object:Node
+                        coords: c7
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: c7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+                      - &19 !ruby/object:Node
+                        coords: d7
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: d7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+                      - &20 !ruby/object:Node
+                        coords: e7
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &21 !ruby/object:Node
+                        coords: f7
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: f7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+                      - &22 !ruby/object:Node
+                        coords: g7
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: g7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+                      - &23 !ruby/object:Node
+                        coords: h7
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: h7
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+                      - &24 !ruby/object:Node
+                        coords: a6
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &25 !ruby/object:Node
+                        coords: b6
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &26 !ruby/object:Node
+                        coords: c6
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Knight
+                          piece: "\e[1;31m♞"
+                          start_white:
+                          - b1
+                          - g1
+                          start_black:
+                          - b8
+                          - g8
+                          current_position: c6
+                          board: *5
+                          id: 1
+                          moves: *6
+                          move_pattern:
+                          - - -2
+                            - -2
+                            - -1
+                            - -1
+                            - 2
+                            - 2
+                            - 1
+                            - 1
+                          - - -1
+                            - 1
+                            - -2
+                            - 2
+                            - -1
+                            - 1
+                            - -2
+                            - 2
+                        print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
+                      - &27 !ruby/object:Node
+                        coords: d6
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &28 !ruby/object:Node
+                        coords: e6
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &29 !ruby/object:Node
+                        coords: f6
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &30 !ruby/object:Node
+                        coords: g6
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &31 !ruby/object:Node
+                        coords: h6
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &32 !ruby/object:Node
+                        coords: a5
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &33 !ruby/object:Node
+                        coords: b5
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &34 !ruby/object:Node
+                        coords: c5
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &35 !ruby/object:Node
+                        coords: d5
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &36 !ruby/object:Node
+                        coords: e5
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;31m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: e5
+                          id: 1
+                          board: *5
+                          moves: *6
+                          en_passant: true
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+                      - &37 !ruby/object:Node
+                        coords: f5
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &38 !ruby/object:Node
+                        coords: g5
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &39 !ruby/object:Node
+                        coords: h5
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &40 !ruby/object:Node
+                        coords: a4
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &41 !ruby/object:Node
+                        coords: b4
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &42 !ruby/object:Node
+                        coords: c4
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Bishop
+                          piece: "\e[1;34m♝"
+                          start_white:
+                          - c1
+                          - f1
+                          start_black:
+                          - c8
+                          - f8
+                          current_position: c4
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - -1
+                            - 1
+                            - -1
+                            - 1
+                          - - -1
+                            - -1
+                            - 1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♝ \e[0m"
+                      - &43 !ruby/object:Node
+                        coords: d4
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &44 !ruby/object:Node
+                        coords: e4
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: e4
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: true
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+                      - &45 !ruby/object:Node
+                        coords: f4
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &46 !ruby/object:Node
+                        coords: g4
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &47 !ruby/object:Node
+                        coords: h4
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &48 !ruby/object:Node
+                        coords: a3
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &49 !ruby/object:Node
+                        coords: b3
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &50 !ruby/object:Node
+                        coords: c3
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &51 !ruby/object:Node
+                        coords: d3
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &52 !ruby/object:Node
+                        coords: e3
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &53 !ruby/object:Node
+                        coords: f3
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Knight
+                          piece: "\e[1;34m♞"
+                          start_white:
+                          - b1
+                          - g1
+                          start_black:
+                          - b8
+                          - g8
+                          current_position: f3
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - -2
+                            - -2
+                            - -1
+                            - -1
+                            - 2
+                            - 2
+                            - 1
+                            - 1
+                          - - -1
+                            - 1
+                            - -2
+                            - 2
+                            - -1
+                            - 1
+                            - -2
+                            - 2
+                        print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
+                      - &54 !ruby/object:Node
+                        coords: g3
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &55 !ruby/object:Node
+                        coords: h3
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &56 !ruby/object:Node
+                        coords: a2
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: a2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+                      - &57 !ruby/object:Node
+                        coords: b2
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: b2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+                      - &58 !ruby/object:Node
+                        coords: c2
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: c2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+                      - &59 !ruby/object:Node
+                        coords: d2
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: d2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+                      - &60 !ruby/object:Node
+                        coords: e2
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &61 !ruby/object:Node
+                        coords: f2
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: f2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+                      - &62 !ruby/object:Node
+                        coords: g2
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: g2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+                      - &63 !ruby/object:Node
+                        coords: h2
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Pawn
+                          piece: "\e[1;34m♟︎"
+                          start_white:
+                          - a2
+                          - b2
+                          - c2
+                          - d2
+                          - e2
+                          - f2
+                          - g2
+                          - h2
+                          start_black:
+                          - a7
+                          - b7
+                          - c7
+                          - d7
+                          - e7
+                          - f7
+                          - g7
+                          - h7
+                          promo_white:
+                          - a8
+                          - b8
+                          - c8
+                          - d8
+                          - e8
+                          - f8
+                          - g8
+                          - h8
+                          promo_black:
+                          - a1
+                          - b1
+                          - c1
+                          - d1
+                          - e1
+                          - f1
+                          - g1
+                          - h1
+                          current_position: h2
+                          id: 0
+                          board: *5
+                          moves: *6
+                          en_passant: false
+                          move_pattern:
+                          - - -1
+                            - -2
+                            - -1
+                            - -1
+                          - - 0
+                            - 0
+                            - -1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+                      - &64 !ruby/object:Node
+                        coords: a1
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Rook
+                          piece: "\e[1;34m♜"
+                          start_white:
+                          - a1
+                          - h1
+                          start_black:
+                          - a8
+                          - h8
+                          current_position: a1
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - 1
+                            - 0
+                            - -1
+                            - 0
+                          - - 0
+                            - 1
+                            - 0
+                            - -1
+                        print_with_piece: "\e[1;40m \e[1;34m♜ \e[0m"
+                      - &65 !ruby/object:Node
+                        coords: b1
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Knight
+                          piece: "\e[1;34m♞"
+                          start_white:
+                          - b1
+                          - g1
+                          start_black:
+                          - b8
+                          - g8
+                          current_position: b1
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - -2
+                            - -2
+                            - -1
+                            - -1
+                            - 2
+                            - 2
+                            - 1
+                            - 1
+                          - - -1
+                            - 1
+                            - -2
+                            - 2
+                            - -1
+                            - 1
+                            - -2
+                            - 2
+                        print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
+                      - &66 !ruby/object:Node
+                        coords: c1
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:Bishop
+                          piece: "\e[1;34m♝"
+                          start_white:
+                          - c1
+                          - f1
+                          start_black:
+                          - c8
+                          - f8
+                          current_position: c1
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - -1
+                            - 1
+                            - -1
+                            - 1
+                          - - -1
+                            - -1
+                            - 1
+                            - 1
+                        print_with_piece: "\e[1;40m \e[1;34m♝ \e[0m"
+                      - &67 !ruby/object:Node
+                        coords: d1
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Queen
+                          piece: "\e[1;34m♛"
+                          start_white:
+                          - d1
+                          start_black:
+                          - d8
+                          current_position: d1
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - 1
+                            - 0
+                            - -1
+                            - 0
+                            - -1
+                            - 1
+                            - -1
+                            - 1
+                          - - 0
+                            - 1
+                            - 0
+                            - -1
+                            - -1
+                            - -1
+                            - 1
+                            - 1
+                        print_with_piece: "\e[1;47m \e[1;34m♛ \e[0m"
+                      - &68 !ruby/object:Node
+                        coords: e1
+                        square: "\e[1;40m   \e[0m"
+                        piece: !ruby/object:King
+                          piece: "\e[1;34m♚"
+                          start_white:
+                          - e1
+                          start_black:
+                          - e8
+                          check_status: false
+                          current_position: e1
+                          board: *5
+                          id: 0
+                          can_castle:
+                          moves: *6
+                          graph: *12
+                          move_pattern:
+                          - - -1
+                            - -1
+                            - -1
+                            - 0
+                            - 0
+                            - 1
+                            - 1
+                            - 1
+                          - - 0
+                            - 1
+                            - -1
+                            - 1
+                            - -1
+                            - -1
+                            - 1
+                            - 0
+                        print_with_piece: "\e[1;40m \e[1;34m♚ \e[0m"
+                      - &69 !ruby/object:Node
+                        coords: f1
+                        square: "\e[1;47m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &70 !ruby/object:Node
+                        coords: g1
+                        square: "\e[1;40m   \e[0m"
+                        piece:
+                        print_with_piece:
+                      - &71 !ruby/object:Node
+                        coords: h1
+                        square: "\e[1;47m   \e[0m"
+                        piece: !ruby/object:Rook
+                          piece: "\e[1;34m♜"
+                          start_white:
+                          - a1
+                          - h1
+                          start_black:
+                          - a8
+                          - h8
+                          current_position: h1
+                          board: *5
+                          id: 0
+                          moves: *6
+                          move_pattern:
+                          - - 1
+                            - 0
+                            - -1
+                            - 0
+                          - - 0
+                            - 1
+                            - 0
+                            - -1
+                        print_with_piece: "\e[1;47m \e[1;34m♜ \e[0m"
+                      destination_square:
+                    move_pattern:
+                    - - -1
+                      - -1
+                      - -1
+                      - 0
+                      - 0
+                      - 1
+                      - 1
+                      - 1
+                    - - 0
+                      - 1
+                      - -1
+                      - 1
+                      - -1
+                      - -1
+                      - 1
+                      - 0
+                  print_with_piece: "\e[1;47m \e[1;31m♚ \e[0m"
+                - *13
+                - *14
+                - *15
+              - - *16
+                - *17
+                - *18
+                - *19
+                - *20
+                - *21
+                - *22
+                - *23
+              - - *24
+                - *25
+                - *26
+                - *27
+                - *28
+                - *29
+                - *30
+                - *31
+              - - *32
+                - *33
+                - *34
+                - *35
+                - *36
+                - *37
+                - *38
+                - *39
+              - - *40
+                - *41
+                - *42
+                - *43
+                - *44
+                - *45
+                - *46
+                - *47
+              - - *48
+                - *49
+                - *50
+                - *51
+                - *52
+                - *53
+                - *54
+                - *55
+              - - *56
+                - *57
+                - *58
+                - *59
+                - *60
+                - *61
+                - *62
+                - *63
+              - - *64
+                - *65
+                - *66
+                - *67
+                - *68
+                - *69
+                - *70
+                - *71
               id: 1
               can_castle:
-              moves: *3
-              graph: *4
+              moves: *4
+              graph: *72
               move_pattern:
               - - -1
                 - -1
@@ -143,7 +1707,7 @@ board: !ruby/object:Board
                 - 1
                 - 0
             print_with_piece: "\e[1;47m \e[1;31m♚ \e[0m"
-          - &9 !ruby/object:Node
+          - &76 !ruby/object:Node
             coords: f8
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Bishop
@@ -155,9 +1719,9 @@ board: !ruby/object:Board
               - c8
               - f8
               current_position: f8
-              board: *2
+              board: *3
               id: 1
-              moves: *3
+              moves: *4
               move_pattern:
               - - -1
                 - 1
@@ -168,7 +1732,7 @@ board: !ruby/object:Board
                 - 1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♝ \e[0m"
-          - &10 !ruby/object:Node
+          - &77 !ruby/object:Node
             coords: g8
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Knight
@@ -180,9 +1744,9 @@ board: !ruby/object:Board
               - b8
               - g8
               current_position: g8
-              board: *2
+              board: *3
               id: 1
-              moves: *3
+              moves: *4
               move_pattern:
               - - -2
                 - -2
@@ -201,7 +1765,7 @@ board: !ruby/object:Board
                 - -2
                 - 2
             print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
-          - &11 !ruby/object:Node
+          - &78 !ruby/object:Node
             coords: h8
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Rook
@@ -213,9 +1777,9 @@ board: !ruby/object:Board
               - a8
               - h8
               current_position: h8
-              board: *2
+              board: *3
               id: 1
-              moves: *3
+              moves: *4
               move_pattern:
               - - 1
                 - 0
@@ -226,7 +1790,7 @@ board: !ruby/object:Board
                 - 0
                 - -1
             print_with_piece: "\e[1;40m \e[1;31m♜ \e[0m"
-        - - &12 !ruby/object:Node
+        - - &79 !ruby/object:Node
             coords: a7
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -269,8 +1833,8 @@ board: !ruby/object:Board
               - h1
               current_position: a7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -282,7 +1846,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-          - &13 !ruby/object:Node
+          - &80 !ruby/object:Node
             coords: b7
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -325,8 +1889,8 @@ board: !ruby/object:Board
               - h1
               current_position: b7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -338,7 +1902,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-          - &14 !ruby/object:Node
+          - &81 !ruby/object:Node
             coords: c7
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -381,8 +1945,8 @@ board: !ruby/object:Board
               - h1
               current_position: c7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -394,7 +1958,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-          - &15 !ruby/object:Node
+          - &82 !ruby/object:Node
             coords: d7
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -437,8 +2001,8 @@ board: !ruby/object:Board
               - h1
               current_position: d7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -450,12 +2014,12 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-          - &16 !ruby/object:Node
+          - &83 !ruby/object:Node
             coords: e7
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &17 !ruby/object:Node
+          - &84 !ruby/object:Node
             coords: f7
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -498,8 +2062,8 @@ board: !ruby/object:Board
               - h1
               current_position: f7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -511,7 +2075,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-          - &18 !ruby/object:Node
+          - &85 !ruby/object:Node
             coords: g7
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -554,8 +2118,8 @@ board: !ruby/object:Board
               - h1
               current_position: g7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -567,7 +2131,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-          - &19 !ruby/object:Node
+          - &86 !ruby/object:Node
             coords: h7
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -610,8 +2174,8 @@ board: !ruby/object:Board
               - h1
               current_position: h7
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -623,67 +2187,95 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-        - - &20 !ruby/object:Node
+        - - &87 !ruby/object:Node
             coords: a6
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &21 !ruby/object:Node
+          - &88 !ruby/object:Node
             coords: b6
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &22 !ruby/object:Node
+          - &89 !ruby/object:Node
             coords: c6
             square: "\e[1;47m   \e[0m"
-            piece:
-            print_with_piece:
-          - &23 !ruby/object:Node
+            piece: !ruby/object:Knight
+              piece: "\e[1;31m♞"
+              start_white:
+              - b1
+              - g1
+              start_black:
+              - b8
+              - g8
+              current_position: c6
+              board: *3
+              id: 1
+              moves: *4
+              move_pattern:
+              - - -2
+                - -2
+                - -1
+                - -1
+                - 2
+                - 2
+                - 1
+                - 1
+              - - -1
+                - 1
+                - -2
+                - 2
+                - -1
+                - 1
+                - -2
+                - 2
+            print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
+          - &90 !ruby/object:Node
             coords: d6
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &24 !ruby/object:Node
+          - &91 !ruby/object:Node
             coords: e6
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &25 !ruby/object:Node
+          - &92 !ruby/object:Node
             coords: f6
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &26 !ruby/object:Node
+          - &93 !ruby/object:Node
             coords: g6
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &27 !ruby/object:Node
+          - &94 !ruby/object:Node
             coords: h6
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-        - - &28 !ruby/object:Node
+        - - &95 !ruby/object:Node
             coords: a5
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &29 !ruby/object:Node
+          - &96 !ruby/object:Node
             coords: b5
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &30 !ruby/object:Node
+          - &97 !ruby/object:Node
             coords: c5
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &31 !ruby/object:Node
+          - &98 !ruby/object:Node
             coords: d5
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &32 !ruby/object:Node
+          - &99 !ruby/object:Node
             coords: e5
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -726,8 +2318,8 @@ board: !ruby/object:Board
               - h1
               current_position: e5
               id: 1
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: true
               move_pattern:
               - - -1
@@ -739,42 +2331,62 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-          - &33 !ruby/object:Node
+          - &100 !ruby/object:Node
             coords: f5
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &34 !ruby/object:Node
+          - &101 !ruby/object:Node
             coords: g5
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &35 !ruby/object:Node
+          - &102 !ruby/object:Node
             coords: h5
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-        - - &36 !ruby/object:Node
+        - - &103 !ruby/object:Node
             coords: a4
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &37 !ruby/object:Node
+          - &104 !ruby/object:Node
             coords: b4
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &38 !ruby/object:Node
+          - &105 !ruby/object:Node
             coords: c4
             square: "\e[1;47m   \e[0m"
-            piece:
-            print_with_piece:
-          - &39 !ruby/object:Node
+            piece: !ruby/object:Bishop
+              piece: "\e[1;34m♝"
+              start_white:
+              - c1
+              - f1
+              start_black:
+              - c8
+              - f8
+              current_position: c4
+              board: *3
+              id: 0
+              moves: *4
+              move_pattern:
+              - - -1
+                - 1
+                - -1
+                - 1
+              - - -1
+                - -1
+                - 1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♝ \e[0m"
+          - &106 !ruby/object:Node
             coords: d4
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &40 !ruby/object:Node
+          - &107 !ruby/object:Node
             coords: e4
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -817,9 +2429,9 @@ board: !ruby/object:Board
               - h1
               current_position: e4
               id: 0
-              board: *2
-              moves: *3
-              en_passant: true
+              board: *3
+              moves: *4
+              en_passant: false
               move_pattern:
               - - -1
                 - -2
@@ -830,47 +2442,47 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-          - &41 !ruby/object:Node
+          - &108 !ruby/object:Node
             coords: f4
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &42 !ruby/object:Node
+          - &109 !ruby/object:Node
             coords: g4
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &43 !ruby/object:Node
+          - &110 !ruby/object:Node
             coords: h4
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-        - - &44 !ruby/object:Node
+        - - &111 !ruby/object:Node
             coords: a3
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &45 !ruby/object:Node
+          - &112 !ruby/object:Node
             coords: b3
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &46 !ruby/object:Node
+          - &113 !ruby/object:Node
             coords: c3
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &47 !ruby/object:Node
+          - &114 !ruby/object:Node
             coords: d3
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &48 !ruby/object:Node
+          - &115 !ruby/object:Node
             coords: e3
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &49 !ruby/object:Node
+          - &116 !ruby/object:Node
             coords: f3
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Knight
@@ -882,9 +2494,9 @@ board: !ruby/object:Board
               - b8
               - g8
               current_position: f3
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - -2
                 - -2
@@ -903,17 +2515,17 @@ board: !ruby/object:Board
                 - -2
                 - 2
             print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
-          - &50 !ruby/object:Node
+          - &117 !ruby/object:Node
             coords: g3
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &51 !ruby/object:Node
+          - &118 !ruby/object:Node
             coords: h3
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-        - - &52 !ruby/object:Node
+        - - &119 !ruby/object:Node
             coords: a2
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -956,8 +2568,8 @@ board: !ruby/object:Board
               - h1
               current_position: a2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -969,7 +2581,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-          - &53 !ruby/object:Node
+          - &120 !ruby/object:Node
             coords: b2
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1012,8 +2624,8 @@ board: !ruby/object:Board
               - h1
               current_position: b2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1025,7 +2637,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-          - &54 !ruby/object:Node
+          - &121 !ruby/object:Node
             coords: c2
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1068,8 +2680,8 @@ board: !ruby/object:Board
               - h1
               current_position: c2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1081,7 +2693,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-          - &55 !ruby/object:Node
+          - &122 !ruby/object:Node
             coords: d2
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1124,8 +2736,8 @@ board: !ruby/object:Board
               - h1
               current_position: d2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1137,12 +2749,12 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-          - &56 !ruby/object:Node
+          - &123 !ruby/object:Node
             coords: e2
             square: "\e[1;47m   \e[0m"
             piece:
             print_with_piece:
-          - &57 !ruby/object:Node
+          - &124 !ruby/object:Node
             coords: f2
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1185,8 +2797,8 @@ board: !ruby/object:Board
               - h1
               current_position: f2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1198,7 +2810,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-          - &58 !ruby/object:Node
+          - &125 !ruby/object:Node
             coords: g2
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1241,8 +2853,8 @@ board: !ruby/object:Board
               - h1
               current_position: g2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1254,7 +2866,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-          - &59 !ruby/object:Node
+          - &126 !ruby/object:Node
             coords: h2
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Pawn
@@ -1297,8 +2909,8 @@ board: !ruby/object:Board
               - h1
               current_position: h2
               id: 0
-              board: *2
-              moves: *3
+              board: *3
+              moves: *4
               en_passant: false
               move_pattern:
               - - -1
@@ -1310,7 +2922,7 @@ board: !ruby/object:Board
                 - -1
                 - 1
             print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-        - - &60 !ruby/object:Node
+        - - &127 !ruby/object:Node
             coords: a1
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Rook
@@ -1322,9 +2934,9 @@ board: !ruby/object:Board
               - a8
               - h8
               current_position: a1
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - 1
                 - 0
@@ -1335,7 +2947,7 @@ board: !ruby/object:Board
                 - 0
                 - -1
             print_with_piece: "\e[1;40m \e[1;34m♜ \e[0m"
-          - &61 !ruby/object:Node
+          - &128 !ruby/object:Node
             coords: b1
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Knight
@@ -1347,9 +2959,9 @@ board: !ruby/object:Board
               - b8
               - g8
               current_position: b1
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - -2
                 - -2
@@ -1368,7 +2980,7 @@ board: !ruby/object:Board
                 - -2
                 - 2
             print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
-          - &62 !ruby/object:Node
+          - &129 !ruby/object:Node
             coords: c1
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:Bishop
@@ -1380,9 +2992,9 @@ board: !ruby/object:Board
               - c8
               - f8
               current_position: c1
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - -1
                 - 1
@@ -1393,7 +3005,7 @@ board: !ruby/object:Board
                 - 1
                 - 1
             print_with_piece: "\e[1;40m \e[1;34m♝ \e[0m"
-          - &63 !ruby/object:Node
+          - &130 !ruby/object:Node
             coords: d1
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Queen
@@ -1403,9 +3015,9 @@ board: !ruby/object:Board
               start_black:
               - d8
               current_position: d1
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - 1
                 - 0
@@ -1424,7 +3036,7 @@ board: !ruby/object:Board
                 - 1
                 - 1
             print_with_piece: "\e[1;47m \e[1;34m♛ \e[0m"
-          - &64 !ruby/object:Node
+          - &131 !ruby/object:Node
             coords: e1
             square: "\e[1;40m   \e[0m"
             piece: !ruby/object:King
@@ -1435,11 +3047,11 @@ board: !ruby/object:Board
               - e8
               check_status: false
               current_position: e1
-              board: *2
+              board: *3
               id: 0
               can_castle:
-              moves: *3
-              graph: *4
+              moves: *4
+              graph: *72
               move_pattern:
               - - -1
                 - -1
@@ -1458,37 +3070,17 @@ board: !ruby/object:Board
                 - 1
                 - 0
             print_with_piece: "\e[1;40m \e[1;34m♚ \e[0m"
-          - &65 !ruby/object:Node
+          - &132 !ruby/object:Node
             coords: f1
             square: "\e[1;47m   \e[0m"
-            piece: !ruby/object:Bishop
-              piece: "\e[1;34m♝"
-              start_white:
-              - c1
-              - f1
-              start_black:
-              - c8
-              - f8
-              current_position: f1
-              board: *2
-              id: 0
-              moves: *3
-              move_pattern:
-              - - -1
-                - 1
-                - -1
-                - 1
-              - - -1
-                - -1
-                - 1
-                - 1
-            print_with_piece: "\e[1;47m \e[1;34m♝ \e[0m"
-          - &66 !ruby/object:Node
+            piece:
+            print_with_piece:
+          - &133 !ruby/object:Node
             coords: g1
             square: "\e[1;40m   \e[0m"
             piece:
             print_with_piece:
-          - &67 !ruby/object:Node
+          - &134 !ruby/object:Node
             coords: h1
             square: "\e[1;47m   \e[0m"
             piece: !ruby/object:Rook
@@ -1500,9 +3092,9 @@ board: !ruby/object:Board
               - a8
               - h8
               current_position: h1
-              board: *2
+              board: *3
               id: 0
-              moves: *3
+              moves: *4
               move_pattern:
               - - 1
                 - 0
@@ -1514,7 +3106,7 @@ board: !ruby/object:Board
                 - -1
             print_with_piece: "\e[1;47m \e[1;34m♜ \e[0m"
         id: 1
-        moves: *3
+        moves: *4
         move_pattern:
         - - 1
           - 0
@@ -1524,74 +3116,73 @@ board: !ruby/object:Board
           - 1
           - 0
           - -1
-      print_with_piece: "\e[1;47m \e[1;31m♜ \e[0m"
-    - *5
-    - *6
-    - *7
-    - *8
-    - *9
-    - *10
-    - *11
-    - *12
-    - *13
-    - *14
-    - *15
-    - *16
-    - *17
-    - *18
-    - *19
-    - *20
-    - *21
-    - *22
-    - *23
-    - *24
-    - *25
-    - *26
-    - *27
-    - *28
-    - *29
-    - *30
-    - *31
-    - *32
-    - *33
-    - *34
-    - *35
-    - *36
-    - *37
-    - *38
-    - *39
-    - *40
-    - *41
-    - *42
-    - *43
-    - *44
-    - *45
-    - *46
-    - *47
-    - *48
-    - *49
-    - *50
-    - *51
-    - *52
-    - *53
-    - *54
-    - *55
-    - *56
-    - *57
-    - *58
-    - *59
-    - *60
-    - *61
-    - *62
-    - *63
-    - *64
-    - *65
-    - *66
-    - *67
+      print_with_piece: "\e[1;40m \e[1;31m♜ \e[0m"
+    - *73
+    - *74
+    - *75
+    - *76
+    - *77
+    - *78
+    - *79
+    - *80
+    - *81
+    - *82
+    - *83
+    - *84
+    - *85
+    - *86
+    - *87
+    - *88
+    - *89
+    - *90
+    - *91
+    - *92
+    - *93
+    - *94
+    - *95
+    - *96
+    - *97
+    - *98
+    - *99
+    - *100
+    - *101
+    - *102
+    - *103
+    - *104
+    - *105
+    - *106
+    - *107
+    - *108
+    - *109
+    - *110
+    - *111
+    - *112
+    - *113
+    - *114
+    - *115
+    - *116
+    - *117
+    - *118
+    - *119
+    - *120
+    - *121
+    - *122
+    - *123
+    - *124
+    - *125
+    - *126
+    - *127
+    - *128
+    - *129
+    - *130
+    - *131
+    - *132
+    - *133
+    - *134
     destination_square:
   pieces: !ruby/object:Pieces
     white_pieces:
-    - &74 !ruby/object:Pawn
+    - &141 !ruby/object:Pawn
       piece: "\e[1;34m♟︎"
       start_white:
       - a2
@@ -1631,11 +3222,11 @@ board: !ruby/object:Board
       - h1
       current_position: a2
       id: 0
-      board: &68
-      - - &69 !ruby/object:Node
+      board: &135
+      - - &136 !ruby/object:Node
           coords: a8
           square: "\e[1;47m   \e[0m"
-          piece: &150 !ruby/object:Rook
+          piece: &217 !ruby/object:Rook
             piece: "\e[1;31m♜"
             start_white:
             - a1
@@ -1644,9 +3235,9 @@ board: !ruby/object:Board
             - a8
             - h8
             current_position: a8
-            board: *68
+            board: *135
             id: 1
-            moves: *3
+            moves: *4
             move_pattern:
             - - 1
               - 0
@@ -1657,10 +3248,10 @@ board: !ruby/object:Board
               - 0
               - -1
           print_with_piece: "\e[1;47m \e[1;31m♜ \e[0m"
-        - &70 !ruby/object:Node
+        - &137 !ruby/object:Node
           coords: b8
           square: "\e[1;40m   \e[0m"
-          piece: &151 !ruby/object:Knight
+          piece: &218 !ruby/object:Knight
             piece: "\e[1;31m♞"
             start_white:
             - b1
@@ -1669,9 +3260,9 @@ board: !ruby/object:Board
             - b8
             - g8
             current_position: b8
-            board: *68
+            board: *135
             id: 1
-            moves: *3
+            moves: *4
             move_pattern:
             - - -2
               - -2
@@ -1690,10 +3281,10 @@ board: !ruby/object:Board
               - -2
               - 2
           print_with_piece: "\e[1;40m \e[1;31m♞ \e[0m"
-        - &71 !ruby/object:Node
+        - &138 !ruby/object:Node
           coords: c8
           square: "\e[1;47m   \e[0m"
-          piece: &152 !ruby/object:Bishop
+          piece: &219 !ruby/object:Bishop
             piece: "\e[1;31m♝"
             start_white:
             - c1
@@ -1702,9 +3293,9 @@ board: !ruby/object:Board
             - c8
             - f8
             current_position: c8
-            board: *68
+            board: *135
             id: 1
-            moves: *3
+            moves: *4
             move_pattern:
             - - -1
               - 1
@@ -1715,19 +3306,19 @@ board: !ruby/object:Board
               - 1
               - 1
           print_with_piece: "\e[1;47m \e[1;31m♝ \e[0m"
-        - &72 !ruby/object:Node
+        - &139 !ruby/object:Node
           coords: d8
           square: "\e[1;40m   \e[0m"
-          piece: &153 !ruby/object:Queen
+          piece: &220 !ruby/object:Queen
             piece: "\e[1;31m♛"
             start_white:
             - d1
             start_black:
             - d8
             current_position: d8
-            board: *68
+            board: *135
             id: 1
-            moves: *3
+            moves: *4
             move_pattern:
             - - 1
               - 0
@@ -1746,10 +3337,10 @@ board: !ruby/object:Board
               - 1
               - 1
           print_with_piece: "\e[1;40m \e[1;31m♛ \e[0m"
-        - &73 !ruby/object:Node
+        - &140 !ruby/object:Node
           coords: e8
           square: "\e[1;47m   \e[0m"
-          piece: &154 !ruby/object:King
+          piece: &221 !ruby/object:King
             piece: "\e[1;31m♚"
             start_white:
             - e1
@@ -1757,21 +3348,21 @@ board: !ruby/object:Board
             - e8
             check_status: false
             current_position: e8
-            board: *68
+            board: *135
             id: 1
             can_castle:
-            moves: *3
-            graph: &75 !ruby/object:Graph
+            moves: *4
+            graph: &142 !ruby/object:Graph
               nodes:
-              - *69
-              - *70
-              - *71
-              - *72
-              - *73
-              - &76 !ruby/object:Node
+              - *136
+              - *137
+              - *138
+              - *139
+              - *140
+              - &143 !ruby/object:Node
                 coords: f8
                 square: "\e[1;40m   \e[0m"
-                piece: &155 !ruby/object:Bishop
+                piece: &222 !ruby/object:Bishop
                   piece: "\e[1;31m♝"
                   start_white:
                   - c1
@@ -1780,9 +3371,9 @@ board: !ruby/object:Board
                   - c8
                   - f8
                   current_position: f8
-                  board: *68
+                  board: *135
                   id: 1
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -1
                     - 1
@@ -1793,10 +3384,10 @@ board: !ruby/object:Board
                     - 1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;31m♝ \e[0m"
-              - &77 !ruby/object:Node
+              - &144 !ruby/object:Node
                 coords: g8
                 square: "\e[1;47m   \e[0m"
-                piece: &156 !ruby/object:Knight
+                piece: &223 !ruby/object:Knight
                   piece: "\e[1;31m♞"
                   start_white:
                   - b1
@@ -1805,9 +3396,9 @@ board: !ruby/object:Board
                   - b8
                   - g8
                   current_position: g8
-                  board: *68
+                  board: *135
                   id: 1
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -2
                     - -2
@@ -1826,10 +3417,10 @@ board: !ruby/object:Board
                     - -2
                     - 2
                 print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
-              - &78 !ruby/object:Node
+              - &145 !ruby/object:Node
                 coords: h8
                 square: "\e[1;40m   \e[0m"
-                piece: &157 !ruby/object:Rook
+                piece: &224 !ruby/object:Rook
                   piece: "\e[1;31m♜"
                   start_white:
                   - a1
@@ -1838,9 +3429,9 @@ board: !ruby/object:Board
                   - a8
                   - h8
                   current_position: h8
-                  board: *68
+                  board: *135
                   id: 1
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - 1
                     - 0
@@ -1851,10 +3442,10 @@ board: !ruby/object:Board
                     - 0
                     - -1
                 print_with_piece: "\e[1;40m \e[1;31m♜ \e[0m"
-              - &79 !ruby/object:Node
+              - &146 !ruby/object:Node
                 coords: a7
                 square: "\e[1;40m   \e[0m"
-                piece: &158 !ruby/object:Pawn
+                piece: &225 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -1894,8 +3485,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: a7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -1907,10 +3498,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-              - &80 !ruby/object:Node
+              - &147 !ruby/object:Node
                 coords: b7
                 square: "\e[1;47m   \e[0m"
-                piece: &159 !ruby/object:Pawn
+                piece: &226 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -1950,8 +3541,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: b7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -1963,10 +3554,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-              - &81 !ruby/object:Node
+              - &148 !ruby/object:Node
                 coords: c7
                 square: "\e[1;40m   \e[0m"
-                piece: &160 !ruby/object:Pawn
+                piece: &227 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2006,8 +3597,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: c7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2019,10 +3610,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-              - &82 !ruby/object:Node
+              - &149 !ruby/object:Node
                 coords: d7
                 square: "\e[1;47m   \e[0m"
-                piece: &161 !ruby/object:Pawn
+                piece: &228 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2062,8 +3653,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: d7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2075,10 +3666,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-              - &83 !ruby/object:Node
+              - &150 !ruby/object:Node
                 coords: e7
                 square: "\e[1;40m   \e[0m"
-                piece: &162 !ruby/object:Pawn
+                piece: &229 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2118,8 +3709,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: e7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2131,10 +3722,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-              - &84 !ruby/object:Node
+              - &151 !ruby/object:Node
                 coords: f7
                 square: "\e[1;47m   \e[0m"
-                piece: &163 !ruby/object:Pawn
+                piece: &230 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2174,8 +3765,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: f7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2187,10 +3778,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-              - &85 !ruby/object:Node
+              - &152 !ruby/object:Node
                 coords: g7
                 square: "\e[1;40m   \e[0m"
-                piece: &164 !ruby/object:Pawn
+                piece: &231 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2230,8 +3821,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: g7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2243,10 +3834,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
-              - &86 !ruby/object:Node
+              - &153 !ruby/object:Node
                 coords: h7
                 square: "\e[1;47m   \e[0m"
-                piece: &165 !ruby/object:Pawn
+                piece: &232 !ruby/object:Pawn
                   piece: "\e[1;31m♟︎"
                   start_white:
                   - a2
@@ -2286,8 +3877,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: h7
                   id: 1
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2299,110 +3890,110 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
-              - &87 !ruby/object:Node
+              - &154 !ruby/object:Node
                 coords: a6
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &88 !ruby/object:Node
+              - &155 !ruby/object:Node
                 coords: b6
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &89 !ruby/object:Node
+              - &156 !ruby/object:Node
                 coords: c6
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &90 !ruby/object:Node
+              - &157 !ruby/object:Node
                 coords: d6
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &91 !ruby/object:Node
+              - &158 !ruby/object:Node
                 coords: e6
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &92 !ruby/object:Node
+              - &159 !ruby/object:Node
                 coords: f6
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &93 !ruby/object:Node
+              - &160 !ruby/object:Node
                 coords: g6
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &94 !ruby/object:Node
+              - &161 !ruby/object:Node
                 coords: h6
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &95 !ruby/object:Node
+              - &162 !ruby/object:Node
                 coords: a5
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &96 !ruby/object:Node
+              - &163 !ruby/object:Node
                 coords: b5
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &97 !ruby/object:Node
+              - &164 !ruby/object:Node
                 coords: c5
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &98 !ruby/object:Node
+              - &165 !ruby/object:Node
                 coords: d5
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &99 !ruby/object:Node
+              - &166 !ruby/object:Node
                 coords: e5
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &100 !ruby/object:Node
+              - &167 !ruby/object:Node
                 coords: f5
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &101 !ruby/object:Node
+              - &168 !ruby/object:Node
                 coords: g5
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &102 !ruby/object:Node
+              - &169 !ruby/object:Node
                 coords: h5
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &103 !ruby/object:Node
+              - &170 !ruby/object:Node
                 coords: a4
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &104 !ruby/object:Node
+              - &171 !ruby/object:Node
                 coords: b4
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &105 !ruby/object:Node
+              - &172 !ruby/object:Node
                 coords: c4
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &106 !ruby/object:Node
+              - &173 !ruby/object:Node
                 coords: d4
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &107 !ruby/object:Node
+              - &174 !ruby/object:Node
                 coords: e4
                 square: "\e[1;47m   \e[0m"
-                piece: &138 !ruby/object:Pawn
+                piece: &205 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2442,8 +4033,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: e4
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: true
                   move_pattern:
                   - - -1
@@ -2455,70 +4046,70 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-              - &108 !ruby/object:Node
+              - &175 !ruby/object:Node
                 coords: f4
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &109 !ruby/object:Node
+              - &176 !ruby/object:Node
                 coords: g4
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &110 !ruby/object:Node
+              - &177 !ruby/object:Node
                 coords: h4
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &111 !ruby/object:Node
+              - &178 !ruby/object:Node
                 coords: a3
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &112 !ruby/object:Node
+              - &179 !ruby/object:Node
                 coords: b3
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &113 !ruby/object:Node
+              - &180 !ruby/object:Node
                 coords: c3
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &114 !ruby/object:Node
+              - &181 !ruby/object:Node
                 coords: d3
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &115 !ruby/object:Node
+              - &182 !ruby/object:Node
                 coords: e3
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &116 !ruby/object:Node
+              - &183 !ruby/object:Node
                 coords: f3
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &117 !ruby/object:Node
+              - &184 !ruby/object:Node
                 coords: g3
                 square: "\e[1;40m   \e[0m"
                 piece:
                 print_with_piece:
-              - &118 !ruby/object:Node
+              - &185 !ruby/object:Node
                 coords: h3
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &119 !ruby/object:Node
+              - &186 !ruby/object:Node
                 coords: a2
                 square: "\e[1;47m   \e[0m"
-                piece: *74
+                piece: *141
                 print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-              - &120 !ruby/object:Node
+              - &187 !ruby/object:Node
                 coords: b2
                 square: "\e[1;40m   \e[0m"
-                piece: &135 !ruby/object:Pawn
+                piece: &202 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2558,8 +4149,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: b2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2571,10 +4162,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-              - &121 !ruby/object:Node
+              - &188 !ruby/object:Node
                 coords: c2
                 square: "\e[1;47m   \e[0m"
-                piece: &136 !ruby/object:Pawn
+                piece: &203 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2614,8 +4205,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: c2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2627,10 +4218,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-              - &122 !ruby/object:Node
+              - &189 !ruby/object:Node
                 coords: d2
                 square: "\e[1;40m   \e[0m"
-                piece: &137 !ruby/object:Pawn
+                piece: &204 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2670,8 +4261,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: d2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2683,15 +4274,15 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-              - &123 !ruby/object:Node
+              - &190 !ruby/object:Node
                 coords: e2
                 square: "\e[1;47m   \e[0m"
                 piece:
                 print_with_piece:
-              - &124 !ruby/object:Node
+              - &191 !ruby/object:Node
                 coords: f2
                 square: "\e[1;40m   \e[0m"
-                piece: &139 !ruby/object:Pawn
+                piece: &206 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2731,8 +4322,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: f2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2744,10 +4335,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-              - &125 !ruby/object:Node
+              - &192 !ruby/object:Node
                 coords: g2
                 square: "\e[1;47m   \e[0m"
-                piece: &140 !ruby/object:Pawn
+                piece: &207 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2787,8 +4378,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: g2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2800,10 +4391,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
-              - &126 !ruby/object:Node
+              - &193 !ruby/object:Node
                 coords: h2
                 square: "\e[1;40m   \e[0m"
-                piece: &141 !ruby/object:Pawn
+                piece: &208 !ruby/object:Pawn
                   piece: "\e[1;34m♟︎"
                   start_white:
                   - a2
@@ -2843,8 +4434,8 @@ board: !ruby/object:Board
                   - h1
                   current_position: h2
                   id: 0
-                  board: *68
-                  moves: *3
+                  board: *135
+                  moves: *4
                   en_passant: false
                   move_pattern:
                   - - -1
@@ -2856,10 +4447,10 @@ board: !ruby/object:Board
                     - -1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
-              - &127 !ruby/object:Node
+              - &194 !ruby/object:Node
                 coords: a1
                 square: "\e[1;40m   \e[0m"
-                piece: &142 !ruby/object:Rook
+                piece: &209 !ruby/object:Rook
                   piece: "\e[1;34m♜"
                   start_white:
                   - a1
@@ -2868,9 +4459,9 @@ board: !ruby/object:Board
                   - a8
                   - h8
                   current_position: a1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - 1
                     - 0
@@ -2881,10 +4472,10 @@ board: !ruby/object:Board
                     - 0
                     - -1
                 print_with_piece: "\e[1;40m \e[1;34m♜ \e[0m"
-              - &128 !ruby/object:Node
+              - &195 !ruby/object:Node
                 coords: b1
                 square: "\e[1;47m   \e[0m"
-                piece: &143 !ruby/object:Knight
+                piece: &210 !ruby/object:Knight
                   piece: "\e[1;34m♞"
                   start_white:
                   - b1
@@ -2893,9 +4484,9 @@ board: !ruby/object:Board
                   - b8
                   - g8
                   current_position: b1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -2
                     - -2
@@ -2914,10 +4505,10 @@ board: !ruby/object:Board
                     - -2
                     - 2
                 print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
-              - &129 !ruby/object:Node
+              - &196 !ruby/object:Node
                 coords: c1
                 square: "\e[1;40m   \e[0m"
-                piece: &144 !ruby/object:Bishop
+                piece: &211 !ruby/object:Bishop
                   piece: "\e[1;34m♝"
                   start_white:
                   - c1
@@ -2926,9 +4517,9 @@ board: !ruby/object:Board
                   - c8
                   - f8
                   current_position: c1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -1
                     - 1
@@ -2939,19 +4530,19 @@ board: !ruby/object:Board
                     - 1
                     - 1
                 print_with_piece: "\e[1;40m \e[1;34m♝ \e[0m"
-              - &130 !ruby/object:Node
+              - &197 !ruby/object:Node
                 coords: d1
                 square: "\e[1;47m   \e[0m"
-                piece: &145 !ruby/object:Queen
+                piece: &212 !ruby/object:Queen
                   piece: "\e[1;34m♛"
                   start_white:
                   - d1
                   start_black:
                   - d8
                   current_position: d1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - 1
                     - 0
@@ -2970,10 +4561,10 @@ board: !ruby/object:Board
                     - 1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;34m♛ \e[0m"
-              - &131 !ruby/object:Node
+              - &198 !ruby/object:Node
                 coords: e1
                 square: "\e[1;40m   \e[0m"
-                piece: &146 !ruby/object:King
+                piece: &213 !ruby/object:King
                   piece: "\e[1;34m♚"
                   start_white:
                   - e1
@@ -2981,11 +4572,11 @@ board: !ruby/object:Board
                   - e8
                   check_status: false
                   current_position: e1
-                  board: *68
+                  board: *135
                   id: 0
                   can_castle:
-                  moves: *3
-                  graph: *75
+                  moves: *4
+                  graph: *142
                   move_pattern:
                   - - -1
                     - -1
@@ -3004,10 +4595,10 @@ board: !ruby/object:Board
                     - 1
                     - 0
                 print_with_piece: "\e[1;40m \e[1;34m♚ \e[0m"
-              - &132 !ruby/object:Node
+              - &199 !ruby/object:Node
                 coords: f1
                 square: "\e[1;47m   \e[0m"
-                piece: &147 !ruby/object:Bishop
+                piece: &214 !ruby/object:Bishop
                   piece: "\e[1;34m♝"
                   start_white:
                   - c1
@@ -3016,9 +4607,9 @@ board: !ruby/object:Board
                   - c8
                   - f8
                   current_position: f1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -1
                     - 1
@@ -3029,10 +4620,10 @@ board: !ruby/object:Board
                     - 1
                     - 1
                 print_with_piece: "\e[1;47m \e[1;34m♝ \e[0m"
-              - &133 !ruby/object:Node
+              - &200 !ruby/object:Node
                 coords: g1
                 square: "\e[1;40m   \e[0m"
-                piece: &148 !ruby/object:Knight
+                piece: &215 !ruby/object:Knight
                   piece: "\e[1;34m♞"
                   start_white:
                   - b1
@@ -3041,9 +4632,9 @@ board: !ruby/object:Board
                   - b8
                   - g8
                   current_position: g1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - -2
                     - -2
@@ -3062,10 +4653,10 @@ board: !ruby/object:Board
                     - -2
                     - 2
                 print_with_piece: "\e[1;40m \e[1;34m♞ \e[0m"
-              - &134 !ruby/object:Node
+              - &201 !ruby/object:Node
                 coords: h1
                 square: "\e[1;47m   \e[0m"
-                piece: &149 !ruby/object:Rook
+                piece: &216 !ruby/object:Rook
                   piece: "\e[1;34m♜"
                   start_white:
                   - a1
@@ -3074,9 +4665,9 @@ board: !ruby/object:Board
                   - a8
                   - h8
                   current_position: h1
-                  board: *68
+                  board: *135
                   id: 0
-                  moves: *3
+                  moves: *4
                   move_pattern:
                   - - 1
                     - 0
@@ -3106,66 +4697,66 @@ board: !ruby/object:Board
               - 1
               - 0
           print_with_piece: "\e[1;47m \e[1;31m♚ \e[0m"
-        - *76
-        - *77
-        - *78
-      - - *79
-        - *80
-        - *81
-        - *82
-        - *83
-        - *84
-        - *85
-        - *86
-      - - *87
-        - *88
-        - *89
-        - *90
-        - *91
-        - *92
-        - *93
-        - *94
-      - - *95
-        - *96
-        - *97
-        - *98
-        - *99
-        - *100
-        - *101
-        - *102
-      - - *103
-        - *104
-        - *105
-        - *106
-        - *107
-        - *108
-        - *109
-        - *110
-      - - *111
-        - *112
-        - *113
-        - *114
-        - *115
-        - *116
-        - *117
-        - *118
-      - - *119
-        - *120
-        - *121
-        - *122
-        - *123
-        - *124
-        - *125
-        - *126
-      - - *127
-        - *128
-        - *129
-        - *130
-        - *131
-        - *132
-        - *133
-        - *134
-      moves: *3
+        - *143
+        - *144
+        - *145
+      - - *146
+        - *147
+        - *148
+        - *149
+        - *150
+        - *151
+        - *152
+        - *153
+      - - *154
+        - *155
+        - *156
+        - *157
+        - *158
+        - *159
+        - *160
+        - *161
+      - - *162
+        - *163
+        - *164
+        - *165
+        - *166
+        - *167
+        - *168
+        - *169
+      - - *170
+        - *171
+        - *172
+        - *173
+        - *174
+        - *175
+        - *176
+        - *177
+      - - *178
+        - *179
+        - *180
+        - *181
+        - *182
+        - *183
+        - *184
+        - *185
+      - - *186
+        - *187
+        - *188
+        - *189
+        - *190
+        - *191
+        - *192
+        - *193
+      - - *194
+        - *195
+        - *196
+        - *197
+        - *198
+        - *199
+        - *200
+        - *201
+      moves: *4
       en_passant: false
       move_pattern:
       - - -1
@@ -3176,38 +4767,38 @@ board: !ruby/object:Board
         - 0
         - -1
         - 1
-    - *135
-    - *136
-    - *137
-    - *138
-    - *139
-    - *140
-    - *141
-    - *142
-    - *143
-    - *144
-    - *145
-    - *146
-    - *147
-    - *148
-    - *149
+    - *202
+    - *203
+    - *204
+    - *205
+    - *206
+    - *207
+    - *208
+    - *209
+    - *210
+    - *211
+    - *212
+    - *213
+    - *214
+    - *215
+    - *216
     black_pieces:
-    - *150
-    - *151
-    - *152
-    - *153
-    - *154
-    - *155
-    - *156
-    - *157
-    - *158
-    - *159
-    - *160
-    - *161
-    - *162
-    - *163
-    - *164
-    - *165
+    - *217
+    - *218
+    - *219
+    - *220
+    - *221
+    - *222
+    - *223
+    - *224
+    - *225
+    - *226
+    - *227
+    - *228
+    - *229
+    - *230
+    - *231
+    - *232
     pieces:
     - "♜"
     - "♞"
@@ -3230,13 +4821,1604 @@ board: !ruby/object:Board
     - "♞"
     - "♝"
     - "♛"
-  board: *2
-  moves: *3
+  board: &233
+  - - &235 !ruby/object:Node
+      coords: a8
+      square: "\e[1;47m   \e[0m"
+      piece: !ruby/object:Rook
+        piece: "\e[1;31m♜"
+        start_white:
+        - a1
+        - h1
+        start_black:
+        - a8
+        - h8
+        current_position: a8
+        board: *233
+        id: 1
+        moves: &234
+        - e2e4
+        - e7e5
+        - g1f3
+        - b8c6
+        - f1c4
+        move_pattern:
+        - - 1
+          - 0
+          - -1
+          - 0
+        - - 0
+          - 1
+          - 0
+          - -1
+      print_with_piece: "\e[1;47m \e[1;31m♜ \e[0m"
+    - &236 !ruby/object:Node
+      coords: b8
+      square: "\e[1;40m   \e[0m"
+      piece:
+      print_with_piece:
+    - &237 !ruby/object:Node
+      coords: c8
+      square: "\e[1;47m   \e[0m"
+      piece: !ruby/object:Bishop
+        piece: "\e[1;31m♝"
+        start_white:
+        - c1
+        - f1
+        start_black:
+        - c8
+        - f8
+        current_position: c8
+        board: *233
+        id: 1
+        moves: *234
+        move_pattern:
+        - - -1
+          - 1
+          - -1
+          - 1
+        - - -1
+          - -1
+          - 1
+          - 1
+      print_with_piece: "\e[1;47m \e[1;31m♝ \e[0m"
+    - &238 !ruby/object:Node
+      coords: d8
+      square: "\e[1;40m   \e[0m"
+      piece: !ruby/object:Queen
+        piece: "\e[1;31m♛"
+        start_white:
+        - d1
+        start_black:
+        - d8
+        current_position: d8
+        board: *233
+        id: 1
+        moves: *234
+        move_pattern:
+        - - 1
+          - 0
+          - -1
+          - 0
+          - -1
+          - 1
+          - -1
+          - 1
+        - - 0
+          - 1
+          - 0
+          - -1
+          - -1
+          - -1
+          - 1
+          - 1
+      print_with_piece: "\e[1;40m \e[1;31m♛ \e[0m"
+    - &239 !ruby/object:Node
+      coords: e8
+      square: "\e[1;47m   \e[0m"
+      piece: !ruby/object:King
+        piece: "\e[1;31m♚"
+        start_white:
+        - e1
+        start_black:
+        - e8
+        check_status: false
+        current_position: e8
+        board: *233
+        id: 1
+        can_castle:
+        moves: *234
+        graph: &240 !ruby/object:Graph
+          nodes:
+          - *235
+          - *236
+          - *237
+          - *238
+          - *239
+          - &241 !ruby/object:Node
+            coords: f8
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Bishop
+              piece: "\e[1;31m♝"
+              start_white:
+              - c1
+              - f1
+              start_black:
+              - c8
+              - f8
+              current_position: f8
+              board: *233
+              id: 1
+              moves: *234
+              move_pattern:
+              - - -1
+                - 1
+                - -1
+                - 1
+              - - -1
+                - -1
+                - 1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;31m♝ \e[0m"
+          - &242 !ruby/object:Node
+            coords: g8
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Knight
+              piece: "\e[1;31m♞"
+              start_white:
+              - b1
+              - g1
+              start_black:
+              - b8
+              - g8
+              current_position: g8
+              board: *233
+              id: 1
+              moves: *234
+              move_pattern:
+              - - -2
+                - -2
+                - -1
+                - -1
+                - 2
+                - 2
+                - 1
+                - 1
+              - - -1
+                - 1
+                - -2
+                - 2
+                - -1
+                - 1
+                - -2
+                - 2
+            print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
+          - &243 !ruby/object:Node
+            coords: h8
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Rook
+              piece: "\e[1;31m♜"
+              start_white:
+              - a1
+              - h1
+              start_black:
+              - a8
+              - h8
+              current_position: h8
+              board: *233
+              id: 1
+              moves: *234
+              move_pattern:
+              - - 1
+                - 0
+                - -1
+                - 0
+              - - 0
+                - 1
+                - 0
+                - -1
+            print_with_piece: "\e[1;40m \e[1;31m♜ \e[0m"
+          - &244 !ruby/object:Node
+            coords: a7
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: a7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+          - &245 !ruby/object:Node
+            coords: b7
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: b7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+          - &246 !ruby/object:Node
+            coords: c7
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: c7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+          - &247 !ruby/object:Node
+            coords: d7
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: d7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+          - &248 !ruby/object:Node
+            coords: e7
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &249 !ruby/object:Node
+            coords: f7
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: f7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+          - &250 !ruby/object:Node
+            coords: g7
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: g7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+          - &251 !ruby/object:Node
+            coords: h7
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: h7
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;31m♟︎ \e[0m"
+          - &252 !ruby/object:Node
+            coords: a6
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &253 !ruby/object:Node
+            coords: b6
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &254 !ruby/object:Node
+            coords: c6
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Knight
+              piece: "\e[1;31m♞"
+              start_white:
+              - b1
+              - g1
+              start_black:
+              - b8
+              - g8
+              current_position: c6
+              board: *233
+              id: 1
+              moves: *234
+              move_pattern:
+              - - -2
+                - -2
+                - -1
+                - -1
+                - 2
+                - 2
+                - 1
+                - 1
+              - - -1
+                - 1
+                - -2
+                - 2
+                - -1
+                - 1
+                - -2
+                - 2
+            print_with_piece: "\e[1;47m \e[1;31m♞ \e[0m"
+          - &255 !ruby/object:Node
+            coords: d6
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &256 !ruby/object:Node
+            coords: e6
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &257 !ruby/object:Node
+            coords: f6
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &258 !ruby/object:Node
+            coords: g6
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &259 !ruby/object:Node
+            coords: h6
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &260 !ruby/object:Node
+            coords: a5
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &261 !ruby/object:Node
+            coords: b5
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &262 !ruby/object:Node
+            coords: c5
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &263 !ruby/object:Node
+            coords: d5
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &264 !ruby/object:Node
+            coords: e5
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;31m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: e5
+              id: 1
+              board: *233
+              moves: *234
+              en_passant: true
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;31m♟︎ \e[0m"
+          - &265 !ruby/object:Node
+            coords: f5
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &266 !ruby/object:Node
+            coords: g5
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &267 !ruby/object:Node
+            coords: h5
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &268 !ruby/object:Node
+            coords: a4
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &269 !ruby/object:Node
+            coords: b4
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &270 !ruby/object:Node
+            coords: c4
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Bishop
+              piece: "\e[1;34m♝"
+              start_white:
+              - c1
+              - f1
+              start_black:
+              - c8
+              - f8
+              current_position: c4
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - -1
+                - 1
+                - -1
+                - 1
+              - - -1
+                - -1
+                - 1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♝ \e[0m"
+          - &271 !ruby/object:Node
+            coords: d4
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &272 !ruby/object:Node
+            coords: e4
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: e4
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: true
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+          - &273 !ruby/object:Node
+            coords: f4
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &274 !ruby/object:Node
+            coords: g4
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &275 !ruby/object:Node
+            coords: h4
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &276 !ruby/object:Node
+            coords: a3
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &277 !ruby/object:Node
+            coords: b3
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &278 !ruby/object:Node
+            coords: c3
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &279 !ruby/object:Node
+            coords: d3
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &280 !ruby/object:Node
+            coords: e3
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &281 !ruby/object:Node
+            coords: f3
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Knight
+              piece: "\e[1;34m♞"
+              start_white:
+              - b1
+              - g1
+              start_black:
+              - b8
+              - g8
+              current_position: f3
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - -2
+                - -2
+                - -1
+                - -1
+                - 2
+                - 2
+                - 1
+                - 1
+              - - -1
+                - 1
+                - -2
+                - 2
+                - -1
+                - 1
+                - -2
+                - 2
+            print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
+          - &282 !ruby/object:Node
+            coords: g3
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &283 !ruby/object:Node
+            coords: h3
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &284 !ruby/object:Node
+            coords: a2
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: a2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+          - &285 !ruby/object:Node
+            coords: b2
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: b2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+          - &286 !ruby/object:Node
+            coords: c2
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: c2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+          - &287 !ruby/object:Node
+            coords: d2
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: d2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+          - &288 !ruby/object:Node
+            coords: e2
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &289 !ruby/object:Node
+            coords: f2
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: f2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+          - &290 !ruby/object:Node
+            coords: g2
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: g2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♟︎ \e[0m"
+          - &291 !ruby/object:Node
+            coords: h2
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Pawn
+              piece: "\e[1;34m♟︎"
+              start_white:
+              - a2
+              - b2
+              - c2
+              - d2
+              - e2
+              - f2
+              - g2
+              - h2
+              start_black:
+              - a7
+              - b7
+              - c7
+              - d7
+              - e7
+              - f7
+              - g7
+              - h7
+              promo_white:
+              - a8
+              - b8
+              - c8
+              - d8
+              - e8
+              - f8
+              - g8
+              - h8
+              promo_black:
+              - a1
+              - b1
+              - c1
+              - d1
+              - e1
+              - f1
+              - g1
+              - h1
+              current_position: h2
+              id: 0
+              board: *233
+              moves: *234
+              en_passant: false
+              move_pattern:
+              - - -1
+                - -2
+                - -1
+                - -1
+              - - 0
+                - 0
+                - -1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;34m♟︎ \e[0m"
+          - &292 !ruby/object:Node
+            coords: a1
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Rook
+              piece: "\e[1;34m♜"
+              start_white:
+              - a1
+              - h1
+              start_black:
+              - a8
+              - h8
+              current_position: a1
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - 1
+                - 0
+                - -1
+                - 0
+              - - 0
+                - 1
+                - 0
+                - -1
+            print_with_piece: "\e[1;40m \e[1;34m♜ \e[0m"
+          - &293 !ruby/object:Node
+            coords: b1
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Knight
+              piece: "\e[1;34m♞"
+              start_white:
+              - b1
+              - g1
+              start_black:
+              - b8
+              - g8
+              current_position: b1
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - -2
+                - -2
+                - -1
+                - -1
+                - 2
+                - 2
+                - 1
+                - 1
+              - - -1
+                - 1
+                - -2
+                - 2
+                - -1
+                - 1
+                - -2
+                - 2
+            print_with_piece: "\e[1;47m \e[1;34m♞ \e[0m"
+          - &294 !ruby/object:Node
+            coords: c1
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:Bishop
+              piece: "\e[1;34m♝"
+              start_white:
+              - c1
+              - f1
+              start_black:
+              - c8
+              - f8
+              current_position: c1
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - -1
+                - 1
+                - -1
+                - 1
+              - - -1
+                - -1
+                - 1
+                - 1
+            print_with_piece: "\e[1;40m \e[1;34m♝ \e[0m"
+          - &295 !ruby/object:Node
+            coords: d1
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Queen
+              piece: "\e[1;34m♛"
+              start_white:
+              - d1
+              start_black:
+              - d8
+              current_position: d1
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - 1
+                - 0
+                - -1
+                - 0
+                - -1
+                - 1
+                - -1
+                - 1
+              - - 0
+                - 1
+                - 0
+                - -1
+                - -1
+                - -1
+                - 1
+                - 1
+            print_with_piece: "\e[1;47m \e[1;34m♛ \e[0m"
+          - &296 !ruby/object:Node
+            coords: e1
+            square: "\e[1;40m   \e[0m"
+            piece: !ruby/object:King
+              piece: "\e[1;34m♚"
+              start_white:
+              - e1
+              start_black:
+              - e8
+              check_status: false
+              current_position: e1
+              board: *233
+              id: 0
+              can_castle:
+              moves: *234
+              graph: *240
+              move_pattern:
+              - - -1
+                - -1
+                - -1
+                - 0
+                - 0
+                - 1
+                - 1
+                - 1
+              - - 0
+                - 1
+                - -1
+                - 1
+                - -1
+                - -1
+                - 1
+                - 0
+            print_with_piece: "\e[1;40m \e[1;34m♚ \e[0m"
+          - &297 !ruby/object:Node
+            coords: f1
+            square: "\e[1;47m   \e[0m"
+            piece:
+            print_with_piece:
+          - &298 !ruby/object:Node
+            coords: g1
+            square: "\e[1;40m   \e[0m"
+            piece:
+            print_with_piece:
+          - &299 !ruby/object:Node
+            coords: h1
+            square: "\e[1;47m   \e[0m"
+            piece: !ruby/object:Rook
+              piece: "\e[1;34m♜"
+              start_white:
+              - a1
+              - h1
+              start_black:
+              - a8
+              - h8
+              current_position: h1
+              board: *233
+              id: 0
+              moves: *234
+              move_pattern:
+              - - 1
+                - 0
+                - -1
+                - 0
+              - - 0
+                - 1
+                - 0
+                - -1
+            print_with_piece: "\e[1;47m \e[1;34m♜ \e[0m"
+          destination_square:
+        move_pattern:
+        - - -1
+          - -1
+          - -1
+          - 0
+          - 0
+          - 1
+          - 1
+          - 1
+        - - 0
+          - 1
+          - -1
+          - 1
+          - -1
+          - -1
+          - 1
+          - 0
+      print_with_piece: "\e[1;47m \e[1;31m♚ \e[0m"
+    - *241
+    - *242
+    - *243
+  - - *244
+    - *245
+    - *246
+    - *247
+    - *248
+    - *249
+    - *250
+    - *251
+  - - *252
+    - *253
+    - *254
+    - *255
+    - *256
+    - *257
+    - *258
+    - *259
+  - - *260
+    - *261
+    - *262
+    - *263
+    - *264
+    - *265
+    - *266
+    - *267
+  - - *268
+    - *269
+    - *270
+    - *271
+    - *272
+    - *273
+    - *274
+    - *275
+  - - *276
+    - *277
+    - *278
+    - *279
+    - *280
+    - *281
+    - *282
+    - *283
+  - - *284
+    - *285
+    - *286
+    - *287
+    - *288
+    - *289
+    - *290
+    - *291
+  - - *292
+    - *293
+    - *294
+    - *295
+    - *296
+    - *297
+    - *298
+    - *299
+  moves: *4
   back_up:
   pawn_moves:
-  - "#<Node:0x00007fc1dc6e2c88>"
-  - "#<Node:0x00007fc1dc48c218>"
-  - "#<Node:0x00007ff836992150>"
+  - "#<Node:0x00007fc4b8e9bc98>"
+  - "#<Node:0x00007fc4b8bb57b8>"
+  - "#<Node:0x00007fc4b8b40fa8>"
+  - "#<Node:0x00007fc4b8b663c0>"
+  - "#<Node:0x00007fc4b89aa018>"
 players:
 - !ruby/object:Player
   id: 0
@@ -3295,20 +6477,31 @@ positions:
   \e[0mh8\e[1;40m \e[1;31m♜ \e[0ma7\e[1;40m \e[1;31m♟︎ \e[0mfalseb7\e[1;47m \e[1;31m♟︎
   \e[0mfalsec7\e[1;40m \e[1;31m♟︎ \e[0mfalsed7\e[1;47m \e[1;31m♟︎ \e[0mfalsee7f7\e[1;47m
   \e[1;31m♟︎ \e[0mfalseg7\e[1;40m \e[1;31m♟︎ \e[0mfalseh7\e[1;47m \e[1;31m♟︎ \e[0mfalsea6b6c6d6e6f6g6h6a5b5c5d5e5\e[1;40m
-  \e[1;31m♟︎ \e[0mtruef5g5h5a4b4c4d4e4\e[1;47m \e[1;34m♟︎ \e[0mtruef4g4h4a3b3c3d3e3f3g3h3a2\e[1;47m
-  \e[1;34m♟︎ \e[0mfalseb2\e[1;40m \e[1;34m♟︎ \e[0mfalsec2\e[1;47m \e[1;34m♟︎ \e[0mfalsed2\e[1;40m
-  \e[1;34m♟︎ \e[0mfalsee2f2\e[1;40m \e[1;34m♟︎ \e[0mfalseg2\e[1;47m \e[1;34m♟︎ \e[0mfalseh2\e[1;40m
-  \e[1;34m♟︎ \e[0mfalsea1\e[1;40m \e[1;34m♜ \e[0mb1\e[1;47m \e[1;34m♞ \e[0mc1\e[1;40m
-  \e[1;34m♝ \e[0md1\e[1;47m \e[1;34m♛ \e[0me1\e[1;40m \e[1;34m♚ \e[0mf1\e[1;47m \e[1;34m♝
-  \e[0mg1\e[1;40m \e[1;34m♞ \e[0mh1\e[1;47m \e[1;34m♜ \e[0m"
-- "a8\e[1;47m \e[1;31m♜ \e[0mb8\e[1;40m \e[1;31m♞ \e[0mc8\e[1;47m \e[1;31m♝ \e[0md8\e[1;40m
-  \e[1;31m♛ \e[0me8\e[1;47m \e[1;31m♚ \e[0mf8\e[1;40m \e[1;31m♝ \e[0mg8\e[1;47m \e[1;31m♞
-  \e[0mh8\e[1;40m \e[1;31m♜ \e[0ma7\e[1;40m \e[1;31m♟︎ \e[0mfalseb7\e[1;47m \e[1;31m♟︎
-  \e[0mfalsec7\e[1;40m \e[1;31m♟︎ \e[0mfalsed7\e[1;47m \e[1;31m♟︎ \e[0mfalsee7f7\e[1;47m
-  \e[1;31m♟︎ \e[0mfalseg7\e[1;40m \e[1;31m♟︎ \e[0mfalseh7\e[1;47m \e[1;31m♟︎ \e[0mfalsea6b6c6d6e6f6g6h6a5b5c5d5e5\e[1;40m
   \e[1;31m♟︎ \e[0mtruef5g5h5a4b4c4d4e4\e[1;47m \e[1;34m♟︎ \e[0mtruef4g4h4a3b3c3d3e3f3\e[1;47m
   \e[1;34m♞ \e[0mg3h3a2\e[1;47m \e[1;34m♟︎ \e[0mfalseb2\e[1;40m \e[1;34m♟︎ \e[0mfalsec2\e[1;47m
   \e[1;34m♟︎ \e[0mfalsed2\e[1;40m \e[1;34m♟︎ \e[0mfalsee2f2\e[1;40m \e[1;34m♟︎ \e[0mfalseg2\e[1;47m
   \e[1;34m♟︎ \e[0mfalseh2\e[1;40m \e[1;34m♟︎ \e[0mfalsea1\e[1;40m \e[1;34m♜ \e[0mb1\e[1;47m
   \e[1;34m♞ \e[0mc1\e[1;40m \e[1;34m♝ \e[0md1\e[1;47m \e[1;34m♛ \e[0me1\e[1;40m \e[1;34m♚
   \e[0mf1\e[1;47m \e[1;34m♝ \e[0mg1h1\e[1;47m \e[1;34m♜ \e[0m"
+- "a8\e[1;47m \e[1;31m♜ \e[0mb8c8\e[1;47m \e[1;31m♝ \e[0md8\e[1;40m \e[1;31m♛ \e[0me8\e[1;47m
+  \e[1;31m♚ \e[0mf8\e[1;40m \e[1;31m♝ \e[0mg8\e[1;47m \e[1;31m♞ \e[0mh8\e[1;40m \e[1;31m♜
+  \e[0ma7\e[1;40m \e[1;31m♟︎ \e[0mfalseb7\e[1;47m \e[1;31m♟︎ \e[0mfalsec7\e[1;40m
+  \e[1;31m♟︎ \e[0mfalsed7\e[1;47m \e[1;31m♟︎ \e[0mfalsee7f7\e[1;47m \e[1;31m♟︎ \e[0mfalseg7\e[1;40m
+  \e[1;31m♟︎ \e[0mfalseh7\e[1;47m \e[1;31m♟︎ \e[0mfalsea6b6c6\e[1;47m \e[1;31m♞ \e[0md6e6f6g6h6a5b5c5d5e5\e[1;40m
+  \e[1;31m♟︎ \e[0mtruef5g5h5a4b4c4d4e4\e[1;47m \e[1;34m♟︎ \e[0mtruef4g4h4a3b3c3d3e3f3\e[1;47m
+  \e[1;34m♞ \e[0mg3h3a2\e[1;47m \e[1;34m♟︎ \e[0mfalseb2\e[1;40m \e[1;34m♟︎ \e[0mfalsec2\e[1;47m
+  \e[1;34m♟︎ \e[0mfalsed2\e[1;40m \e[1;34m♟︎ \e[0mfalsee2f2\e[1;40m \e[1;34m♟︎ \e[0mfalseg2\e[1;47m
+  \e[1;34m♟︎ \e[0mfalseh2\e[1;40m \e[1;34m♟︎ \e[0mfalsea1\e[1;40m \e[1;34m♜ \e[0mb1\e[1;47m
+  \e[1;34m♞ \e[0mc1\e[1;40m \e[1;34m♝ \e[0md1\e[1;47m \e[1;34m♛ \e[0me1\e[1;40m \e[1;34m♚
+  \e[0mf1\e[1;47m \e[1;34m♝ \e[0mg1h1\e[1;47m \e[1;34m♜ \e[0m"
+- "a8\e[1;47m \e[1;31m♜ \e[0mb8c8\e[1;47m \e[1;31m♝ \e[0md8\e[1;40m \e[1;31m♛ \e[0me8\e[1;47m
+  \e[1;31m♚ \e[0mf8\e[1;40m \e[1;31m♝ \e[0mg8\e[1;47m \e[1;31m♞ \e[0mh8\e[1;40m \e[1;31m♜
+  \e[0ma7\e[1;40m \e[1;31m♟︎ \e[0mfalseb7\e[1;47m \e[1;31m♟︎ \e[0mfalsec7\e[1;40m
+  \e[1;31m♟︎ \e[0mfalsed7\e[1;47m \e[1;31m♟︎ \e[0mfalsee7f7\e[1;47m \e[1;31m♟︎ \e[0mfalseg7\e[1;40m
+  \e[1;31m♟︎ \e[0mfalseh7\e[1;47m \e[1;31m♟︎ \e[0mfalsea6b6c6\e[1;47m \e[1;31m♞ \e[0md6e6f6g6h6a5b5c5d5e5\e[1;40m
+  \e[1;31m♟︎ \e[0mtruef5g5h5a4b4c4\e[1;47m \e[1;34m♝ \e[0md4e4\e[1;47m \e[1;34m♟︎
+  \e[0mtruef4g4h4a3b3c3d3e3f3\e[1;47m \e[1;34m♞ \e[0mg3h3a2\e[1;47m \e[1;34m♟︎ \e[0mfalseb2\e[1;40m
+  \e[1;34m♟︎ \e[0mfalsec2\e[1;47m \e[1;34m♟︎ \e[0mfalsed2\e[1;40m \e[1;34m♟︎ \e[0mfalsee2f2\e[1;40m
+  \e[1;34m♟︎ \e[0mfalseg2\e[1;47m \e[1;34m♟︎ \e[0mfalseh2\e[1;40m \e[1;34m♟︎ \e[0mfalsea1\e[1;40m
+  \e[1;34m♜ \e[0mb1\e[1;47m \e[1;34m♞ \e[0mc1\e[1;40m \e[1;34m♝ \e[0md1\e[1;47m \e[1;34m♛
+  \e[0me1\e[1;40m \e[1;34m♚ \e[0mf1g1h1\e[1;47m \e[1;34m♜ \e[0m"
