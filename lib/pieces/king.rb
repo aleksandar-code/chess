@@ -190,6 +190,7 @@ class King
       back = Marshal.load( Marshal.dump(@board) )
       start = coords_to_node(pair[0])
       destination = coords_to_node(pair[1])
+
       if !(start.piece.instance_of? King)
         coords = nil
         king = nil
@@ -204,7 +205,7 @@ class King
         destination.piece_move(start.piece, destination.coords) 
         start.piece_remove
 
-        bool = king.look_for_checks(coords, player)
+        bool = check?(king, coords, player)
         if bool == "check"
           array_checks << "check"
           @board = Marshal.load( Marshal.dump(back) ) unless array_checks.any?(nil)
@@ -230,6 +231,10 @@ class King
       
     end
     array_checks
+  end
+
+  def check?(king, coords, player)
+    king.look_for_checks(coords, player)
   end
 
   def add_valid_moves(coords, pattern)
@@ -265,10 +270,6 @@ class King
   end
 
   def coords_to_node(coords)
-    @board.each_with_index do |x, a|
-      x.each_with_index do |node, b|
-        return node if [a, b] == coords
-      end
-    end
+    @board[coords[0]][coords[1]]
   end
 end

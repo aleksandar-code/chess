@@ -69,13 +69,20 @@ RSpec.describe King do
   end
 
   describe '#test_moves' do
-    let(:game) { Game.new }
     let(:king) { King.new(0, 0) }
     let(:board) { Board.new }
+
     
-    context 'when' do
-      it 'returns something' do
+    context 'when there is no checks at all' do
+      
+      before do
+        king.board=(board.board)
+        allow(king).to receive(:check?).and_return([[6, 0], [4, 0]], [[6, 4], [4, 4]])
+      end
         
+      it 'returns the array of moves' do
+        start_dest = [[[6, 0], [4, 0]], [[6, 4], [4, 4]]]
+        expect(king.test_moves(start_dest, 0)).to eql(start_dest)
       end
     end
   end
