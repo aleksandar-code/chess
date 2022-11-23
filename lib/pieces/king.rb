@@ -157,7 +157,7 @@ class King
     false
   end
 
-  def check_mate(dest_node, our_id)
+  def check_mate(our_id)
     all_moves = @graph.check_all_moves(our_id)
     array_checks = test_moves(all_moves, our_id)
 
@@ -167,6 +167,19 @@ class King
     false
   end
   
+  def stalemate(id)
+      array = []
+      all_moves = @graph.check_all_moves(id)
+      array_checks = test_moves(all_moves, id)
+
+      array_checks.each do |element|
+        array << element unless element == "check"
+      end
+      return true if array.length == 0
+      
+      false
+  end
+
   def test_moves(start_dest, player)
     array_checks = []
     start_dest.each do |pair|
@@ -213,19 +226,6 @@ class King
       
     end
     array_checks
-  end
-
-  def stalemate(coords, id)
-      array = []
-      all_moves = @graph.check_all_moves(id)
-      array_checks = test_moves(all_moves, id)
-
-      array_checks.each do |element|
-        array << element unless element == "check"
-      end
-      return true if array.length == 0
-      
-      false
   end
 
   def add_valid_moves(coords, pattern)

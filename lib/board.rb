@@ -36,19 +36,17 @@ class Board
   def stalemate?(id)
     return false if @moves.length < 4
     king = nil
-    coords = nil
     @board.each do |x|
       x.each do |node|
         if node.piece.instance_of? King
           if node.piece.id == id
-            coords = node
             king = node.piece
           end
         end
       end
     end
     back = Marshal.load( Marshal.dump(@board) )
-    value = king.stalemate(coords, id) unless king.nil?
+    value = king.stalemate(id) unless king.nil?
     @board = Marshal.load( Marshal.dump(back) )
     value
   end
@@ -56,20 +54,17 @@ class Board
   def check_mate?(id)
     return false if @moves.length < 4
     king = nil
-    coords = nil
-
     @board.each do |x|
       x.each do |node|
         if node.piece.instance_of? King
           if node.piece.id == id
-            coords = node
             king = node.piece
           end
         end
       end
     end
     back = Marshal.load( Marshal.dump(@board) )
-    value = king.check_mate(coords, id) unless king.nil?
+    value = king.check_mate(id) unless king.nil?
     @board = Marshal.load( Marshal.dump(back) )
     value
   end
