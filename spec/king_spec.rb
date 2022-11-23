@@ -69,15 +69,15 @@ RSpec.describe King do
   end
 
   describe '#test_moves' do
-    let(:king) { King.new(0, 0) }
-    let(:board) { Board.new }
-
-    
+  
+  
     context 'when there is no checks at all' do
-      
+      let(:king) { King.new(0, 0) }
+      let(:board) { Board.new }
+    
       before do
         king.board=(board.board)
-        allow(king).to receive(:check?).and_return([[6, 0], [4, 0]], [[6, 4], [4, 4]])
+        allow(king).to receive(:check?).and_return(false)
       end
         
       it 'returns the array of moves' do
@@ -86,13 +86,4 @@ RSpec.describe King do
       end
     end
   end
-
-  describe '#castling' do
-    context 'when' do
-      it 'returns something' do
-        
-      end
-    end
-  end
-  
 end
