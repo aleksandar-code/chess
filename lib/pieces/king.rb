@@ -168,16 +168,16 @@ class King
   end
   
   def stalemate(id)
-      array = []
-      all_moves = @graph.check_all_moves(id)
-      array_checks = test_moves(all_moves, id)
-
-      array_checks.each do |element|
-        array << element unless element == "check"
-      end
-      return true if array.length == 0
-      
-      false
+    array = []
+    all_moves = @graph.check_all_moves(id)
+    array_checks = test_moves(all_moves, id)
+    
+    array_checks.each do |element|
+      array << element unless element == "check"
+    end
+    return true if array.length == 0
+    
+    false
   end
 
   def test_moves(start_dest, player)
