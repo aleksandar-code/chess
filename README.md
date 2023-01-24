@@ -48,9 +48,15 @@ May be a possibility to configurate the pieces colors, to remove or add move not
 
 ## Information
 
+The hardest, most complex and time consuming project I've worked on. It was not so hard that I couldn't solve problems, it was so hard that it was very time-consuming.
+The hardest problems to solve were, how to verify if a move is legal or not if the king was concerned. How to know if this is a stalemate, a checkmate, or just a check on the king? How to know if this move is legal, does it leave the king in check?
 
+I certainly put a lot of time in doing system design for this project, i tried to write concise and meaningful methods once i ran into bugs that i couldn't solve due to the very long methods.
+
+Ultimately, this is my favorite project and one that i spent the most time on by far. 
+
+Chess is still one of my favorite games, and making this project live was my dream.
 
 ## Contact
 
 <a href="https://twitter.com/aleksandar_code" rel="nofollow">@aleksandar_code</a>
-
