@@ -12,13 +12,15 @@ To Play write the starting coordinates of the piece and the destination coordina
 
 The game has no AI to play against, the real challenge was making all chess rules apply with my code (1000+ lines of code).
 
+More specifications and how to play below...
+
 Click the link <a href="https://replit.com/@Shiisui/chess#lib/script.rb" rel="nofollow">Chess</a>.
 
 ## What it looks like
 
 ![image](https://user-images.githubusercontent.com/83082486/214339422-2a4add5b-5f3b-4f1e-87ff-7b0703389fd9.png)
 
-## Features
+## Features and Specifications
 
 Player vs Player.
 
