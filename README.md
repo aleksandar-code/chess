@@ -1,6 +1,6 @@
 # Chess
 
-NO AI WAS USED.
+No AI was used for making this chess game that works in the terminal.
 
 Chess made with Ruby.
 
