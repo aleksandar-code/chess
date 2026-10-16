@@ -8,7 +8,11 @@ Final assignment for the Ruby course of <a href="https://www.theodinproject.com/
 
 Specifications and details for the assignment can be found <a href="https://www.theodinproject.com/lessons/ruby-ruby-final-project" rel="nofollow">here</a>.
 
-To Play write the starting coordinates of the piece and the destination coordinates. Click the link <a href="https://replit.com/@Shiisui/chess#lib/script.rb" rel="nofollow">Chess</a>.
+To Play write the starting coordinates of the piece and the destination coordinates.
+
+The game has no AI to play against, the real challenge was making all chess rules apply with my code (1000+ lines of code).
+
+Click the link <a href="https://replit.com/@Shiisui/chess#lib/script.rb" rel="nofollow">Chess</a>.
 
 ## What it looks like
 
