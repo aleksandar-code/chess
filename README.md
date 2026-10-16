@@ -1,5 +1,7 @@
 # Chess
 
+NO AI WAS USED.
+
 Chess made with Ruby.
 
 Final assignment for the Ruby course of <a href="https://www.theodinproject.com/" rel="nofollow">The Odin Project</a>.
