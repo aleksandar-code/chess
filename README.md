@@ -14,7 +14,7 @@ The game has no AI to play against, the real challenge was making all chess rule
 
 More specifications and how to play below...
 
-Click the link <a href="https://replit.com/@Shiisui/chess#lib/script.rb" rel="nofollow">Chess</a>.
+Click the link (replit has become a paid subscription if the link is down, you can still run the code on your pc look info below) <a href="https://replit.com/@Shiisui/chess#lib/script.rb" rel="nofollow">Chess</a>.
 
 ## What it looks like
 
